@@ -3,3 +3,14 @@
 
 en:
   hello: "Hello world"
+  user_sessions:
+    create:
+      success: "Successfully logged in."
+    destroy:
+      success: "Successfully logged out."
+    new:
+      title: "Sign in"
+      sign_in: "Sign in"
+  common:
+    not_authenticated: "You must login first"
+    title: "System"

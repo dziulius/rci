@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate
     unless current_user
-      flash[:error] = "You must login first"
+      flash[:error] = t('common.not_authenticated')
       redirect_to login_path
     end
   end

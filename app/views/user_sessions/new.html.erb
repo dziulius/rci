@@ -1,4 +1,4 @@
-<% title "Sign in" %>
+<% title t('user_sessions.new.title') %>
 
 <% form_for @user_session do |form| %>
     <%= form.error_messages %>
@@ -12,7 +12,7 @@
         <%= form.password_field :password %>
       </li>
       <li>
-        <%= form.submit "Sign in" %>
+        <%= form.submit t('user_sessions.new.sign_in') %>
       </li>
     </ol>
 <% end %>
