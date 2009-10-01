@@ -1,0 +1,1 @@
+User.blueprint :admin, :name => 'admin', :email => 'admin@example.com', :password => 'secret', :password_confirmation => 'secret'
