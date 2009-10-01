@@ -1,0 +1,129 @@
+body {
+    background-color: #DDD;
+    color: #333;
+    padding: 0 0 0 0;
+}
+
+body, p, ol, ul, td {
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+pre {
+    background-color: #eee;
+    padding: 10px;
+    font-size: 11px;
+}
+
+a {
+    color: #000;
+}
+
+a:visited {
+    color: #000;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    border: 0 none;
+    vertical-align: middle;
+}
+
+.fieldWithErrors {
+    padding: 2px;
+    background-color: red;
+    display: table;
+}
+
+#errorExplanation {
+    width: 400px;
+    border: 2px solid red;
+    padding: 7px;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    background-color: #c00;
+    color: #fff;
+}
+
+#errorExplanation p {
+    color: #333;
+    margin-bottom: 0;
+    padding: 5px;
+}
+
+#errorExplanation ul li {
+    font-size: 12px;
+    list-style: square;
+}
+
+div.uploadStatus {
+    margin: 5px;
+}
+
+div.progressBar {
+    margin: 5px;
+}
+
+div.progressBar div.border {
+    background-color: #fff;
+    border: 1px solid gray;
+    width: 100%;
+}
+
+div.progressBar div.background {
+    background-color: #333;
+    height: 18px;
+    width: 0%;
+}
+
+ul.menu {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+ul.menu li {
+    padding: 0px 5px 0px 5px;
+    list-style: none inside;
+    color: #fff;
+    display: inline-block;
+    margin: 0;
+}
+
+/* table less forms */
+.form label {
+    font-weight: bold;
+    float: left;
+    margin-left: -155px; /*width of left column*/
+    width: 150px; /*width of labels. Should be smaller than left column (155px) to create some right margin*/
+}
+
+.form input[type="text"] {
+/*width of text boxes. IE6 does not understand this attribute*/
+    width: 180px;
+}
+
+.form textarea {
+    width: 250px;
+    height: 150px;
+}
+
+.form li {
+    list-style: none;
+    width: 300px;
+    clear: left;
+    margin: 0;
+    padding: 1px 0 2px 155px; /*width of left column containing the label elements*/
+}
