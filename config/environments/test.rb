@@ -30,4 +30,4 @@ config.action_mailer.delivery_method = :test
 config.gem "rspec", :lib => false, :version => ">= 1.2.0"
 config.gem "rspec-rails", :lib => false, :version => ">= 1.2.0"
 config.gem "mocha", :version => ">= 0.9.8"
-config.gem 'blueprints', :source => 'http://gemcutter.org', :version => ">= 0.1.1"
+config.gem 'blueprints', :source => 'http://gemcutter.org', :version => ">= 0.2.0"

@@ -1,3 +1,3 @@
 blueprint :users do
-  puts "Loading users"
+  @admin = User.blueprint(:name => 'admin', :email => 'admin@example.com', :password => 'secret', :password_confirmation => 'secret')
 end
