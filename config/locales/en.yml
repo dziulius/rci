@@ -13,7 +13,7 @@ en:
       success: "Successfully logged out."
     new:
       title: "Sign in"
-      sign_in: "Sign in"
+      button_label: "Sign in"
   common:
     not_authenticated: "You must login first"
     title: "System"

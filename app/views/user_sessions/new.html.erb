@@ -1,18 +1,8 @@
 <% title t('user_sessions.new.title') %>
 
-<% form_for @user_session do |form| %>
-    <%= form.error_messages %>
-    <ol class="form">
-      <li>
-        <%= form.label :email %>
-        <%= form.text_field :email %>
-      </li>
-      <li>
-        <%= form.label :password %>
-        <%= form.password_field :password %>
-      </li>
-      <li>
-        <%= form.submit t('user_sessions.new.sign_in') %>
-      </li>
-    </ol>
+<% semantic_form_for @user_session do |form| %>
+    <%= form.inputs :email, :password %>
+    <% form.buttons do %>
+        <%= form.commit_button t('user_sessions.new.button_label') %>
+    <% end %>
 <% end %>
