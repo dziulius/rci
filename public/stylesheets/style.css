@@ -103,27 +103,40 @@ ul.menu li {
 }
 
 /* table less forms */
-.form label {
+.formtastic label {
     font-weight: bold;
     float: left;
     margin-left: -155px; /*width of left column*/
     width: 150px; /*width of labels. Should be smaller than left column (155px) to create some right margin*/
 }
 
-.form input[type="text"] {
+.formtastic input[type="text"], .formtastic input[type="password"] {
 /*width of text boxes. IE6 does not understand this attribute*/
-    width: 180px;
+    width: 230px;
 }
 
-.form textarea {
+.formtastic textarea {
     width: 250px;
     height: 150px;
 }
 
-.form li {
+.formtastic ol {
+    padding: 0;
+}
+
+.formtastic li {
     list-style: none;
-    width: 300px;
+    width: 405px;
     clear: left;
     margin: 0;
     padding: 1px 0 2px 155px; /*width of left column containing the label elements*/
+}
+
+ul.info {
+    list-style: none;
+}
+
+.header {
+    font-weight: bold;
+    margin-right: 5px;
 }

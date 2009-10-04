@@ -19,7 +19,7 @@ describe UserSessionsController do
       post :create, :user_session => {:email => @admin.email, :password => 'secret'}
       response.flash[:notice].should == "Successfully logged in."
       response.should be_redirect
-      response.should redirect_to(root_path)
+      response.should redirect_to(user_path(@admin))
       assigns(:user_session).user.should == @admin
     end
 

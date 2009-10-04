@@ -1,0 +1,14 @@
+<% title t('users.show.heading', :name => @user.name) %>
+
+<h1><%= t('users.show.heading') %></h1>
+
+<%= t('users.show.last_login', :ip => @user.last_login_ip, :time => @user.last_login_at) %>
+
+<ul class="info">
+  <%= field_list_item(@user, :name) %>
+  <%= field_list_item(@user, :email) %>
+  <%= field_list_item(@user, :created_at) %>
+</ul>
+
+<%= link_to t('users.show.edit_link'), edit_user_path(@user) %> |
+<%= link_to t('users.show.back_link'), users_path %>

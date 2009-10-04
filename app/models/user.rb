@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_one :project
   belongs_to :department
 
-  validates_presence_of :name
+  validates_length_of :name, :within => 1..50
 
   acts_as_authentic
 end
