@@ -89,13 +89,13 @@ div.progressBar div.background {
     width: 0%;
 }
 
-ul.menu {
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
+ol.menu {
+    margin: 0;
+    padding: 0;
 }
 
-ul.menu li {
-    padding: 0px 5px 0px 5px;
+ol.menu li {
+    padding: 0 5px;
     list-style: none inside;
     color: #fff;
     display: inline-block;
