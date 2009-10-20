@@ -76,3 +76,7 @@ en:
       heading: "Editing project information"
       back_link: "Back"
       information: "Information"
+  menu:
+    user: "User"
+    projects: "Projects"
+    logout: "Logout"

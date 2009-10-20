@@ -11,9 +11,9 @@
 <div id="main">
   <% if current_user %>
       <ol class="menu">
-        <li><%= link_to 'User', user_path(current_user) %></li>
-        <li><%= link_to 'Projects', projects_path %></li>
-        <li><%= link_to 'Logout', logout_path %></li>
+        <li><%= link_to t('menu.user'), user_path(current_user) %></li>
+        <li><%= link_to t('menu.projects'), projects_path %></li>
+        <li><%= link_to t('menu.logout'), logout_path %></li>
       </ol>
   <% end %>
   <div id="middle">
