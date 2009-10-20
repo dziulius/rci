@@ -49,3 +49,30 @@ en:
       account_information: "Account information"
       back_link: "Back"
       password_information: "Change password"
+  projects:
+    create:
+      notice: "Successfully added new project."
+    update:
+      notice: "Successfully updated information."
+    index:
+      edit_link: "Edit"
+      delete_link: "Destroy"
+      delete_confirmation: "Are you sure?"
+      new_link: "New project"
+      heading: "Listing projects"
+      title: "Projects list"
+    show:
+      edit_link: "Edit"
+      back_link: "Back"
+      heading: "Project information"
+      title: "Project {{name}}"
+    new:
+      heading: "New project"
+      back_link: "Back"
+      title: "New project"
+      information: "Information"
+    edit:
+      title: "Editing project information"
+      heading: "Editing project information"
+      back_link: "Back"
+      information: "Information"

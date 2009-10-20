@@ -1,0 +1,12 @@
+<% title t('projects.show.heading', :name => @project.name) %>
+
+<h1><%= t('projects.show.heading') %></h1>
+
+<ul class="info">
+  <%= field_list_item(@project, :name) %>
+  <%= field_list_item(@project, :leader, :name) %>
+  <%= field_list_item(@project, :created_at) %>
+</ul>
+
+<%= link_to t('projects.show.edit_link'), edit_project_path(@project) %> |
+<%= link_to t('projects.show.back_link'), projects_path %>

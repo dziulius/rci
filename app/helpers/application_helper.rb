@@ -4,9 +4,12 @@ module ApplicationHelper
     content_for(:title, text)
   end
 
-  def field_list_item(object, field)
+  def field_list_item(object, field, method = nil)
+    value = object.send(field)
+    value = value.send(method) if method
+
     content_tag('li') do
-      content_tag('span', "#{object.class.human_attribute_name(field)}", :class => 'header') + object.send(field).to_s
+      content_tag('span', "#{object.class.human_attribute_name(field)}", :class => 'header') + value.to_s
     end
   end
 end
