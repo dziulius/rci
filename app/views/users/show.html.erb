@@ -10,5 +10,25 @@
   <%= field_list_item(@user, :created_at) %>
 </ul>
 
+<h2><%= t('users.show.projects') %></h2>
+<table border="1" cellspacing="0">
+  <tr>
+    <th><%= Project.human_attribute_name('name') %></th>
+    <th><%= Project.human_attribute_name('leader') %></th>
+    <th><%= Project.human_attribute_name('start_at') %></th>
+    <th><%= Project.human_attribute_name('end_at') %></th>
+    <th><%= Project.human_attribute_name('work_hours') %></th>
+  </tr>
+<% @user.projects.each do |project| %>
+    <tr>
+      <td><%= link_to project, project %></td>
+      <td><%= project.leader.name %></td>
+      <td><%= project.start_at %></td>
+      <td><%= project.end_at %></td>
+      <td><%= project.work_hours %></td>
+    </tr>
+<% end %>
+</table>
+
 <%= link_to t('users.show.edit_link'), edit_user_path(@user) %> |
 <%= link_to t('users.show.back_link'), users_path %>

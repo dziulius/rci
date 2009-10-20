@@ -6,6 +6,8 @@ en:
     attributes:
       user:
         password_confirmation: "Confirm password"
+      project:
+        work_hours: "Worked"
   user_sessions:
     create:
       success: "Successfully logged in."
@@ -35,6 +37,7 @@ en:
       heading: "User information"
       title: "User {{name}}"
       last_login: "Last login from {{ip}} at {{time}}"
+      projects: "Projects"
     new:
       account_information: "Account information"
       heading: "New user"

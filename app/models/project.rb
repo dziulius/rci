@@ -2,6 +2,10 @@ class Project < ActiveRecord::Base
   has_many :budgets
   belongs_to :leader, :class_name => 'User', :foreign_key => 'leader_id'
 
+  def to_s
+    name
+  end
+
   def start_at
     Time.parse(self['start_at'])
   end
