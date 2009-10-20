@@ -8,9 +8,9 @@ blueprint :projects => :users do
 end
 
 blueprint :budgets => :projects do
-  @first_project_0910 = @first_project.budgets.blueprint(:year => 2009, :month => 10, :hours => 130)
-  @first_project_0911 = @first_project.budgets.blueprint(:year => 2009, :month => 11, :hours => 142)
-  @first_project_0912 = @first_project.budgets.blueprint(:year => 2009, :month => 12, :hours => 128)
+  @first_project_0910 = @first_project.budgets.blueprint(:at => Time.mktime(2009, 10), :hours => 130)
+  @first_project_0911 = @first_project.budgets.blueprint(:at => Time.mktime(2009, 11), :hours => 142)
+  @first_project_0912 = @first_project.budgets.blueprint(:at => Time.mktime(2009, 12), :hours => 128)
 end
 
 blueprint :tasks => [:budgets, :users] do
