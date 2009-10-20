@@ -9,15 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091004121008) do
+ActiveRecord::Schema.define(:version => 20091019103711) do
 
   create_table "budgets", :force => true do |t|
     t.integer  "project_id"
-    t.integer  "year"
-    t.integer  "month"
     t.integer  "hours"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "at"
   end
 
   create_table "departments", :force => true do |t|
