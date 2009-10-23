@@ -1,0 +1,7 @@
+<% form_for(@upload_data, :html => { :multipart => true, :method => :post }) do |f| %>
+  <%= f.label :data_file %> 
+  <%= f.file_field :data_file %>
+  <%= f.submit 'Upload' %>
+<% end %>
+
+<%= link_to 'Back', root_path %>

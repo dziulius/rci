@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :user_sessions
   map.resources :users
   map.resources :projects
+  map.resources :upload_data
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

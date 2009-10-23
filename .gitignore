@@ -9,3 +9,4 @@ doc/app
 config/database.yml
 .idea
 nbproject
+*.swp
