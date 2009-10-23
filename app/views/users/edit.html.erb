@@ -1,0 +1,11 @@
+<% title t('users.edit.title') %>
+
+<h1><%= t('users.edit.heading') %></h1>
+
+<% semantic_form_for(@user) do |f| %>
+    <%= f.inputs :name, :email, :name => t('users.edit.account_information') %>
+    <%= f.inputs :password, :password_confirmation, :name => t('users.edit.password_information') %>
+    <%= f.buttons %>
+<% end %>
+
+<%= link_to t('users.edit.back_link'), users_path %>

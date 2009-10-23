@@ -2,7 +2,12 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        password_confirmation: "Confirm password"
+      project:
+        work_hours: "Worked"
   user_sessions:
     create:
       success: "Successfully logged in."
@@ -10,7 +15,68 @@ en:
       success: "Successfully logged out."
     new:
       title: "Sign in"
-      sign_in: "Sign in"
+      button_label: "Sign in"
   common:
     not_authenticated: "You must login first"
     title: "System"
+  users:
+    create:
+      notice: "Successfully added new user."
+    update:
+      notice: "Successfully updated information."
+    index:
+      edit_link: "Edit"
+      delete_link: "Destroy"
+      delete_confirmation: "Are you sure?"
+      new_link: "New user"
+      heading: "Listing users"
+      title: "Users list"
+    show:
+      edit_link: "Edit"
+      back_link: "Back"
+      heading: "User information"
+      title: "User {{name}}"
+      last_login: "Last login from {{ip}} at {{time}}"
+      projects: "Projects"
+    new:
+      account_information: "Account information"
+      heading: "New user"
+      back_link: "Back"
+      title: "New user"
+    edit:
+      title: "Editing user information"
+      heading: "Editing user information"
+      account_information: "Account information"
+      back_link: "Back"
+      password_information: "Change password"
+  projects:
+    create:
+      notice: "Successfully added new project."
+    update:
+      notice: "Successfully updated information."
+    index:
+      edit_link: "Edit"
+      delete_link: "Destroy"
+      delete_confirmation: "Are you sure?"
+      new_link: "New project"
+      heading: "Listing projects"
+      title: "Projects list"
+    show:
+      edit_link: "Edit"
+      back_link: "Back"
+      heading: "Project information"
+      title: "Project {{name}}"
+    new:
+      heading: "New project"
+      back_link: "Back"
+      title: "New project"
+      information: "Information"
+    edit:
+      title: "Editing project information"
+      heading: "Editing project information"
+      back_link: "Back"
+      information: "Information"
+  menu:
+    user: "User"
+    projects: "Projects"
+    logout: "Logout"

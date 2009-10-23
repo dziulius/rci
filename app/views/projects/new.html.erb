@@ -1,0 +1,10 @@
+<% title t('projects.new.title') %>
+
+<h1><%= t('projects.new.heading') %></h1>
+
+<% semantic_form_for(@project) do |f| %>
+    <%= f.inputs :name, :leader, :name => t('projects.new.information') %>
+    <%= f.buttons %>
+<% end %>
+
+<%= link_to t('projects.new.back_link'), projects_path %>

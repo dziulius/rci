@@ -1,0 +1,34 @@
+<% title t('users.show.heading', :name => @user.name) %>
+
+<h1><%= t('users.show.heading') %></h1>
+
+<%= t('users.show.last_login', :ip => @user.last_login_ip, :time => @user.last_login_at) %>
+
+<ul class="info">
+  <%= field_list_item(@user, :name) %>
+  <%= field_list_item(@user, :email) %>
+  <%= field_list_item(@user, :created_at) %>
+</ul>
+
+<%= link_to t('users.show.edit_link'), edit_user_path(@user) %> |
+<%= link_to t('users.show.back_link'), users_path %>
+
+<h2><%= t('users.show.projects') %></h2>
+<table border="1" cellspacing="0">
+  <tr>
+    <th><%= Project.human_attribute_name('name') %></th>
+    <th><%= Project.human_attribute_name('leader') %></th>
+    <th><%= Project.human_attribute_name('start_at') %></th>
+    <th><%= Project.human_attribute_name('end_at') %></th>
+    <th><%= Project.human_attribute_name('work_hours') %></th>
+  </tr>
+<% @user.projects.each do |project| %>
+    <tr>
+      <td><%= link_to project, project %></td>
+      <td><%= project.leader.name %></td>
+      <td><%= project.start_at %></td>
+      <td><%= project.end_at %></td>
+      <td><%= project.work_hours %></td>
+    </tr>
+<% end %>
+</table>
