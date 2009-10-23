@@ -1,5 +1,5 @@
 body {
-    background-color: #EEE;
+    background-color: #fff;
     color: #333;
     padding: 0 0 0 0;
 }
@@ -126,7 +126,7 @@ ol.menu li {
 
 .formtastic li {
     list-style: none;
-    width: 405px;
+    width: 220px;
     clear: left;
     margin: 0;
     padding: 1px 0 2px 155px; /*width of left column containing the label elements*/
@@ -140,3 +140,72 @@ ul.info {
     font-weight: bold;
     margin-right: 5px;
 }
+
+/* ### Login ### */
+
+#new_user_session {
+	display: block;
+	vertical-align: middle;
+	width: 400px;
+	height: 220px;
+	background-color: #f1f3ff;
+	-moz-border-radius-bottomleft:10px;
+	-moz-border-radius-bottomright:10px;
+	-moz-border-radius-topleft:10px;
+	-moz-border-radius-topright:10px;
+}
+
+fieldset.inputs, fieldset.buttons {
+	display: block;
+	border: 0px;
+	width: 50px;
+}
+
+fieldset.buttons {
+	width: 30px;
+}
+
+#user_session_email, #user_session_password {
+	display: block;
+	font-size:18px;
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+	-moz-border-radius-topleft:5px;
+	-moz-border-radius-topright:5px;
+	border:1px solid #DDDDDD;
+	font-size:14px;
+	margin:0;
+	padding:8px;
+	width:200px;
+}
+
+#user_session_submit {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+	-moz-border-radius-topleft:5px;
+	-moz-border-radius-topright:5px;
+	-x-system-font:none;
+	background:#a2a9e1 url(/images/button.png) repeat-x scroll 0 0;
+	border:1px solid #a2a9e1;
+	color:#333355;
+	display:block;
+	font-family:Helvetica,Arial,Sans-serif;
+	font-size:12px;
+	font-size-adjust:none;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:bold;
+	line-height:normal;
+	outline-color:-moz-use-text-color;
+	outline-style:none;
+	outline-width:medium;
+	padding:8px 10px;
+	text-align:center;
+	text-decoration:none;
+}
+
+/* end of ### Login ### */
