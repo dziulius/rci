@@ -104,15 +104,11 @@ ol.menu li {
 
 /* table less forms */
 .formtastic label {
-    font-weight: bold;
+	display: block;
     float: left;
-    margin-left: -155px; /*width of left column*/
-    width: 150px; /*width of labels. Should be smaller than left column (155px) to create some right margin*/
-}
-
-.formtastic input[type="text"], .formtastic input[type="password"] {
-/*width of text boxes. IE6 does not understand this attribute*/
-    width: 230px;
+	width: 100px;
+	padding-left: 0px;
+	padding-top: 9px;
 }
 
 .formtastic textarea {
@@ -126,10 +122,6 @@ ol.menu li {
 
 .formtastic li {
     list-style: none;
-    width: 220px;
-    clear: left;
-    margin: 0;
-    padding: 1px 0 2px 155px; /*width of left column containing the label elements*/
 }
 
 ul.info {
@@ -143,40 +135,48 @@ ul.info {
 
 /* ### Login ### */
 
-#new_user_session {
-	display: block;
-	vertical-align: middle;
-	width: 400px;
-	height: 220px;
-	background-color: #f1f3ff;
-	-moz-border-radius-bottomleft:10px;
-	-moz-border-radius-bottomright:10px;
-	-moz-border-radius-topleft:10px;
-	-moz-border-radius-topright:10px;
-}
-
 fieldset.inputs, fieldset.buttons {
-	display: block;
-	border: 0px;
-	width: 50px;
+	border: 0;
+	padding: 0;
 }
 
-fieldset.buttons {
-	width: 30px;
+.inline-errors {
+	font-size: 11px;
+	color: red;
+	text-align: right;
+	padding-right: 100px;
+}
+
+li.commit {
+margin-left:120px;
+}
+
+#new_user_session {
+	padding: 10px;
+	display: block;
+	width: 330px;
+	background-color: #f1f3ff;
+	-moz-border-radius-bottomleft: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+}
+
+#user_session_email_input, #user_session_password_input {
+	font-size:11px;
+	padding-top:2px;
 }
 
 #user_session_email, #user_session_password {
-	display: block;
-	font-size:18px;
-	-moz-border-radius-bottomleft:5px;
-	-moz-border-radius-bottomright:5px;
-	-moz-border-radius-topleft:5px;
-	-moz-border-radius-topright:5px;
-	border:1px solid #DDDDDD;
-	font-size:14px;
-	margin:0;
-	padding:8px;
-	width:200px;
+	display: inline-block;
+	border: 1px solid #DDDDDD;
+	font-size: 12px;
+	padding: 8px;
+	width: 200px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
 }
 
 #user_session_submit {
