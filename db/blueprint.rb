@@ -3,6 +3,15 @@ blueprint :users do
   @jonas = User.blueprint(:name => 'jonas', :email => 'jonas@example.com', :password => 'secret', :password_confirmation => 'secret')
 end
 
+blueprint :departments do
+  @main_dep = Department.blueprint(:name => 'main dep.')
+end
+
+blueprint :department_belongings => [:departments, :users] do
+  @admin_leads_main_dep = DepartmentBelonging.blueprint(:department => @main_dep, :user => @admin, :leader => true)
+  @jonas_in_main_dep = DepartmentBelonging.blueprint(:department => @main_dep, :user => @jonas)
+end
+
 blueprint :projects => :users do
   @first_project = @admin.leaded_projects.blueprint(:name => 'first')
   @jonas_project = @jonas.leaded_projects.blueprint(:name => 'jonas project')
