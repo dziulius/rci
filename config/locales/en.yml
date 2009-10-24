@@ -76,6 +76,33 @@ en:
       heading: "Editing project information"
       back_link: "Back"
       information: "Information"
+  departments:
+    create:
+      notice: "Successfully added new department."
+    update:
+      notice: "Successfully updated information."
+    index:
+      edit_link: "Edit"
+      delete_link: "Destroy"
+      delete_confirmation: "Are you sure?"
+      new_link: "New department"
+      heading: "Listing departments"
+      title: "Departments list"
+    show:
+      edit_link: "Edit"
+      back_link: "Back"
+      heading: "Department information"
+      title: "Department {{name}}"
+    new:
+      heading: "New department"
+      back_link: "Back"
+      title: "New department"
+      information: "Information"
+    edit:
+      title: "Editing department information"
+      heading: "Editing department information"
+      back_link: "Back"
+      information: "Information"
   menu:
     user: "User"
     projects: "Projects"
