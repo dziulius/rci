@@ -1,5 +1,9 @@
-User.blueprint :admin, :name => 'admin', :email => 'admin@example.com', :password => 'secret', :password_confirmation => 'secret'
-User.blueprint :andrius, :name => 'andrius', :email => 'andrius@example.com', :password => 'secret', :password_confirmation => 'secret'
+Department.blueprint(:main_dep, :name => 'main dep.')
+
+User.blueprint(:admin, :name => 'admin', :email => 'admin@example.com', :password => 'secret', :department => :@main_dep,
+               :password_confirmation => 'secret').depends_on(:main_dep)
+User.blueprint(:andrius, :name => 'andrius', :email => 'andrius@example.com', :password => 'secret', :department => :@main_dep,
+               :password_confirmation => 'secret').depends_on(:main_dep)
 
 Project.blueprint(:psi, :name => 'PSI', :leader => :@andrius).depends_on(:andrius)
 Project.blueprint(:zks, :name => 'ZKS', :leader => :@admin).depends_on(:admin)
