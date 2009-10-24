@@ -1,0 +1,34 @@
+<%= semantic_form.inputs :name, :name => t('departments.semantic_form.information') %>
+
+<div id="users_list"></div>
+<%= label_tag :add_user, t('departments.semantic_form.add_user') %>
+<%= text_field_tag :add_user %>
+
+<script type="text/javascript">
+    <% semantic_form.object.department_belongings.all(:include => :user).each do |dp| %>
+    addUser('<%= dp.user.name %>', <%= dp.user.id %>, <%= dp.leader || false %>);
+    <% end %>
+
+    function addUser(name, user_id, leader) {
+        $('#users_list').append('<div>' + name + ' - </div>');
+        var div = $('#users_list').children(':last');
+        if (leader) {
+            div.append('<span class="leader"><%= t('departments.semantic_form.leader') %></span>')
+        } else {
+            div.append('<span class="not-leader"><%= t('departments.semantic_form.not_leader') %></span>')
+        }
+        div.append('<input type="hidden" name="department[department_belongings_attributes][][user_id]" value="' + user_id + '" />')
+        div.append('<input type="hidden" name="department[department_belongings_attributes][][leader]" value="' + (leader ? 1 : 0) + '" />')
+    }
+
+    $(function() {
+        $('.not-leader a').live('click', function() {
+            var leader = $(this).parent();
+            $('.leader').parent().children('input:last').val(0);
+            $('.leader').removeClass('leader').addClass('not-leader');
+            $('.not-leader').html('<%= t('departments.semantic_form.not_leader') %>');
+            leader.removeClass('not-leader').addClass('leader').html('<%= t('departments.semantic_form.leader') %>');
+            leader.parent().children('input:last').val(1);
+        });
+    });
+</script>
