@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(:version => 20091019103711) do
     t.string   "last_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "departament_id"
+    t.integer  "department_id"
   end
 
 end

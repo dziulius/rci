@@ -79,4 +79,5 @@ en:
   menu:
     user: "User"
     projects: "Projects"
+    upload_data: "Upload data"
     logout: "Logout"
