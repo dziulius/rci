@@ -101,12 +101,8 @@ en:
       title: "Editing department information"
       heading: "Editing department information"
       back_link: "Back"
-    semantic_form:
-      workers: "Workers"
+    form:
       information: "Information"
-      add_user: "Add worker: "
-      leader: "leader"
-      not_leader: '<a href="#">not leader</a>'
   menu:
     user: "User"
     projects: "Projects"
