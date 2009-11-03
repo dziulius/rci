@@ -3,7 +3,7 @@
 <h1><%= t('users.new.heading') %></h1>
 
 <% semantic_form_for(@user) do |f| %>
-    <%= f.inputs :name, :email, :password, :password_confirmation, :name => t('users.new.account_information') %>
+    <%= f.inputs :name, :email, :department, :password, :password_confirmation, :name => t('users.new.account_information') %>
     <%= f.buttons %>
 <% end %>
 

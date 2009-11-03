@@ -31,4 +31,31 @@ describe User do
       p.work_hours.should == 61
     end
   end
+
+  describe "departments" do
+    before do
+      build 'in_main_dep.admin_leads'
+    end
+
+    it "should return correct department_id" do
+      @admin.department_id.should == @main_dep.id
+    end
+
+    it "should allow changing department by setting id" do
+      build :second_dep
+      @admin.department_id = @second_dep.id
+      @admin.reload.department.should == @second_dep
+    end
+
+    it "should not set user as leader" do
+      build :second_dep
+      @admin.department_id = @second_dep.id
+      @admin.reload.department_belonging.leader.should be_false
+    end
+
+    it "should allow setting department_id to nil" do
+      @admin.department_id = nil
+      @admin.reload.department.should == nil
+    end
+  end
 end
