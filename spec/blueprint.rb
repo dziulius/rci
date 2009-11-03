@@ -9,7 +9,7 @@ User.blueprint :julius, :name => 'julius', :email => 'julius@example.com', :pass
 
 namespace :in_main_dep => :main_dep do
   DepartmentBelonging.blueprint(:admin_leads, :user => :@admin, :department => :@main_dep, :leader => true).depends_on(:admin)
-  DepartmentBelonging.blueprint(:andrius_works, :user => :@andrius, :department => :@main_dep).depends_on(:admin)
+  DepartmentBelonging.blueprint(:andrius_works, :user => :@andrius, :department => :@main_dep).depends_on(:andrius)
 end
 
 namespace :in_second_dep => :second_dep do
