@@ -1,0 +1,12 @@
+<% title t('departments.show.heading', :name => @department.name) %>
+
+<h1><%= t('departments.show.heading') %></h1>
+
+<ul class="info">
+  <%= field_list_item(@department, :name) %>
+  <%= field_list_item(@department, :leader, :name) %>
+  <%= field_list_item(@department, :created_at) %>
+</ul>
+
+<%= link_to t('departments.show.edit_link'), edit_department_path(@department) %> |
+<%= link_to t('departments.show.back_link'), departments_path %>

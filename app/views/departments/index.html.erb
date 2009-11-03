@@ -1,0 +1,21 @@
+<% title t('departments.index.title') %>
+
+<h1><%= t('departments.index.heading') %></h1>
+
+<table>
+  <tr>
+    <th><%= Department.human_attribute_name('name') %></th>
+    <th><%= Department.human_attribute_name('leader') %></th>
+  </tr>
+
+  <% @departments.each do |department| %>
+      <tr>
+        <td><%= link_to department.name, department %></td>
+        <td><%= department.leader.name %></td>
+        <td><%= link_to t('departments.index.edit_link'), edit_department_path(department) %></td>
+        <td><%= link_to t('departments.index.delete_link'), department, :confirm => t('departments.index.delete_confirmation'), :method => :delete %></td>
+      </tr>
+  <% end %>
+</table>
+
+<%= link_to t('departments.index.new_link'), new_department_path %>

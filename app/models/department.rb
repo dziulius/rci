@@ -1,4 +1,7 @@
 class Department < ActiveRecord::Base
-  has_many :users
-  belongs_to :leader, :class_name => 'User'
+  has_many :department_belongings
+  has_many :users, :through => :department_belongings
+  has_one :leader, :through => :department_belongings, :conditions => 'department_belongings.leader = 1', :source => :user 
+
+  validates_presence_of :name
 end
