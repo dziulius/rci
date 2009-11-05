@@ -3,9 +3,12 @@
 <h1><%= t('projects.show.heading') %></h1>
 
 <ul class="info">
+  <%= field_list_item(@project, :id) %>
   <%= field_list_item(@project, :name) %>
   <%= field_list_item(@project, :leader, :name) %>
-  <%= field_list_item(@project, :created_at) %>
+  <%= field_list_item(@project, :leader, :department, :name) %>
+  <%= field_list_item(@project, :start_at) %>
+  <%= field_list_item(@project, :end_at) %>
 </ul>
 
 <%= link_to t('projects.show.edit_link'), edit_project_path(@project) %> |
