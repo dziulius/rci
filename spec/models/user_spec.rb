@@ -15,7 +15,7 @@ describe User do
       p.work_hours.should == 213
     end
 
-    @andrius.projects[0].tap do |p|
+    @andrius.projects[1].tap do |p|
       p.name.should == "PSI"
       p.leader.should == @andrius
       p.start_at.should == Time.mktime(2009, 10)
@@ -23,7 +23,7 @@ describe User do
       p.work_hours.should == 191
     end
 
-    @andrius.projects[1].tap do |p|
+    @andrius.projects[0].tap do |p|
       p.name.should == "ZKS"
       p.leader.should == @admin
       p.start_at.should == Time.mktime(2009, 11)

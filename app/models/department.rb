@@ -6,7 +6,7 @@ class Department < ActiveRecord::Base
   validates_presence_of :name
 
   def leader_id
-    leader.id
+    leader.try(:id)
   end
 
   def leader_id=(value)

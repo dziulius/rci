@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   end
 
   def department_id
-    department.id
+    department.try(:id)
   end
 
   def department_id=(value)
