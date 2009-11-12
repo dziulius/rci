@@ -37,15 +37,15 @@ describe Project do
 
     describe 'and budget' do
       it "should allow selecting all" do
-        @psi.users_and_budget.should == [[@andrius, @admin], 411]
+        @psi.users_and_budget.should == [[@andrius, @admin], 411, 404]
       end
 
       it "should allow selecting between specific months" do
-        @psi.users_and_budget('2009/12'..'2010/1').should == [[@andrius, @admin], 127]
+        @psi.users_and_budget('2009/12'..'2010/1').should == [[@andrius, @admin], 127, 127]
       end
 
       it "should only show users that worked in that period" do
-        @psi.users_and_budget('2010/1'..'2010/2').should == [[@admin], 12]
+        @psi.users_and_budget('2010/1'..'2010/2').should == [[@admin], 12, 13]
       end
     end
   end

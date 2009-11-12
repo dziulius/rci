@@ -29,7 +29,8 @@ class Project < ActiveRecord::Base
 
   def users_and_budget(between = nil)
     conditions = between ? {:budgets => {:at => Date.parse(between.first)..Date.parse(between.last)}} : {}
-    [users.all(:conditions => conditions), budgets.sum('hours', :conditions => conditions)]
+    usr = users.all(:conditions => conditions)
+    [usr, budgets.sum('hours', :conditions => conditions), usr.sum(&:work_hours)]
   end
 
   extend ActiveSupport::Memoizable
