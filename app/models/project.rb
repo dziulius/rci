@@ -21,10 +21,17 @@ class Project < ActiveRecord::Base
   end
 
   def users
-    User.scoped(:joins => 'LEFT JOIN tasks ON tasks.user_id = users.id JOIN budgets ON tasks.budget_id = budgets.id', :group => 'users.id',
-                :conditions => ['budgets.project_id = ?', id], :select => 'users.*, SUM(tasks.work_hours) AS work_hours')
+    @users ||= User.scoped(
+            :joins => 'LEFT JOIN tasks ON tasks.user_id = users.id JOIN budgets ON tasks.budget_id = budgets.id',
+            :group => 'users.id', :select => 'users.*, SUM(tasks.work_hours) AS work_hours', :conditions => ['budgets.project_id = ?', id]
+    )
+  end
+
+  def users_and_budget(between = nil)
+    conditions = between ? {:budgets => {:at => Date.parse(between.first)..Date.parse(between.last)}} : {}
+    [users.all(:conditions => conditions), budgets.sum('hours', :conditions => conditions)]
   end
 
   extend ActiveSupport::Memoizable
-  memoize :start_at, :end_at, :users
+  memoize :start_at, :end_at
 end
