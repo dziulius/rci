@@ -11,31 +11,15 @@
   <%= field_list_item(@project, :end_at) %>
 </ul>
 
-<h2>Workers</h2>
-
-<%= hours_worked(@real_hours, @budget) %>
-
-<% @project.users.group_by(&:department).each do |department, users| %>
-    <h3>Department <%= department.name %></h3>
-    <table border="1" cellspacing="0">
-      <tr>
-        <th>Name</th>
-        <th>Worked (hours)</th>
-      </tr>
-
-      <% users.each do |user| %>
-          <tr>
-            <td><%= user.name %></td>
-            <td><%= user.work_hours %></td>
-          </tr>
-      <% end %>
-
-      <tr>
-        <th>Total:</th>
-        <td><%= users.sum(&:work_hours) %></td>
-      </tr>
-    </table>
+<% form_remote_tag :url => project_users_path(@project), :method => :get, :update => 'users' do %>
+    <%= compact_month_select :date_from, @project.start_at, @project.start_at, @project.end_at %>
+    <%= compact_month_select :date_to, @project.end_at, @project.start_at, @project.end_at %>
+    <%= submit_tag :filter %>
 <% end %>
+
+<div id="users">
+  <%= render :partial => "users" %>
+</div>
 
 <%= link_to t('projects.show.edit_link'), edit_project_path(@project) %> |
 <%= link_to t('projects.show.back_link'), projects_path %>
