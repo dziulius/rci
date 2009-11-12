@@ -20,4 +20,17 @@ describe Project do
     @psi.start_at.should be_nil
     @psi.end_at.should be_nil
   end
+
+  describe "users" do
+    it "should return all users that have tasks in particular project" do
+      build 'tasks'
+      @psi.users.should == [@andrius, @admin]
+      @zks.users.should == [@andrius]
+    end
+
+    it "should show how much each user has worked on project" do
+      build :tasks
+      (@psi.users + @zks.users).collect(&:work_hours).should == [191, 213, 61]
+    end
+  end
 end

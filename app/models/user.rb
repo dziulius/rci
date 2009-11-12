@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :tasks
-  has_many :budgets, :through => :task
+  has_many :budgets, :through => :tasks
   has_one :department_belonging
   has_one :department, :through => :department_belonging
   has_many :leaded_projects, :class_name => 'Project', :foreign_key => 'leader_id'
@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
             :joins => {:budgets => :tasks}, :conditions => {:tasks => {:user_id => id}}, :group => 'projects.id',
             :select => 'projects.*, MIN(budgets.at) AS start_at, MAX(budgets.at) AS end_at, SUM(tasks.work_hours) AS work_hours'
     )
+  end
+
+  def work_hours
+    self['work_hours'].to_i
   end
 
   def department_id

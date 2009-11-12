@@ -20,6 +20,11 @@ class Project < ActiveRecord::Base
     self['work_hours'].to_i
   end
 
+  def users
+    User.scoped(:joins => 'LEFT JOIN tasks ON tasks.user_id = users.id JOIN budgets ON tasks.budget_id = budgets.id', :group => 'users.id',
+                :conditions => ['budgets.project_id = ?', id], :select => 'users.*, SUM(tasks.work_hours) AS work_hours')
+  end
+
   extend ActiveSupport::Memoizable
-  memoize :start_at, :end_at
+  memoize :start_at, :end_at, :users
 end
