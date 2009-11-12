@@ -17,9 +17,13 @@ describe ProjectsController do
 
   describe "GET show" do
     it "assigns the requested project as @project" do
+      build 'tasks.of_psi', :in_main_dep
       get :show, :id => @psi.to_param
       response.should be_success
       assigns[:project].should == @psi
+      assigns[:users].should == [@andrius, @admin]
+      assigns[:budget].should == 411
+      assigns[:real_hours].should == 404
     end
   end
 

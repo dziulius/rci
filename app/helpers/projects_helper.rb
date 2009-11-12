@@ -1,17 +1,14 @@
 module ProjectsHelper
-  def hours_worked(project)
-    real_work = project.users.sum(&:work_hours)
-    budget = project.budgets.sum('hours')
-    
-    color = if real_work < budget
+  def hours_worked(real_hours, budget)
+    color = if real_hours < budget
       'orange'
-    elsif real_work > budget
+    elsif real_hours > budget
       'red'
     else
       'green'
     end
 
-    content_tag('p', "Total hours worked: <span class='#{color}'>#{real_work}</span>/#{budget} (<span class='#{color}'>#{
-            real_work * 100 / budget}%</span>)")
+    content_tag('p', "Total hours worked: <span class='#{color}'>#{real_hours}</span>/#{budget} (<span class='#{color}'>#{
+            budget.zero? ? 0 : real_hours * 100 / budget}%</span>)")
   end
 end

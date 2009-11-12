@@ -13,7 +13,7 @@
 
 <h2>Workers</h2>
 
-<%= hours_worked(@project) %>
+<%= hours_worked(@real_hours, @budget) %>
 
 <% @project.users.group_by(&:department).each do |department, users| %>
     <h3>Department <%= department.name %></h3>
@@ -29,7 +29,7 @@
             <td><%= user.work_hours %></td>
           </tr>
       <% end %>
-      
+
       <tr>
         <th>Total:</th>
         <td><%= users.sum(&:work_hours) %></td>
