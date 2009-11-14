@@ -1,14 +1,21 @@
 class UploadData
-  @names = %w{task project user department budget}
-  @csv_dir = "tmp/csv"
-  @xlsx_file = nil
 
-  def self.save(uploaded)
-    temp_file = uploaded[:data_file]
-    @xlsx_file = File.join("tmp/uploads", temp_file.original_filename)
-    File.open(@xlsx_file, "wb") { |f| f.write(temp_file.read) }
+  def self.save(uploaded_data)
+    xlsx_file = save_file(uploaded_data)
+    parse_excel(xlsx_file)
+    create_users_departments
+    create_projects_budgets_tasks
+  end
 
-    sheet = Excelx.new(@xlsx_file)
+  def self.save_file(uploaded_data)
+    temp_file = uploaded_data[:data_file]
+    xlsx_file = File.join("tmp/uploads", temp_file.original_filename)
+    File.open(xlsx_file, "wb") { |f| f.write(temp_file.read) }
+    xlsx_file
+  end
+
+  def self.parse_excel(xlsx_file)
+    sheet = Excelx.new(xlsx_file)
     0.upto(4) do |nr|
       sheet.default_sheet = nr + 1
       name = csv_file(nr)
@@ -17,7 +24,9 @@ class UploadData
       csv_data.shift
       File.open(name, "w") { |file| file.print csv_data }
     end
+  end
 
+  def self.create_users_departments
     FasterCSV.foreach(csv_file(3)) do |dep_row|
       Department.create do |depart|
         depart.name = dep_row[0]
@@ -38,7 +47,9 @@ class UploadData
         end
       end
     end
+  end
 
+  def self.create_projects_budgets_tasks
     FasterCSV.foreach(csv_file(1)) do |proj_row|
       Project.create do |project|
         project.name = proj_row[0]
@@ -67,15 +78,14 @@ class UploadData
     end
   end
 
-  private
-
   def self.csv_file(arg)
+    names = %w{task project user department budget}
+    csv_dir = "tmp/csv"
     if arg.instance_of? Fixnum
-      path = File.join(@csv_dir, @names[arg])
+      path = File.join(csv_dir, names[arg])
     else
-      path = File.join(@csv_dir, arg)
+      path = File.join(csv_dir, arg)
     end
     path
   end
-
 end
