@@ -3,7 +3,9 @@ ActionController::Routing::Routes.draw do |map|
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   map.resource :user_sessions
   map.resources :users
-  map.resources :projects
+  map.resources :projects do |project|
+    project.resources :users, :only => :index
+  end
   map.resources :departments
   map.resources :upload_data
 

@@ -1,11 +1,21 @@
-Department.blueprint :main_dep, :leader => :@admin, :name => 'main dep.'
+Department.blueprint :main_dep, :name => 'main dep.'
+Department.blueprint :second_dep, :name => 'second dep.'
 
 User.blueprint :admin, :name => 'admin', :email => 'admin@example.com', :password => 'secret', :password_confirmation => 'secret'
 User.blueprint :andrius, :name => 'andrius', :email => 'andrius@example.com', :password => 'secret',
                :password_confirmation => 'secret'
+User.blueprint :julius, :name => 'julius', :email => 'julius@example.com', :password => 'secret',
+               :password_confirmation => 'secret'
 
-DepartmentBelonging.blueprint(:admin_leads_main_dep, :user => :@admin, :department => :@main_dep, :leader => true).depends_on(
-        :main_dep, :admin)
+namespace :in_main_dep => :main_dep do
+  DepartmentBelonging.blueprint(:admin_leads, :user => :@admin, :department => :@main_dep, :leader => true).depends_on(:admin)
+  DepartmentBelonging.blueprint(:andrius_works, :user => :@andrius, :department => :@main_dep).depends_on(:andrius)
+end
+
+namespace :in_second_dep => :second_dep do
+  DepartmentBelonging.blueprint(:julius_leads, :user => :@julius, :department => :@second_dep, :leader => true).
+          depends_on(:julius)
+end
 
 Project.blueprint(:psi, :name => 'PSI', :leader => :@andrius).depends_on(:andrius)
 Project.blueprint(:zks, :name => 'ZKS', :leader => :@admin).depends_on(:admin)

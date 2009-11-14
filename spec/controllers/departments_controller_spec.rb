@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe DepartmentsController do
   integrate_views
   before do
-    build :admin_leads_main_dep
+    build 'in_main_dep.admin_leads'
     login @admin
   end
 

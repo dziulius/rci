@@ -97,11 +97,11 @@ en:
       heading: "New department"
       back_link: "Back"
       title: "New department"
-      information: "Information"
     edit:
       title: "Editing department information"
       heading: "Editing department information"
       back_link: "Back"
+    form:
       information: "Information"
   menu:
     user: "User"

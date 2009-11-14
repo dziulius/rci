@@ -14,4 +14,9 @@ describe ApplicationHelper do
       with_tag('span.header', :text => 'Leader')
     end
   end
+
+  it "return nil if any attribute returns nil" do
+    build :psi
+    helper.field_list_item(@psi, :leader, :department, :name).should == nil
+  end
 end
