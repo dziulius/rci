@@ -40,10 +40,7 @@ class UploadData
             user.password = user.password_confirmation = rand(0).to_s
             user.department = department_last
           end
-          if user_row[0] == dep_row[1]
-            department_last.leader = user
-            department_last.save
-          end
+          user.department.leader_id = user if user_row[0] == dep_row[1]
         end
       end
     end
