@@ -2,24 +2,15 @@
 
 <h1><%= t('users.index.heading') %></h1>
 
-<table>
-  <tr>
-    <th><%= User.human_attribute_name('name') %></th>
-    <th><%= User.human_attribute_name('email') %></th>
-    <th><%= User.human_attribute_name('created_at') %></th>
-    <th><%= User.human_attribute_name('updated_at') %></th>
-  </tr>
-
-  <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.name, user %></td>
-        <td><%= user.email %></td>
-        <td><%= user.created_at %></td>
-        <td><%= user.updated_at %></td>
-        <td><%= link_to t('users.index.edit_link'), edit_user_path(user) %></td>
-        <td><%= link_to t('users.index.delete_link'), user, :confirm => t('users.index.delete_confirmation'), :method => :delete %></td>
-      </tr>
-  <% end %>
-</table>
+<% table_for User, @users, :name, :email, :created_at, :updated_at do |user|
+    [
+            link_to(user.name, user),
+            user.email,
+            user.created_at,
+            user.updated_at,
+            link_to(t('users.index.edit_link'), edit_user_path(user)),
+            link_to(t('users.index.delete_link'), user, :confirm => t('users.index.delete_confirmation'), :method => :delete)
+    ]
+end %>
 
 <%= link_to t('users.index.new_link'), new_user_path %>

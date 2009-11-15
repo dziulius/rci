@@ -4,22 +4,5 @@
 
 <% @users.group_by(&:department).each do |department, users| %>
     <h3>Department <%= department.name %></h3>
-    <table border="1" cellspacing="0">
-      <tr>
-        <th>Name</th>
-        <th>Worked (hours)</th>
-      </tr>
-
-      <% users.each do |user| %>
-          <tr>
-            <td><%= user.name %></td>
-            <td><%= user.work_hours %></td>
-          </tr>
-      <% end %>
-
-      <tr>
-        <th>Total:</th>
-        <td><%= users.sum(&:work_hours) %></td>
-      </tr>
-    </table>
+    <% table_with_totals_for User, users, :name, :work_hours %>
 <% end %>

@@ -19,6 +19,7 @@ en:
   common:
     not_authenticated: "You must login first"
     title: "System"
+    total: "Total:"
   users:
     create:
       notice: "Successfully added new user."
