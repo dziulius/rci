@@ -108,3 +108,5 @@ en:
     projects: "Projects"
     logout: "Logout"
     departments: "Departments"
+  tabs:
+    loading: "Loading..."

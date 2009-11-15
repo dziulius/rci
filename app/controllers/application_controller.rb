@@ -31,4 +31,11 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session && current_user_session.user
   end
 
+  def render_tabs(*tabs)
+    @tabs = tabs
+    respond_to do |format|
+      format.html
+      format.js { render :partial => (tabs.detect {|tab| tab.to_s == params[:tab] } || tabs.first).to_s }
+    end
+  end
 end
