@@ -8,6 +8,9 @@ en:
         password_confirmation: "Confirm password"
       project:
         work_hours: "Worked"
+      budget:
+        at_string: "Date"
+        hours: "Budget"
   user_sessions:
     create:
       success: "Successfully logged in."

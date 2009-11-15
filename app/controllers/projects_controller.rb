@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.xml
   def show
     @project = Project.find(params[:id])
-    @users, @budget, @real_hours = @project.users_and_budget
+    @users, @budget, @real_hours = @project.users_and_budget if params[:tab] == 'workers'
 
     render_tabs(:workers, :budgets)
   end

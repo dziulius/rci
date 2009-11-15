@@ -49,4 +49,19 @@ describe Project do
       end
     end
   end
+
+  describe 'budgets with hours' do
+    it "should allow viewing them" do
+      build 'tasks.of_psi'
+      @psi.budgets_with_hours.should have(4).items
+
+      @psi.budgets_with_hours[2].tap do |budget|
+        budget.at_string.should == '2009 November'
+        budget.hours.should == 142
+        budget.used.should == 126
+        budget.remaining.should == 16
+        budget.remaining_percent.should == 11.27
+      end
+    end
+  end
 end
