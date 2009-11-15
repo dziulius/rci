@@ -1,6 +1,6 @@
 module TablesHelper
   def table_for(klass, list, *columns)
-    concat(content_tag('table', :cell_spacing => 0, :border => 1) do
+    concat(content_tag('table', :cellspacing => 0, :border => 1) do
       content_tag('tr') do
         columns.collect do |column|
           content_tag 'th', klass.human_attribute_name(column)
@@ -17,10 +17,31 @@ module TablesHelper
   def table_with_totals_for(klass, list, *columns, &block)
     content_for :table_bottom do
       content_tag 'tr' do
-        content_tag('th', t('common.total')) + columns[1..-1].collect {|column| content_tag 'td', list.sum {|item| item.send(column) } }.join
+        values = if block_given?
+          yield(ARMock.new list)
+        else
+          [nil, *columns[1..-1].collect {|column| list.sum {|item| item.send(column) } }]
+        end
+        values[0] = t('common.total')
+
+        content_tag('th', values.shift) + values.collect do |value|
+          content_tag('td', value)
+        end.join
       end
     end
 
     table_for(klass, list, *columns, &block)
+  end
+
+  class ARMock
+    undef_method :id
+
+    def initialize(list)
+      @list = list
+    end
+
+    def method_missing(column)
+      @list.sum {|item| item.send(column) }
+    end
   end
 end
