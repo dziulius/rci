@@ -110,3 +110,5 @@ en:
     departments: "Departments"
   tabs:
     loading: "Loading..."
+    workers: "Workers"
+    budgets: "Budgets"

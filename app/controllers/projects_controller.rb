@@ -10,6 +10,8 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @users, @budget, @real_hours = @project.users_and_budget
+
+    render_tabs(:workers, :budgets)
   end
 
   # GET /projects/new
