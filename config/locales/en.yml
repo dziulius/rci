@@ -11,6 +11,8 @@ en:
       budget:
         at_string: "Date"
         hours: "Budget"
+      task:
+        at_string: "Date"
   user_sessions:
     create:
       success: "Successfully logged in."

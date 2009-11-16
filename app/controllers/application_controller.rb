@@ -32,10 +32,14 @@ class ApplicationController < ActionController::Base
   end
 
   def render_tabs(*tabs)
-    @tabs = tabs
     respond_to do |format|
       format.html
-      format.js { render :partial => (tabs.detect {|tab| tab.to_s == params[:tab] } || tabs.first).to_s }
+      format.js &render_js_tabs(*tabs)
     end
+  end
+
+  def render_js_tabs(*tabs)
+    @tabs = tabs
+    Proc.new { render :partial => (tabs.detect {|tab| tab.to_s == params[:tab] } || tabs.first).to_s }
   end
 end

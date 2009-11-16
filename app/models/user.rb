@@ -29,4 +29,8 @@ class User < ActiveRecord::Base
     department_belonging.leader = false
     department_belonging.save
   end
+
+  def tasks_for(project)
+    tasks.all(:include => :budget, :conditions => {:budgets => {:project_id => project.id}}, :order => 'budgets.at DESC')
+  end
 end
