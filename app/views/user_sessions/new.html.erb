@@ -1,4 +1,4 @@
-<% title t('user_sessions.new.title') %>
+<% title t('user_sessions.new.title') %> <%= render :partial => "layouts/language_links" %>
 
 <% semantic_form_for @user_session do |form| %>
     <%= form.inputs :name, :password %>

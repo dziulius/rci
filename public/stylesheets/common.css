@@ -15,3 +15,7 @@
 .left {
     float: left;
 }
+
+.clear {
+    clear: both;
+}

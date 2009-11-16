@@ -10,9 +10,14 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user_session, :current_user
 
-  before_filter :authenticate
+  before_filter :authenticate, :set_locale
 
   private
+
+  def set_locale
+    lang = params[:lang] || session[:lang] || I18n.default_locale
+    I18n.locale = session[:lang] = lang
+  end
 
   def authenticate
     unless current_user
