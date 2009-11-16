@@ -75,7 +75,6 @@ describe TablesHelper do
       [user.name, "@#{user.id}"]
     end
 
-    p helper.output_buffer
     helper.output_buffer.should have_tag('table[cellspacing=0][border=1]') do
       with_tag('tr') do
         with_tag('th', :text => 'Total:')
