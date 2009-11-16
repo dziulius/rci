@@ -8,7 +8,8 @@ describe ProjectsController do
   end
 
   describe "GET index" do
-    it "assigns all projects as @projects" do
+    it "assigns current users projects as @projects" do
+      build :tasks
       get :index
       response.should be_success
       assigns[:projects].should == [@psi]
