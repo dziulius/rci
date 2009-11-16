@@ -1,2 +1,5 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+function tabs(spinner_label) {
+    $(function() {
+        $('#tabs').tabs({ cache: true, spinner: spinner_label });
+    });
+}

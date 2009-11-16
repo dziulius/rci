@@ -10,25 +10,57 @@ describe User do
     @admin.projects[0].tap do |p|
       p.name.should == "PSI"
       p.leader.should == @andrius
-      p.start_at.should == Time.mktime(2009, 10)
-      p.end_at.should == Time.mktime(2010, 2)
       p.work_hours.should == 213
     end
 
-    @andrius.projects[0].tap do |p|
+    projects = @andrius.projects.sort_by(&:name)
+    projects[0].tap do |p|
       p.name.should == "PSI"
       p.leader.should == @andrius
-      p.start_at.should == Time.mktime(2009, 10)
-      p.end_at.should == Time.mktime(2009, 12)
       p.work_hours.should == 191
     end
 
-    @andrius.projects[1].tap do |p|
+    projects[1].tap do |p|
       p.name.should == "ZKS"
       p.leader.should == @admin
-      p.start_at.should == Time.mktime(2009, 11)
-      p.end_at.should == Time.mktime(2009, 11)
       p.work_hours.should == 61
+    end
+  end
+
+  describe "departments" do
+    before do
+      build 'in_main_dep.admin_leads'
+    end
+
+    it "should return correct department_id" do
+      @admin.department_id.should == @main_dep.id
+    end
+
+    it "should allow changing department by setting id" do
+      build :second_dep
+      @admin.department_id = @second_dep.id
+      @admin.reload.department.should == @second_dep
+    end
+
+    it "should not set user as leader" do
+      build :second_dep
+      @admin.department_id = @second_dep.id
+      @admin.reload.department_belonging.leader.should be_false
+    end
+
+    it "should allow setting department_id to nil" do
+      @admin.department_id = nil
+      @admin.reload.department.should == nil
+    end
+  end
+
+  describe 'tasks for project' do
+    it "should show what tasks user did for project" do
+      build :tasks
+      @andrius.tasks_for(@psi).should =~ @tasks_of_psi_for_andrius
+      @admin.tasks_for(@psi).should =~ @tasks_of_psi_for_admin
+
+      @andrius.tasks_for(@psi).last.at_string.should == "2009 October"
     end
   end
 end

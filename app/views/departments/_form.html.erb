@@ -1,0 +1,7 @@
+<% semantic_form_for(@department) do |form| %>
+    <% form.inputs :name => t('departments.semantic_form.information') do %>
+        <%= form.input :name %>
+        <%= form.input :leader, :collection => @department.users %>
+    <% end %>
+    <%= form.buttons %>
+<% end %>

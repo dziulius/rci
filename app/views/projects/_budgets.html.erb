@@ -1,0 +1,3 @@
+<% table_with_totals_for Budget, @project.budgets_with_hours, :at_string, :hours, :used, :remaining do |budget|
+    [budget.at_string, budget.hours, budget.used, "#{budget.remaining} (#{budget.remaining_percent}%)"]
+end %>

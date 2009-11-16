@@ -10,9 +10,14 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user_session, :current_user
 
-  before_filter :authenticate
+  before_filter :authenticate, :set_locale
 
   private
+
+  def set_locale
+    lang = params[:lang] || session[:lang] || I18n.default_locale
+    I18n.locale = session[:lang] = lang
+  end
 
   def authenticate
     unless current_user
@@ -31,4 +36,15 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session && current_user_session.user
   end
 
+  def render_tabs(*tabs)
+    respond_to do |format|
+      format.html
+      format.js &render_js_tabs(*tabs)
+    end
+  end
+
+  def render_js_tabs(*tabs)
+    @tabs = tabs
+    Proc.new { render :partial => (tabs.detect {|tab| tab.to_s == params[:tab] } || tabs.first).to_s }
+  end
 end

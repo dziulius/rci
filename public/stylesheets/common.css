@@ -1,0 +1,21 @@
+/*colors*/
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.orange {
+    color: orange;
+}
+
+/*float*/
+.left {
+    float: left;
+}
+
+.clear {
+    clear: both;
+}

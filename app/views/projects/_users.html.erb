@@ -1,0 +1,8 @@
+<h2>Workers</h2>
+
+<%= hours_worked(@real_hours, @budget) %>
+
+<% @users.group_by(&:department).each do |department, users| %>
+    <h3>Department <%= department.name %></h3>
+    <% table_with_totals_for User, users, :name, :work_hours %>
+<% end %>

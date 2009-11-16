@@ -2,9 +2,6 @@
 
 <h1><%= t('projects.edit.heading') %></h1>
 
-<% semantic_form_for(@project) do |f| %>
-    <%= f.inputs :name, :leader, :name => t('projects.edit.information') %>
-    <%= f.buttons %>
-<% end %>
+<%= render :partial => "form" %>
 
 <%= link_to t('projects.edit.back_link'), projects_path %>

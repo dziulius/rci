@@ -13,6 +13,15 @@ describe UsersController do
       response.should be_success
       assigns[:users].should == [@admin]
     end
+
+    it "should list all users for project who worked between dates" do
+      build 'tasks.of_psi', :in_main_dep
+      xhr :get, :index, :project_id => @psi.to_param, :date_from => '2010/01', :date_to => '2010/02'
+      response.should be_success
+      response.should render_template('projects/_users')
+      assigns[:budget].should == 12
+      assigns[:users].should == [@admin]
+    end
   end
 
   describe "GET show" do
@@ -41,7 +50,7 @@ describe UsersController do
 
   describe "POST create" do
     it "create new user with valid params" do
-      post :create, :user => {:name => 'New user', :password => 'secret', :password_confirmation => 'secret', :email => 'new_user@example.com'}
+      post :create, :user => {:name => 'New user', :password => 'secret', :password_confirmation => 'secret'}
       response.should redirect_to(users_path)
       flash[:notice].should == "Successfully added new user."
       assigns[:user].should_not be_new_record
@@ -50,7 +59,7 @@ describe UsersController do
     it "should not create new user with invalid params" do
       post :create, :user => {}
       response.should be_success
-      response.should render_template('new')   
+      response.should render_template('new')
       assigns[:user].should be_new_record
     end
   end

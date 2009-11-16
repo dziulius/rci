@@ -8,6 +8,11 @@ en:
         password_confirmation: "Confirm password"
       project:
         work_hours: "Worked"
+      budget:
+        at_string: "Date"
+        hours: "Budget"
+      task:
+        at_string: "Date"
   user_sessions:
     create:
       success: "Successfully logged in."
@@ -19,6 +24,7 @@ en:
   common:
     not_authenticated: "You must login first"
     title: "System"
+    total: "Total:"
   users:
     create:
       notice: "Successfully added new user."
@@ -76,7 +82,39 @@ en:
       heading: "Editing project information"
       back_link: "Back"
       information: "Information"
+  departments:
+    create:
+      notice: "Successfully added new department."
+    update:
+      notice: "Successfully updated information."
+    index:
+      edit_link: "Edit"
+      delete_link: "Destroy"
+      delete_confirmation: "Are you sure?"
+      new_link: "New department"
+      heading: "Listing departments"
+      title: "Departments list"
+    show:
+      edit_link: "Edit"
+      back_link: "Back"
+      heading: "Department information"
+      title: "Department {{name}}"
+    new:
+      heading: "New department"
+      back_link: "Back"
+      title: "New department"
+    edit:
+      title: "Editing department information"
+      heading: "Editing department information"
+      back_link: "Back"
+    form:
+      information: "Information"
   menu:
     user: "User"
     projects: "Projects"
     logout: "Logout"
+    departments: "Departments"
+  tabs:
+    loading: "Loading..."
+    workers: "Workers"
+    budgets: "Budgets"

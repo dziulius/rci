@@ -2,13 +2,20 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.xml
   def index
-    @projects = Project.all
+    @projects = current_user.projects.all
   end
 
   # GET /projects/1
   # GET /projects/1.xml
   def show
     @project = Project.find(params[:id])
+    if @project.leader == (@user = current_user)
+      @users, @budget, @real_hours = @project.users_and_budget if params[:tab] == 'workers'
+    else
+      @tasks = @user.tasks_for(@project)
+    end
+
+    render_tabs(:workers, :budgets)
   end
 
   # GET /projects/new

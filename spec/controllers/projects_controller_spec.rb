@@ -8,7 +8,8 @@ describe ProjectsController do
   end
 
   describe "GET index" do
-    it "assigns all projects as @projects" do
+    it "assigns current users projects as @projects" do
+      build :tasks
       get :index
       response.should be_success
       assigns[:projects].should == [@psi]
@@ -16,10 +17,45 @@ describe ProjectsController do
   end
 
   describe "GET show" do
-    it "assigns the requested project as @project" do
+    before do
+      build 'tasks.of_psi'
+    end
+
+    it "assigns requested project and shows tasks" do
       get :show, :id => @psi.to_param
       response.should be_success
       assigns[:project].should == @psi
+      assigns[:user].should == @admin
+      assigns[:tasks].should == @admin.tasks_for(@psi)
+    end
+
+    describe "as andrius" do
+      before do
+        build :andrius, :in_main_dep
+        login @andrius
+      end
+
+      it "assigns the requested project as @project" do
+        get :show, :id => @psi.to_param
+        response.should be_success
+        assigns[:project].should == @psi
+      end
+
+      it "should allow viewing workers tab" do
+        xhr :get, :show, :id => @psi.to_param, :tab => 'workers'
+        response.should be_success
+        response.should render_template('_workers')
+        assigns[:project].should == @psi
+        assigns[:users].should == [@andrius, @admin]
+        assigns[:budget].should == 411
+        assigns[:real_hours].should == 404
+      end
+
+      it "should allow viewing workers tab" do
+        xhr :get, :show, :id => @psi.to_param, :tab => 'budgets'
+        response.should be_success
+        response.should render_template('_budgets')
+      end
     end
   end
 
