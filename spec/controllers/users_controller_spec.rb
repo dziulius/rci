@@ -50,7 +50,7 @@ describe UsersController do
 
   describe "POST create" do
     it "create new user with valid params" do
-      post :create, :user => {:name => 'New user', :password => 'secret', :password_confirmation => 'secret', :email => 'new_user@example.com'}
+      post :create, :user => {:name => 'New user', :password => 'secret', :password_confirmation => 'secret'}
       response.should redirect_to(users_path)
       flash[:notice].should == "Successfully added new user."
       assigns[:user].should_not be_new_record

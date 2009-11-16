@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   validates_length_of :name, :within => 1..50
 
-  acts_as_authentic
+  acts_as_authentic {|config| config.login_field :name }
 
   def projects
     @projects ||= Project.scoped(

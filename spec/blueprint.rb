@@ -1,11 +1,9 @@
 Department.blueprint :main_dep, :name => 'main dep.'
 Department.blueprint :second_dep, :name => 'second dep.'
 
-User.blueprint :admin, :name => 'admin', :email => 'admin@example.com', :password => 'secret', :password_confirmation => 'secret'
-User.blueprint :andrius, :name => 'andrius', :email => 'andrius@example.com', :password => 'secret',
-               :password_confirmation => 'secret'
-User.blueprint :julius, :name => 'julius', :email => 'julius@example.com', :password => 'secret',
-               :password_confirmation => 'secret'
+User.blueprint :admin, :name => 'admin', :password => 'secret', :password_confirmation => 'secret'
+User.blueprint :andrius, :name => 'andrius', :password => 'secret', :password_confirmation => 'secret'
+User.blueprint :julius, :name => 'julius', :password => 'secret', :password_confirmation => 'secret'
 
 namespace :in_main_dep => :main_dep do
   DepartmentBelonging.blueprint(:admin_leads, :user => :@admin, :department => :@main_dep, :leader => true).depends_on(:admin)

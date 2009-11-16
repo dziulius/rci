@@ -2,10 +2,9 @@
 
 <h1><%= t('users.index.heading') %></h1>
 
-<% table_for User, @users, :name, :email, :created_at, :updated_at do |user|
+<% table_for User, @users, :name, :created_at, :updated_at do |user|
     [
             link_to(user.name, user),
-            user.email,
             user.created_at,
             user.updated_at,
             link_to(t('users.index.edit_link'), edit_user_path(user)),
