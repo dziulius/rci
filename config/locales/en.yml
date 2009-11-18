@@ -8,6 +8,11 @@ en:
         password_confirmation: "Confirm password"
       project:
         work_hours: "Worked"
+      budget:
+        at_string: "Date"
+        hours: "Budget"
+      task:
+        at_string: "Date"
   user_sessions:
     create:
       success: "Successfully logged in."
@@ -19,6 +24,7 @@ en:
   common:
     not_authenticated: "You must login first"
     title: "System"
+    total: "Total:"
   users:
     create:
       notice: "Successfully added new user."
@@ -109,3 +115,7 @@ en:
     departments: "Departments"
     upload_data: "Upload data"
     logout: "Logout"
+  tabs:
+    loading: "Loading..."
+    workers: "Workers"
+    budgets: "Budgets"

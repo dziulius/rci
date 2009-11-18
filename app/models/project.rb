@@ -33,6 +33,11 @@ class Project < ActiveRecord::Base
     [usr, budgets.sum('hours', :conditions => conditions), usr.sum(&:work_hours)]
   end
 
+  def budgets_with_hours
+    budgets.all(:joins => 'LEFT JOIN tasks ON tasks.budget_id = budgets.id', :order => 'at DESC', :group => 'budgets.id',
+                   :select => 'budgets.*, SUM(tasks.work_hours) AS used')
+  end
+
   extend ActiveSupport::Memoizable
   memoize :start_at, :end_at
 end

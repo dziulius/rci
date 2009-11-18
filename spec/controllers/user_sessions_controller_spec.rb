@@ -16,7 +16,7 @@ describe UserSessionsController do
     end
 
     it "should login with valid credentials" do
-      post :create, :user_session => {:email => @admin.email, :password => 'secret'}
+      post :create, :user_session => {:name => @admin.name, :password => 'secret'}
       response.flash[:notice].should == "Successfully logged in."
       response.should be_redirect
       response.should redirect_to(user_path(@admin))
@@ -24,7 +24,7 @@ describe UserSessionsController do
     end
 
     it "should not login with invalid credentials" do
-      post :create, :user_session => {:email => @admin.email, :password => 'wrong'}
+      post :create, :user_session => {:name => @admin.name, :password => 'wrong'}
       response.should be_success
       response.should render_template('user_sessions/new')
     end

@@ -53,4 +53,14 @@ describe User do
       @admin.reload.department.should == nil
     end
   end
+
+  describe 'tasks for project' do
+    it "should show what tasks user did for project" do
+      build :tasks
+      @andrius.tasks_for(@psi).should =~ @tasks_of_psi_for_andrius
+      @admin.tasks_for(@psi).should =~ @tasks_of_psi_for_admin
+
+      @andrius.tasks_for(@psi).last.at_string.should == "2009 October"
+    end
+  end
 end

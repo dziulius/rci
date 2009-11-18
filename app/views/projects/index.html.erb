@@ -2,20 +2,13 @@
 
 <h1><%= t('projects.index.heading') %></h1>
 
-<table>
-  <tr>
-    <th><%= Project.human_attribute_name('name') %></th>
-    <th><%= Project.human_attribute_name('leader') %></th>
-  </tr>
-
-  <% @projects.each do |project| %>
-      <tr>
-        <td><%= link_to project.name, project %></td>
-        <td><%= project.leader.name %></td>
-        <td><%= link_to t('projects.index.edit_link'), edit_project_path(project) %></td>
-        <td><%= link_to t('projects.index.delete_link'), project, :confirm => t('projects.index.delete_confirmation'), :method => :delete %></td>
-      </tr>
-  <% end %>
-</table>
+<% table_for Project, @projects, :name, :leader do |project|
+    [
+            link_to(project.name, project),
+            project.leader.name,
+            link_to(t('projects.index.edit_link'), edit_project_path(project)),
+            link_to(t('projects.index.delete_link'), project, :confirm => t('projects.index.delete_confirmation'), :method => :delete)
+    ]
+end %>
 
 <%= link_to t('projects.index.new_link'), new_project_path %>

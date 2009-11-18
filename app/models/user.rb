@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   validates_length_of :name, :within => 1..50
 
-  acts_as_authentic
+  acts_as_authentic {|config| config.login_field :name }
 
   def projects
     @projects ||= Project.scoped(
@@ -28,5 +28,9 @@ class User < ActiveRecord::Base
     department_belonging.department_id = value
     department_belonging.leader = false
     department_belonging.save
+  end
+
+  def tasks_for(project)
+    tasks.all(:include => :budget, :conditions => {:budgets => {:project_id => project.id}}, :order => 'budgets.at DESC')
   end
 end

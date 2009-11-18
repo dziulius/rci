@@ -1,7 +1,7 @@
-<% title t('user_sessions.new.title') %>
+<% title t('user_sessions.new.title') %> <%= render :partial => "layouts/language_links" %>
 
 <% semantic_form_for @user_session do |form| %>
-    <%= form.inputs :email, :password %>
+    <%= form.inputs :name, :password %>
     <% form.buttons do %>
         <%= form.commit_button t('user_sessions.new.button_label') %>
     <% end %>

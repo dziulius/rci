@@ -18,6 +18,7 @@
         <li><%= link_to t('menu.upload_data'), upload_data_path %></li>
         <li><%= link_to t('menu.logout'), logout_path %></li>
       </ol>
+      <%= render :partial => 'layouts/language_links' %>
   <% end %>
   <p style="color: green"><%= flash[:notice] %></p>
   <div id="middle">
