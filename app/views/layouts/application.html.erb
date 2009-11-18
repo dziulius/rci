@@ -19,6 +19,7 @@
         <li><%= link_to t('menu.logout'), logout_path %></li>
       </ol>
   <% end %>
+  <p style="color: green"><%= flash[:notice] %></p>
   <div id="middle">
     <div id="content">
       <%= yield %>
