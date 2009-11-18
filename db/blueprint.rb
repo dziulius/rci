@@ -1,6 +1,6 @@
 blueprint :users do
-  @admin = User.blueprint(:name => 'admin', :email => 'admin@example.com', :password => 'secret', :password_confirmation => 'secret')
-  @jonas = User.blueprint(:name => 'jonas', :email => 'jonas@example.com', :password => 'secret', :password_confirmation => 'secret')
+  @admin = User.blueprint(:name => 'admin', :password => 'secret', :password_confirmation => 'secret')
+  @jonas = User.blueprint(:name => 'jonas', :password => 'secret', :password_confirmation => 'secret')
 end
 
 blueprint :departments do

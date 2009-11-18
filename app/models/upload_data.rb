@@ -53,7 +53,6 @@ class UploadData
           if user_row[1] == dep_row[0]
             user = User.create do |user|
               user.name = user_row[0]
-              user.email = "#{rand(0)}@localhost.com"
               user.password = user.password_confirmation = rand(0).to_s
               user.department = department_last
             end
