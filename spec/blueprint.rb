@@ -1,6 +1,10 @@
 Department.blueprint :main_dep, :name => 'main dep.'
 Department.blueprint :second_dep, :name => 'second dep.'
 
+#Role.blueprint(:admin, :title => "admin", :user => :@admin).depends_on(:admin)
+#Role.blueprint(:andrius, :title => "admin", :user => :@andrius).depends_on(:andrius)
+#Role.blueprint(:julius, :title => "admin", :user => :@julius).depends_on(:julius)
+
 User.blueprint :admin, :name => 'admin', :password => 'secret', :password_confirmation => 'secret'
 User.blueprint :andrius, :name => 'andrius', :password => 'secret', :password_confirmation => 'secret'
 User.blueprint :julius, :name => 'julius', :password => 'secret', :password_confirmation => 'secret'

@@ -4,7 +4,6 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_ROOT)
 require 'spec/autorun'
 require 'spec/rails'
-
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
@@ -25,4 +24,5 @@ Spec::Runner.configure do |config|
   config.include Authentication, :only => :controllers
 
   config.enable_blueprints
+  Authorization.ignore_access_control(true)
 end

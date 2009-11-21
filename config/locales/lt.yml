@@ -1,13 +1,192 @@
-# Lithuanian translations for Ruby on Rails
-# by Laurynas Butkus (laurynas.butkus@gmail.com)
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 lt:
+  authlogic:
+    attributes:
+      user_session:
+        name: "Prisijungimo vardas"
+        password: "Slaptažodis"
+  activerecord:
+    errors:
+      template:
+        header:
+          one:    "Išsaugant objektą {{model}} rasta klaida"
+          other:  "Išsaugant objektą {{model}} rastos {{count}} klaidos"
+        body: "Šiuose laukuose yra klaidų:"
+
+      messages:
+        inclusion: "nenumatyta reikšmė"
+        exclusion: "užimtas"
+        invalid: "neteisingas"
+        confirmation: "neteisingai pakartotas"
+        accepted: "turi būti patvirtintas"
+        empty: "negali būti tuščias"
+        blank: "negali būti tuščias"
+        too_long: "per ilgas (daugiausiai {{count}} simboliai)"
+        too_short: "per trumpas (mažiausiai {{count}} simboliai)"
+        wrong_length: "neteisingo ilgio (turi būti {{count}} simboliai)"
+        taken: "jau užimtas"
+        not_a_number: "ne skaičius"
+        greater_than: "turi būti didesnis už {{count}}"
+        greater_than_or_equal_to: "turi būti didesnis arba lygus {{count}}"
+        equal_to: "turi būti lygus {{count}}"
+        less_than: "turi būti mažesnis už {{count}}"
+        less_than_or_equal_to: "turi būti mažesnis arba lygus {{count}}"
+        odd: "turi būti nelyginis"
+        even: "turi būti lyginis"
+    attributes:
+      user:
+        password_confirmation: "Patvirtinti slaptažodį"
+        password: "Slaptažodis"
+        department: "Skyrius"
+        name: "Vardas"
+        created_at: "Sukurtas"
+        work_hours: "Dirbo valandų"
+      project:
+        work_hours: "Dirbo"
+        name: "Pavadinimas"
+        leader: "Projekto vadovas"
+        department: "Skyrius"
+        start_at: "Pradėtas"
+        end_at: "Baigtas"
+      budget:
+        at_string: "Data"
+        hours: "Biudžetas"
+        used: "Panaudota"
+        remaining: "Likutis"
+      department:
+        name: "Pavadinimas"
+        leader: "Skyriaus vadovas"
+        created_at: "Sukurtas"
+      task:
+        at_string: "Data"
+        work_hours: "Dirbo valandų"
+  user_sessions:
+    name: "Prisijungimo vardas"
+    password: "Slaptažodis"
+    create:
+      success: "Sėkmingai prisijungta."
+    destroy:
+      success: "Sėkmingai atsijungta"
+    new:
+      title: "Registruotis"
+      button_label: "Registruotis"
+  common:
+    not_authenticated: "Jūs turite prisiregistruoti."
+    title: "Sistema"
+    total: "Viso:"
+  users:
+    create:
+      notice: "Sėkmingai sukurtas naujas vartotojas."
+    update:
+      notice: "Informacija sėkmingai atnaujinta."
+    index:
+      edit_link: "Redaguoti"
+      delete_link: "Sunaikinti"
+      delete_confirmation: "Ar tikrai?"
+      new_link: "Naujas vartotojas"
+      heading: "Vartotojų sąrašas"
+      title: "Vartotojų sąrašas"
+    show:
+      edit_link: "Redaguoti"
+      back_link: "Atgal"
+      heading: "Vartotojo informacija"
+      title: "Vartotojas {{name}}"
+      last_login: "Paskutinis prisijungimas iš {{ip}} ip adreso {{time}}"
+      projects: "Projektai"
+      work_hours: "Dirbo valandų"
+    new:
+      account_information: "Naudotojo informacija"
+      heading: "Naujas vartotojas"
+      back_link: "Atgal"
+      title: "Naujas vartotojas"
+    edit:
+      title: "Vartotojo informacijos redagavimas"
+      heading: "Vartotojo informacijos redagavimas"
+      account_information: "Vartotojo informacija"
+      back_link: "Atgal"
+      password_information: "Keisti slaptažodį"
+  projects:
+    create:
+      notice: "Sėkmingai sukurtas naujas projektas."
+    update:
+      notice: "Informacija sėkmingai atnaujinta."
+    index:
+      edit_link: "Redaguoti"
+      delete_link: "Sunaikinti"
+      delete_confirmation: "Ar tikrai?"
+      new_link: "Naujas projektas"
+      heading: "Projektų sąrašas"
+      title: "Projektų sąrašas"
+      workers: "Darbuotojai"
+      department: "Skyrius"
+      hours_worked: "Dirbta valandų"
+      total_hours_worked: "Viso dirbta valandų"
+    show:
+      edit_link: "Redaguoti"
+      back_link: "Atgal"
+      heading: "Projekto informacija"
+      title: "Projektas {{name}}"
+    new:
+      heading: "Naujas projektas"
+      back_link: "Atgal"
+      title: "Naujas projektas"
+      information: "Informacija"
+    edit:
+      title: "Projekto informacijos redagavimas"
+      heading: "Projekto informacijos redagavimas"
+      back_link: "Atgal"
+      information: "Projekto informacija"
+  departments:
+    create:
+      notice: "Sėkmingai sukurtas naujas skyrius."
+    update:
+      notice: "Informacija sėkmingai atnaujinta."
+    index:
+      edit_link: "Redaguoti"
+      delete_link: "Sunaikinti"
+      delete_confirmation: "Ar tikrai?"
+      new_link: "Naujas skyrius"
+      heading: "Skyrių sąrašas"
+      title: "Skyrių sąrašas"
+    show:
+      edit_link: "Redaguoti"
+      back_link: "Atgal"
+      heading: "Skyriaus informacija"
+      title: "Skkyrius {{name}}"
+    new:
+      heading: "Naujas skyrius"
+      back_link: "Atgal"
+      title: "Naujas skyrius"
+    edit:
+      title: "Skyriaus informacijos redagavimas"
+      heading: "Skyriaus informacijos redagavimas"
+      back_link: "Atgal"
+    form:
+      information: "Informacija"
+    semantic_form:
+      information: "Skyriaus informacija"
+  menu:
+    user: "Vartotojas"
+    projects: "Projektai"
+    logout: "Atsijungti"
+    departments: "Skyriai"
+  tabs:
+    loading: "Kraunasi..."
+    workers: "Darbuotojai"
+    budgets: "Biudžetai"
+  formtastic:
+    actions:
+      create: "Sukurti"
+      update: "Atnaujinti"
+
   number:
     format:
       separator: ","
       delimiter: " "
       precision: 3
-      
+
     currency:
       format:
         format: "%n %u"
@@ -15,21 +194,20 @@ lt:
         separator: ","
         delimiter: " "
         precision: 2
-        
+
     percentage:
       format:
         delimiter: ""
-        
+
     precision:
       format:
         delimiter: ""
-        
+
     human:
       format:
         delimiter: ""
         precision: 1
-      storage_units: [baitai, KB, MB, GB, TB]
-
+      #storage_units: [baitai, KB, MB, GB, TB]
   datetime:
     distance_in_words:
       half_a_minute: "pusė minutės"
@@ -71,46 +249,15 @@ lt:
       minute: "Minutė"
       second: "Sekundės"
 
-  activerecord:
-    errors:
-      template:
-        header:
-          one:    "Išsaugant objektą {{model}} rasta klaida"
-          other:  "Išsaugant objektą {{model}} rastos {{count}} klaidos"
-        body: "Šiuose laukuose yra klaidų:"
-
-      messages:
-        inclusion: "nenumatyta reikšmė"
-        exclusion: "užimtas"
-        invalid: "neteisingas"
-        confirmation: "neteisingai pakartotas"
-        accepted: "turi būti patvirtintas"
-        empty: "negali būti tuščias"
-        blank: "negali būti tuščias"
-        too_long: "per ilgas (daugiausiai {{count}} simboliai)"
-        too_short: "per trumpas (mažiausiai {{count}} simboliai)"
-        wrong_length: "neteisingo ilgio (turi būti {{count}} simboliai)"
-        taken: "jau užimtas"
-        not_a_number: "ne skaičius"
-        greater_than: "turi būti didesnis už {{count}}"
-        greater_than_or_equal_to: "turi būti didesnis arba lygus {{count}}"
-        equal_to: "turi būti lygus {{count}}"
-        less_than: "turi būti mažesnis už {{count}}"
-        less_than_or_equal_to: "turi būti mažesnis arba lygus {{count}}"
-        odd: "turi būti nelyginis"
-        even: "turi būti lyginis"
-    
-      models:
-
   date:
     formats:
       default: "%Y-%m-%d"
       short: "%b %d"
       long: "%B %d, %Y"
-      
+
     day_names: [sekmadienis, pirmadienis, antradienis, trečiadienis, ketvirtadienis, penktadienis, šeštadienis]
     abbr_day_names: [Sek, Pir, Ant, Tre, Ket, Pen, Šeš]
-      
+
     month_names: [~, sausio, vasario, kovo, balandžio, gegužės, birželio, liepos, rugpjūčio, rugsėjo, spalio, lapkričio, gruodžio]
     abbr_month_names: [~, Sau, Vas, Kov, Bal, Geg, Bir, Lie, Rgp, Rgs, Spa, Lap, Grd]
     order: [ :year, :month, :day ]
@@ -122,7 +269,7 @@ lt:
       long: "%B %d, %Y %H:%M"
     am: "am"
     pm: "pm"
-      
+
   support:
     array:
       words_connector: ", "

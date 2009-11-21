@@ -1,6 +1,8 @@
 blueprint :users do
   @admin = User.blueprint(:name => 'admin', :password => 'secret', :password_confirmation => 'secret')
   @jonas = User.blueprint(:name => 'jonas', :password => 'secret', :password_confirmation => 'secret')
+  @admin.roles.create(:title => "admin")
+  @admin.roles.create(:title => "department_head")
 end
 
 blueprint :departments do

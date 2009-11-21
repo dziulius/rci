@@ -6,6 +6,8 @@ class Department < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
 
+  using_access_control
+
   def leader_id
     leader.try(:id)
   end

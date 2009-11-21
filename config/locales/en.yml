@@ -81,7 +81,7 @@ en:
       title: "Editing project information"
       heading: "Editing project information"
       back_link: "Back"
-      information: "Information"
+      information: "Project information"
   departments:
     create:
       notice: "Successfully added new department."
@@ -109,6 +109,8 @@ en:
       back_link: "Back"
     form:
       information: "Information"
+    semantic_form:
+      information: "Department information"
   menu:
     user: "User"
     projects: "Projects"

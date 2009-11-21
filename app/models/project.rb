@@ -2,6 +2,8 @@ class Project < ActiveRecord::Base
   has_many :budgets
   belongs_to :leader, :class_name => 'User', :foreign_key => 'leader_id'
 
+  using_access_control
+
   validates_presence_of :name
   
   def to_s

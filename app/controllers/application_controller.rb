@@ -1,4 +1,4 @@
- # Filters added to this controller apply to all controllers in the application.
+# Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
@@ -23,6 +23,8 @@ class ApplicationController < ActionController::Base
     unless current_user
       flash[:error] = t('common.not_authenticated')
       redirect_to login_path
+    else
+      Authorization.current_user = current_user
     end
   end
 
