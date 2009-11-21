@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe UsersController do
   integrate_views
   before do
-    build :admin
+    build :admin_role
     login @admin
   end
 

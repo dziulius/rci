@@ -4,15 +4,20 @@ class User < ActiveRecord::Base
   has_one :department_belonging
   has_one :department, :through => :department_belonging
   has_many :leaded_projects, :class_name => 'Project', :foreign_key => 'leader_id'
+  has_many :roles
 
   validates_length_of :name, :within => 1..50
 
   acts_as_authentic {|config| config.login_field :name }
 
+  def role_symbols
+    (roles || []).map {|r| r.title.to_sym}
+  end
+
   def projects
     @projects ||= Project.scoped(
-            :joins => {:budgets => :tasks}, :conditions => {:tasks => {:user_id => id}}, :group => 'projects.id',
-            :select => 'projects.*, MIN(budgets.at) AS start_at, MAX(budgets.at) AS end_at, SUM(tasks.work_hours) AS work_hours'
+      :joins => {:budgets => :tasks}, :conditions => {:tasks => {:user_id => id}}, :group => 'projects.id',
+      :select => 'projects.*, MIN(budgets.at) AS start_at, MAX(budgets.at) AS end_at, SUM(tasks.work_hours) AS work_hours'
     )
   end
 

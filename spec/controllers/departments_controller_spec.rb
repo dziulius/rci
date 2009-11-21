@@ -76,6 +76,7 @@ describe DepartmentsController do
   describe "DELETE destroy" do
     it "destroys the requested department" do
       delete :destroy, :id => @main_dep.to_param
+
       response.should redirect_to(departments_path)
     end
   end

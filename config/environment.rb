@@ -21,7 +21,9 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "authlogic"
   config.gem "formtastic", :source => 'http://gemcutter.org'
+  config.gem "declarative_authorization", :source => 'http://gemcutter.org'
   config.gem 'blueprints', :source => 'http://gemcutter.org', :version => ">= 0.3.1"
+  config.gem "ruby_parser"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

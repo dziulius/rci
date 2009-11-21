@@ -1,4 +1,5 @@
 class DepartmentsController < ApplicationController
+  filter_resource_access
   # GET /departments
   # GET /departments.xml
   def index

@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe ProjectsController do
   integrate_views
   before do
-    build :psi, :admin
+    build :psi, :admin_role
     login @admin
   end
 
@@ -31,7 +31,7 @@ describe ProjectsController do
 
     describe "as andrius" do
       before do
-        build :andrius, :in_main_dep
+        build :andrius_role, :in_main_dep
         login @andrius
       end
 
