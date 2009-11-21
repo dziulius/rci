@@ -4,6 +4,7 @@ class Department < ActiveRecord::Base
   has_one :leader, :through => :department_belongings, :conditions => 'department_belongings.leader = 1', :source => :user
 
   validates_presence_of :name
+  validates_uniqueness_of :name
 
   def leader_id
     leader.try(:id)
