@@ -46,7 +46,7 @@ lt:
       project:
         work_hours: "Dirbo"
         name: "Pavadinimas"
-        leader: "Skyriaus vadovas"
+        leader: "Projekto vadovas"
         department: "Skyrius"
         start_at: "Pradėtas"
         end_at: "Baigtas"
