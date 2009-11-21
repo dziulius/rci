@@ -67,6 +67,7 @@ en:
       new_link: "New project"
       heading: "Listing projects"
       title: "Projects list"
+      total_hours_worked: "Total hours worked"
     show:
       edit_link: "Edit"
       back_link: "Back"
