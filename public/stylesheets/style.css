@@ -91,8 +91,17 @@ div.progressBar div.background {
 
 ol.menu {
     margin: 0;
-    padding: 0;
     float: left;
+	display: inline-block;
+	border: 1px solid #dddddd;
+	padding: 8px;
+	-moz-border-radius-bottomleft: 3px;
+	-moz-border-radius-bottomright: 3px;
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-topright: 3px;
+	background:#a2a9e1 url(/images/button.png) repeat-x scroll 0 0;
+	font-family: Helvetica, Arial, Sans-serif;
+	text-decoration: bold;
 }
 
 ol.menu li {
@@ -171,16 +180,17 @@ margin-left:120px;
 	-moz-border-radius-bottomright: 10px;
 	-moz-border-radius-topleft: 10px;
 	-moz-border-radius-topright: 10px;
+	border: 1px solid #dddddd;
 }
 
-#user_session_email_input, #user_session_password_input {
+#user_session_name_input, #user_session_password_input {
 	font-size:11px;
 	padding-top:2px;
 }
 
-#user_session_email, #user_session_password {
+#user_session_name, #user_session_password {
 	display: inline-block;
-	border: 1px solid #DDDDDD;
+	border: 1px solid #dddddd;
 	font-size: 12px;
 	padding: 8px;
 	width: 200px;
@@ -220,3 +230,63 @@ margin-left:120px;
 }
 
 /* end of ### Login ### */
+
+#languages {
+	display: inline-block;
+	border: 1px solid #dddddd;
+	padding: 8px;
+	-moz-border-radius-bottomleft: 3px;
+	-moz-border-radius-bottomright: 3px;
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-topright: 3px;
+	background-color: #f0f0ff
+}
+
+
+h1, h2 {
+	display: block;
+	width: 250px;
+	border: 1px solid #dddddd;
+	padding: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	font-size: 18px;
+	color: #666699;
+	border-style: dashed;
+}
+
+table {
+	border: none;
+}
+
+table tbody {
+	display: block;
+	border: 1px solid #dddddd;
+	padding: 3px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+}
+
+th {
+	border: 1px solid #dddddd;
+	padding: 5px;
+	-moz-border-radius-bottomleft: 0px;
+	-moz-border-radius-bottomright: 0px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	background-color: #eeeeee;
+	color: #222266;
+}
+
+td {
+	border: 1px solid #dddddd;
+	padding: 3px;
+	-moz-border-radius-bottomleft: 0px;
+	-moz-border-radius-bottomright: 0px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-topright: 0px;
+}
