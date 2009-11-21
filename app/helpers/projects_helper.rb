@@ -8,7 +8,7 @@ module ProjectsHelper
       'green'
     end
 
-    content_tag('p', "Total hours worked: <span class='#{color}'>#{real_hours}</span>/#{budget} (<span class='#{color}'>#{
+    content_tag('p', "#{ t('projects.index.total_hours_worked')}: <span class='#{color}'>#{real_hours}</span>/#{budget} (<span class='#{color}'>#{
             budget.zero? ? 0 : real_hours * 100 / budget}%</span>)")
   end
 end
