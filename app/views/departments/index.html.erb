@@ -1,14 +1,14 @@
 <% title t('departments.index.title') %>
 
-<h1><%= t('departments.index.heading') %></h1>
+<h1><span class="h1"><%= t('departments.index.heading') %></span></h1>
 
 <% table_for Department, @departments, :name, :leader do |department|
     [
             link_to(department.name, department),
             department.leader.name,
-            link_to(t('departments.index.edit_link'), edit_department_path(department)),
-            link_to(t('departments.index.delete_link'), department, :confirm => t('departments.index.delete_confirmation'), :method => :delete)
+            link_to(image_tag("icons/edit.png"), edit_department_path(department)),
+            link_to(image_tag("icons/destroy.png"), department, :confirm => t('departments.index.delete_confirmation'), :method => :delete)
     ]
 end %>
 
-<%= link_to t('departments.index.new_link'), new_department_path %>
+<%= link_to t('departments.index.new_link'), new_department_path, :class=>"button" %>
