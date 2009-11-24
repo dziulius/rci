@@ -20,7 +20,7 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "authlogic"
-  config.gem "formtastic", :source => 'http://gemcutter.org'
+  config.gem "formtastic", :source => 'http://gemcutter.org', :version => '0.9.1'
   config.gem "declarative_authorization", :source => 'http://gemcutter.org'
   config.gem 'blueprints', :source => 'http://gemcutter.org', :version => ">= 0.3.1"
   config.gem "ruby_parser"
