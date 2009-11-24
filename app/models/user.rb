@@ -22,7 +22,31 @@ class User < ActiveRecord::Base
   end
 
   def work_hours
-    self['work_hours'].to_i
+    @work_hours ||= self['work_hours'].to_i
+  end
+
+  def own_work_hours
+    @own_work_hours ||= self['own_work_hours'].to_i
+  end
+
+  def foreign_work_hours
+    work_hours - own_work_hours
+  end
+
+  def start_at
+    Date.parse(self['start_at'])
+  end
+
+  def end_at
+    Date.parse(self['end_at']).end_of_month
+  end
+
+  def work_days
+    @work_days ||= start_at.work_days_between(end_at)
+  end
+
+  def lazy_hours
+    work_days * 8 - work_hours
   end
 
   def department_id

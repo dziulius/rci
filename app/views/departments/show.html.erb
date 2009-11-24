@@ -5,8 +5,9 @@
 <ul class="info">
   <%= field_list_item(@department, :name) %>
   <%= field_list_item(@department, :leader, :name) %>
-  <%= field_list_item(@department, :created_at) %>
 </ul>
+
+<% table_for User, @department.users_with_work_hours, :name, :work_hours, :own_work_hours, :foreign_work_hours, :lazy_hours %>
 
 <%= link_to t('departments.show.edit_link'), edit_department_path(@department), :class=>"button" %>
 <%= link_to t('departments.show.back_link'), departments_path, :class=>"button" %>

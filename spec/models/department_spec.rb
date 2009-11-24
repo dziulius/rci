@@ -24,4 +24,38 @@ describe Department do
       @main_dep.leader.should == @admin
     end
   end
+
+  it "should show department projects" do
+    build :tasks, :tasks_of_julius_project, :in_main_dep, :in_second_dep
+    @main_dep.projects.collect {|p| p.id }.should =~ [@zks.id, @psi.id]
+    @second_dep.projects.should == [@julius_project]
+  end
+
+  describe 'users with work hours' do
+    it "should display users with their work hours" do
+      build :tasks, :tasks_of_julius_project, :in_main_dep, :in_second_dep
+      Date.stubs(:current).returns(Date.new(2010, 2, 28))
+      @main_dep.should have(2).users_with_work_hours
+
+      #admin
+      @main_dep.users_with_work_hours.detect {|u| u.name == 'admin' }.tap do |u|
+        u.work_hours.should == 389
+        u.own_work_hours.should == 213
+        u.foreign_work_hours.should == 176
+        u.start_at.should == Date.new(2009, 10)
+        u.end_at.should == Date.new(2010, 2, 28)
+        u.lazy_hours.should == 467
+      end
+
+      #andrius
+      @main_dep.users_with_work_hours.detect {|u| u.name == 'andrius' }.tap do |u|
+        u.work_hours.should == 352
+        u.own_work_hours.should == 252
+        u.foreign_work_hours.should == 100
+        u.lazy_hours.should == 176
+        u.start_at.should == Date.new(2009, 10)
+        u.end_at.should == Date.new(2009, 12, 31)
+      end
+    end
+  end
 end

@@ -21,6 +21,7 @@ end
 
 Project.blueprint(:psi, :name => 'PSI', :leader => :@andrius).depends_on(:andrius)
 Project.blueprint(:zks, :name => 'ZKS', :leader => :@admin).depends_on(:admin)
+Project.blueprint(:julius_project, :name => 'Julius project', :leader => :@julius).depends_on(:julius)
 
 namespace :budgets do
   namespace :of_psi => :psi do
@@ -55,5 +56,21 @@ namespace :tasks do
     namespace :for_andrius => :andrius do
       Task.blueprint :at_0911, :work_hours => 61, :budget => :@budgets_of_zks_at_0911, :user => :@andrius
     end
+  end
+end
+
+namespace :budgets_of_julius_project => :julius_project do
+  Budget.blueprint :at_0910, :at => Time.mktime(2009, 10), :hours => 113, :project => :@julius_project
+  Budget.blueprint :at_0911, :at => Time.mktime(2009, 11), :hours => 114, :project => :@julius_project
+end
+
+namespace :tasks_of_julius_project => :budgets_of_julius_project do
+  namespace :for_admin => :admin do
+    Task.blueprint :at_0910, :work_hours => 82, :budget => :@budgets_of_julius_project_at_0910, :user => :@admin
+    Task.blueprint :at_0911, :work_hours => 94, :budget => :@budgets_of_julius_project_at_0911, :user => :@admin
+  end
+
+  namespace :for_andrius => :andrius do
+    Task.blueprint :at_0910, :work_hours => 100, :budget => :@budgets_of_julius_project_at_0910, :user => :@andrius
   end
 end
