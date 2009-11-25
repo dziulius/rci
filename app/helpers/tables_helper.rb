@@ -20,7 +20,7 @@ module TablesHelper
         values = if block_given?
           yield(ARMock.new list)
         else
-          [nil, *columns[1..-1].collect {|column| list.sum {|item| item.send(column) } }]
+          [nil, *columns[1..-1].collect {|column| list.sum(&column) }]
         end
         values[0] = t('common.total')
 

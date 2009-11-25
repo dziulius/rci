@@ -35,7 +35,11 @@ class Department < ActiveRecord::Base
   end
 
   def projects
-    Project.scoped(:include => {:leader => :department_belonging}, :conditions => {:department_belongings => {:department_id => id}})
+    Project.scoped(:joins => {:leader => :department_belonging}, :conditions => {:department_belongings => {:department_id => id}})
+  end
+
+  def budgets
+    Budget.scoped(:conditions => {:project_id => projects.collect {|p| p.id }}, :order => 'at DESC')
   end
 
   def users_with_work_hours
