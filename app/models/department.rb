@@ -7,6 +7,16 @@ class Department < ActiveRecord::Base
 
   using_access_control
 
+  # -- DUMMY methods
+  def start_at
+    Date.current << 5
+  end
+
+  def end_at
+    Date.current
+  end
+  # -- DUMMY methods
+
   def leader_id
     leader.try(:id)
   end
