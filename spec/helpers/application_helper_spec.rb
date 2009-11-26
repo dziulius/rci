@@ -44,4 +44,10 @@ describe ApplicationHelper do
       tabs.should have_tag("script[type='text/javascript']", :text => "\n//\ntabs('Loading...')\n//\n")
     end
   end
+
+  it "should allow viewing numbers with percent" do
+    helper.with_percent(8, 100).should == "8 (8.000%)"
+    helper.with_percent(-8, 100).should == "-8 (-8.000%)"
+    helper.with_percent(8, 13).should == "8 (61.538%)"
+  end
 end
