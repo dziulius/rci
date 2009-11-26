@@ -1,10 +1,10 @@
 <% title t('users.new.title') %>
 
-<h1><%= t('users.new.heading') %></h1>
+<h1><span class="h1"><%= t('users.new.heading') %></span></h1>
 
 <% semantic_form_for(@user) do |f| %>
     <%= f.inputs :name, :department, :password, :password_confirmation, :name => t('users.new.account_information') %>
     <%= f.buttons %>
 <% end %>
 
-<%= link_to t('users.new.back_link'), users_path %>
+<%= link_to t('users.new.back_link'), users_path, :class=>"button" %>

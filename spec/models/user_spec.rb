@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe User do
   it "should show a list of projects user has been working on" do
     build :tasks
-    
+
     @admin.should have(1).projects
     @andrius.should have(2).projects
 
