@@ -16,6 +16,7 @@
         <li><%= link_to t('menu.user'), user_path(current_user), :class=>"menu_item" %></li>
         <li><%= link_to t('menu.projects'), projects_path, :class=>"menu_item" %></li>
         <li><%= link_to t('menu.departments'), departments_path, :class=>"menu_item" %></li>
+        <li><%= link_to t('menu.budgets'), budgets_path, :class=>"menu_item" %></li>
         <li><%= link_to t('menu.logout'), logout_path, :class=>"menu_item" %></li>
 		<li><%= render :partial => 'layouts/language_links' %></li>
       </ol>

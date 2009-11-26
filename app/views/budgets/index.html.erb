@@ -1,0 +1,17 @@
+<% title t('budgets.index.title') %>
+
+<h1><span class="h1"><%= t('budgets.index.heading') %></span></h1>
+
+<div>
+  <%= label_tag :department %>
+  <%= select_tag :department_id, options_for_select([[]] + Department.all.collect {|d| [d.name, d.id]}) %>
+</div>
+<div>
+  <%= label_tag :user %>
+  <%= select_tag :user_id, options_for_select([[]] + User.all.collect {|u| [u.name, u.id]}) %>
+</div>
+
+<% table_for Budget, @budgets, :at_string, :hours, :used, :remaining do |budget|
+    used = budget.hours / 4 * 3 + rand(budget.hours / 2)
+    [budget.at_string, budget.hours, used, with_percent(budget.hours - used, budget.hours)]
+end %>

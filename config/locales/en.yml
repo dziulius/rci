@@ -121,3 +121,7 @@ en:
     loading: "Loading..."
     workers: "Workers"
     budgets: "Budgets"
+  budgets:
+    index:
+      title: "Budgets"
+      heading: "Budgets"
