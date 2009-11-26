@@ -1,9 +1,3 @@
-body {
-    background-color: #fff;
-    color: #333;
-    padding: 0 0 0 0;
-}
-
 body, p, ol, ul, td {
     font-family: verdana, arial, helvetica, sans-serif;
     font-size: 12px;
@@ -95,20 +89,16 @@ fieldset.inputs, fieldset.buttons {
 	padding-right: 100px;
 }
 
-li.commit {
-margin-left:140px;
-}
-
 #new_user_session {
 	padding: 10px;
 	display: block;
 	width: 380px;
-	background-color: #f1f3ff;
+	background-image: url(/images/login_background_color.png);
 	-moz-border-radius-bottomleft: 10px;
 	-moz-border-radius-bottomright: 10px;
 	-moz-border-radius-topleft: 10px;
 	-moz-border-radius-topright: 10px;
-	border: 1px solid #dddddd;
+	border: 1px solid transparent;
 	margin: 0 auto;
 }
 
@@ -156,6 +146,7 @@ margin-left:140px;
 	padding:8px 10px;
 	text-align:center;
 	text-decoration:none;
+	margin: 0 auto;
 }
 
 /* end of ### Login ### */
@@ -166,8 +157,8 @@ margin-left:140px;
 	margin: 0;
 }
 
-form fieldset.inputs ol li {
-	display: block;
+form fieldset.inputs {
+	text-align: left;
 }
 
 form fieldset.inputs ol li label {
@@ -185,6 +176,21 @@ form fieldset.inputs ol li input, select{
 	-moz-border-radius-topright: 5px;
 }
 
+body {
+    background-color: #fff;
+    color: #333;
+    padding: 0 0 0 0;
+	margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+}
+
 #content {
-	margin-top: 15%;
+    display: table-cell;
+    vertical-align: middle;
+	width: 600px;
+	height: 600px;
+	text-align: center;
+	background-image: url(/images/login_background.jpg);
+	background-repeat: no-repeat;
 }
