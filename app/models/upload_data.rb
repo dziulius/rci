@@ -12,7 +12,7 @@ class UploadData
 
     def validates_file_presence(uploaded_data)
       if (uploaded_data == nil) || (uploaded_data[:data_file] == nil)
-        raise "no_file"
+        raise Exceptions::NoFileError
       end
     end
 
@@ -21,7 +21,7 @@ class UploadData
       bytes = file.read(4)
       file.close
       if bytes != "PK\003\004"
-        raise "invalid_format"
+        raise Exceptions::InvalidFormatError
       end
     end
 

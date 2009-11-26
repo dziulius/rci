@@ -7,18 +7,15 @@ class UploadDataController < ApplicationController
     begin
       UploadData.save(params[:upload_data])
       flash[:notice] = "File was uploaded successfully!"
-    rescue Exception => exception
-      case exception.message
-      when "no_file"
-        msg = "No file specified!"
-      when "invalid_format"
-        msg = "Invalid file format!"
-      else
-        msg = "Error while parsing data!"
-      end
-      flash[:notice] = msg
+
+    rescue Exceptions::NoFileError
+      flash[:notice] = "No file specified!"
+    rescue Exceptions::InvalidFormatError
+      flash[:notice] = "Invalid file format!"
+    rescue StandardError
+      flash[:notice] = "Error while parsing data!"
     ensure
-       redirect_to :back
+      redirect_to :back
     end
   end
 
