@@ -2,6 +2,7 @@
 
 <h1><span class="h1"><%= t('projects.index.heading') %></span></h1>
 
+<%= render :partial => "layouts/table_beginning" %>
 <% table_for Project, @projects, :name, :leader do |project|
     [
             link_to(project.name, project),
@@ -10,5 +11,6 @@
             link_to(image_tag("icons/destroy.png"), project, :confirm => t('projects.index.delete_confirmation'), :method => :delete)
     ]
 end %>
+<%= render :partial => "layouts/table_end" %>
 
 <%= link_to t('projects.index.new_link'), new_project_path, :class=>"button" %>

@@ -13,6 +13,7 @@
 <%= link_to t('users.show.back_link'), users_path, :class=>"button" %>
 
 <h2><span class="h2"><%= t('users.show.projects') %></span></h2>
+<%= render :partial => "layouts/table_beginning" %>
 <% table_for Project, @user.projects, :name, :leader, :start_at, :end_at, :work_hours do |project|
     [
             link_to(project, project),
@@ -22,3 +23,4 @@
             project.work_hours
     ]
 end %>
+<%= render :partial => "layouts/table_end" %>

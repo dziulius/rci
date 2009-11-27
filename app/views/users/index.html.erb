@@ -2,6 +2,7 @@
 
 <h1><span class="h1"><%= t('users.index.heading') %></span></h1>
 
+<%= render :partial => "layouts/table_beginning" %>
 <% table_for User, @users, :name, :created_at, :updated_at do |user|
     [
             link_to(user.name, user),
@@ -11,5 +12,6 @@
             link_to(image_tag("icons/destroy.png"), user, :confirm => t('users.index.delete_confirmation'), :method => :delete)
     ]
 end %>
+<%= render :partial => "layouts/table_end" %>
 
 <%= link_to t('users.index.new_link'), new_user_path, :class=>"button" %>
