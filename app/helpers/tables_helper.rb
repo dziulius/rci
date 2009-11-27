@@ -1,6 +1,6 @@
 module TablesHelper
   def table_for(klass, list, *columns)
-    concat(content_tag('table', :cellspacing => 0, :border => 1) do
+    concat(content_tag('table') do
       content_tag('tr') do
         columns.collect do |column|
           content_tag 'th', klass.human_attribute_name(column)
