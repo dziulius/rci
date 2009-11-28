@@ -6,6 +6,11 @@ module FormattingHelper
     helper.link_to(subject.send(column), subject)
   end
 
+  formatter(:linked_to) do |subject, helper, column|
+    subject = subject.send(column)
+    helper.link_to subject, subject
+  end
+
   formatter(:with_percent) do |subject, helper, column, total_column|
     number, total = subject.send(column), subject.send(total_column)
     "#{number} (#{helper.number_to_percentage(number.to_f / total * 100)})"

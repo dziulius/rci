@@ -3,9 +3,16 @@ require File.dirname(__FILE__) + "/../spec_helper"
 describe FormattingHelper do
   it "should show linked object" do
     build :andrius
-    formatter = helper.linked(:name, 'a')
+    formatter = helper.linked(:name)
     formatter.to_sym.should == :name
     formatter.to_s(@andrius).should == helper.link_to(@andrius.name, @andrius)
+  end
+
+  it "should show object linked to itself" do
+    build :in_main_dep
+    formatter = helper.linked_to(:leader)
+    formatter.to_sym.should == :leader
+    formatter.to_s(@main_dep).should == helper.link_to(@admin.name, @admin)
   end
 
   it "should show number with percent" do
