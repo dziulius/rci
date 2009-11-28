@@ -6,7 +6,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :projects do |project|
     project.resources :users, :only => :index
   end
-  map.resources :departments
+  map.resources :departments do |department|
+    department.resources :users, :only => :index
+    department.resources :projects, :only => :index
+  end
   map.resources :budgets
   # The priority is based upon order of creation: first created -> highest priority.
 
