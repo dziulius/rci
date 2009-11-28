@@ -43,6 +43,9 @@ lt:
         name: "Vardas"
         created_at: "Sukurtas"
         work_hours: "Dirbo valandų"
+        own_work_hours: "Dirbo savo skyriui"
+        foreign_work_hours: "Dirbo kitiems skyriams"
+        lazy_hours: "Neišdirbtos valandos"
       project:
         work_hours: "Dirbo"
         name: "Pavadinimas"
@@ -50,6 +53,8 @@ lt:
         department: "Skyrius"
         start_at: "Pradėtas"
         end_at: "Baigtas"
+        own_work_hours: "Dirbo savas skyrius"
+        foreign_work_hours: "Padėjo kiti skyriai"
       budget:
         at_string: "Data"
         hours: "Biudžetas"
@@ -62,6 +67,7 @@ lt:
       task:
         at_string: "Data"
         work_hours: "Dirbo valandų"
+        
   user_sessions:
     name: "Prisijungimo vardas"
     password: "Slaptažodis"
@@ -70,41 +76,41 @@ lt:
     destroy:
       success: "Sėkmingai atsijungta"
     new:
-      title: "Registruotis"
-      button_label: "Registruotis"
+      title: "Prisijungti"
+      button_label: "Prisijungti"
   common:
     not_authenticated: "Jūs turite prisiregistruoti."
     title: "Sistema"
     total: "Viso:"
   users:
     create:
-      notice: "Sėkmingai sukurtas naujas vartotojas."
+      notice: "Sėkmingai sukurtas naujas naudotojas."
     update:
       notice: "Informacija sėkmingai atnaujinta."
     index:
       edit_link: "Redaguoti"
       delete_link: "Sunaikinti"
       delete_confirmation: "Ar tikrai?"
-      new_link: "Naujas vartotojas"
-      heading: "Vartotojų sąrašas"
-      title: "Vartotojų sąrašas"
+      new_link: "Naujas naudotojas"
+      heading: "Naudotojų sąrašas"
+      title: "Naudotojų sąrašas"
     show:
       edit_link: "Redaguoti"
       back_link: "Atgal"
-      heading: "Vartotojo informacija"
-      title: "Vartotojas {{name}}"
+      heading: "Naudotojo informacija"
+      title: "Naudotojas {{name}}"
       last_login: "Paskutinis prisijungimas iš {{ip}} ip adreso {{time}}"
       projects: "Projektai"
       work_hours: "Dirbo valandų"
     new:
       account_information: "Naudotojo informacija"
-      heading: "Naujas vartotojas"
+      heading: "Naujas naudotojas"
       back_link: "Atgal"
-      title: "Naujas vartotojas"
+      title: "Naujas naudotojas"
     edit:
-      title: "Vartotojo informacijos redagavimas"
-      heading: "Vartotojo informacijos redagavimas"
-      account_information: "Vartotojo informacija"
+      title: "Naudotojo informacijos redagavimas"
+      heading: "Naudotojo informacijos redagavimas"
+      account_information: "Naudotojo informacija"
       back_link: "Atgal"
       password_information: "Keisti slaptažodį"
   projects:
@@ -126,7 +132,7 @@ lt:
     show:
       edit_link: "Redaguoti"
       back_link: "Atgal"
-      heading: "Projekto informacija"
+      heading: "Projekto ataskaita"
       title: "Projektas {{name}}"
     new:
       heading: "Naujas projektas"
@@ -153,7 +159,7 @@ lt:
     show:
       edit_link: "Redaguoti"
       back_link: "Atgal"
-      heading: "Skyriaus informacija"
+      heading: "Skyriaus ataskaita"
       title: "Skkyrius {{name}}"
     new:
       heading: "Naujas skyrius"
@@ -168,19 +174,27 @@ lt:
     semantic_form:
       information: "Skyriaus informacija"
   menu:
-    user: "Vartotojas"
+    user: "Naudotojas"
     projects: "Projektai"
     logout: "Atsijungti"
     departments: "Skyriai"
+    budgets: "Vadovybės ataskaita"
   tabs:
     loading: "Kraunasi..."
     workers: "Darbuotojai"
     budgets: "Biudžetai"
+    projects: "Projektai"
+    budget: "Biudžetai"
   formtastic:
     actions:
       create: "Sukurti"
       update: "Atnaujinti"
-
+  budgets:
+    index:
+      title: "Vadovybės ataskaita"
+      heading: "Vadovybės ataskaita"
+      department: "Skyrius"
+      user: "Darbuotojas"
   number:
     format:
       separator: ","

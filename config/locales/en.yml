@@ -68,6 +68,8 @@ en:
       heading: "Listing projects"
       title: "Projects list"
       total_hours_worked: "Total hours worked"
+      workers: "Workers"
+      department: "Department"
     show:
       edit_link: "Edit"
       back_link: "Back"
@@ -117,11 +119,16 @@ en:
     projects: "Projects"
     logout: "Logout"
     departments: "Departments"
+    budgets: "Management report"
   tabs:
     loading: "Loading..."
     workers: "Workers"
     budgets: "Budgets"
+    projects: "Projects"
+    budget: "Budgets"
   budgets:
     index:
-      title: "Budgets"
-      heading: "Budgets"
+      title: "Management report"
+      heading: "Management report"
+      department: "Department"
+      user: "Worker"
