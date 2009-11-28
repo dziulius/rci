@@ -17,6 +17,10 @@ class Department < ActiveRecord::Base
   end
   # -- DUMMY methods
 
+  def to_s
+    name
+  end
+
   def leader_id
     leader.try(:id)
   end

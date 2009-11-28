@@ -1,6 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe User do
+  it "should return name when calling to_s" do
+    build :andrius
+    @andrius.to_s.should == @andrius.name
+  end
+
   it "should show a list of projects user has been working on" do
     build :tasks
 

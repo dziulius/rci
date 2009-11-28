@@ -15,8 +15,4 @@ class Budget < ActiveRecord::Base
   def remaining
     hours - used
   end
-
-  def remaining_percent
-    ((remaining.to_f / hours) * 10000).round / 100.0
-  end
 end

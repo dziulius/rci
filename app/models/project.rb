@@ -5,7 +5,9 @@ class Project < ActiveRecord::Base
   using_access_control
 
   validates_presence_of :name
-  
+
+  delegate :department, :to => :leader
+
   def to_s
     name
   end

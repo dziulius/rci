@@ -9,6 +9,10 @@ describe Project do
     @psi.to_s.should == @psi.name
   end
 
+  it "should delegate department to leader" do
+    @psi.department.should == @psi.leader.department
+  end
+
   it "should have start and end date" do
     build 'budgets.of_psi'
     Time.stubs(:now).returns(Time.gm(2010, 3, 1))
@@ -60,7 +64,6 @@ describe Project do
         budget.hours.should == 142
         budget.used.should == 126
         budget.remaining.should == 16
-        budget.remaining_percent.should == 11.27
       end
     end
   end

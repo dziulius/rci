@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
     (roles || []).map {|r| r.title.to_sym}
   end
 
+  def to_s
+    name
+  end
+
   def projects
     @projects ||= Project.scoped(
       :joins => {:budgets => :tasks}, :conditions => {:tasks => {:user_id => id}}, :group => 'projects.id',
