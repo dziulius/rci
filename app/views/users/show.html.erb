@@ -2,7 +2,9 @@
 
 <h1><span class="h1"><%= t('users.show.heading') %></span></h1>
 
-<span class="last_login"><%= t('users.show.last_login', :ip => @user.last_login_ip, :time => @user.last_login_at) %></span>
+<% if @user.last_login_ip and @user.last_login_at %>
+    <span class="last_login"><%= t('users.show.last_login', :ip => @user.last_login_ip, :time => l(@user.last_login_at)) %></span>
+<% end %>
 
 <ul class="info">
   <%= field_list_item(@user, :name) %>
