@@ -2,6 +2,13 @@
 table {
 	border: none;
 	border-spacing: 0;
+	padding: 0;
+	-moz-box-shadow: 5px 5px 10px #666;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	margin: 0px 5px 5px 0px;
 }
 
 table tbody {
@@ -29,162 +36,3 @@ td {
 	border: none;
 	padding: 0 5px 0 5px;
 }
-
-/* DEFAULT TABLING */
-
-tr.tr_top, tr.tr_middle, tr.tr_bottom {
-	padding: 0;
-	margin: 0;
-	border: none;
-}
-
-td.td_top_left {
-	background-image: url(/images/corners/big_corner_top_left.png);
-}
-
-td.td_top {
-	background-image: url(/images/corners/big_TOP.png);
-}
-
-td.td_top_right {
-	background-image: url(/images/corners/big_corner_top_right.png);
-}
-
-td.td_left {
-	background-image: url(/images/corners/big_LEFT.png);
-}
-
-td.td_center {
-	
-}
-
-td.td_right {
-	background-image: url(/images/corners/big_RIGHT.png);
-}
-
-td.td_bottom_left {
-	background-image: url(/images/corners/big_corner_bottom_left.png);
-}
-
-td.td_bottom {
-	background-image: url(/images/corners/big_BOTTOM.png);
-}
-
-td.td_bottom_right {
-	background-image: url(/images/corners/big_corner_bottom_right.png);
-}
-
-/* end of DEFAULT TABLING */
-
-table.table_main {
-	display: table;
-	border: none;
-}
-
-tbody.tbody_main {
-	display: table;
-	border: none;
-	padding: 0;
-	border-spacing: 0;
-	width: 800px;
-}
-
-tbody.tbody_main > tr > td {
-	display: table-cell;
-	border: none;
-	padding: 0;
-	margin: 0;
-	float: none;
-}
-
-tbody.tbody_main > tr > td.td_top_left,
-tbody.tbody_main > tr > td.td_top_right,
-tbody.tbody_main > tr > td.td_bottom_left,
-tbody.tbody_main > tr > td.td_bottom_right {
-	width: 48px;
-	height: 48px;
-}
-
-/* TABLES 3D */
-
-table.table_3d {
-	display: table;
-	border: none;
-}
-
-table tbody.tbody_3d {
-	display: table;
-	border: none;
-	padding: 0;
-	border-spacing: 0;
-}
-
-tbody.tbody_3d > tr > td {
-	display: table-cell;
-	border: none;
-	padding: 0;
-	margin: 0;
-	float: none;
-}
-
-tbody.tbody_3d > tr > td.td_top_left,
-tbody.tbody_3d > tr > td.td_top_right,
-tbody.tbody_3d > tr > td.td_bottom_left,
-tbody.tbody_3d > tr > td.td_bottom_right {
-	width: 24px;
-	height: 24px;
-	background-size: 50% auto;
-}
-
-div.table_for {
-	margin: -8px;
-	position: relative;
-}
-
-div.table_for table tbody {
-	display: block;
-	border: medium none;
-	padding: 0;
-	-moz-border-radius-bottomleft: 0;
-	-moz-border-radius-bottomright: 0;
-	-moz-border-radius-topleft: 0;
-	-moz-border-radius-topright: 0;
-}
-
-tbody.tbody_3d tr td.td_top_left {
-	background-image: url(/images/corners/small_corner_top_left.png);
-}
-
-tbody.tbody_3d tr td.td_top {
-	background-image: url(/images/corners/small_TOP.png);
-}
-
-tbody.tbody_3d tr td.td_top_right {
-	background-image: url(/images/corners/small_corner_top_right.png);
-}
-
-tbody.tbody_3d tr td.td_left {
-	background-image: url(/images/corners/small_LEFT.png);
-}
-
-tbody.tbody_3d tr td.td_center {
-	
-}
-
-tbody.tbody_3d tr td.td_right {
-	background-image: url(/images/corners/small_RIGHT.png);
-}
-
-tbody.tbody_3d tr td.td_bottom_left {
-	background-image: url(/images/corners/small_corner_bottom_left.png);
-}
-
-tbody.tbody_3d tr td.td_bottom {
-	background-image: url(/images/corners/small_BOTTOM.png);
-}
-
-tbody.tbody_3d tr td.td_bottom_right {
-	background-image: url(/images/corners/small_corner_bottom_right.png);
-}
-
-/* end of TABLES 3D */

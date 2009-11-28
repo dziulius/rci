@@ -9,11 +9,6 @@
   <%= javascript_include_tag :defaults, 'jquery/selectToUISlider' %>
 </head>
 <body>
-  <table class="table_main">
-  <tbody class="tbody_main">
-	<tr class="tr_top"><td class="td_top_left" /><td class="td_top" /><td class="td_top_right" /></tr>
-	<tr class="tr_middle"><td class="td_left" /><td class="td_center">
-
 	<div id="main">
 	  <% if current_user %>
 		  <ol class="menu">
@@ -33,10 +28,5 @@
 	  </div>
 	</div>
 	<%= yield :javascripts %>
-
-	</td><td class="td_right" /></tr>
-	<tr class="tr_bottom"><td class="td_bottom_left" /><td class="td_bottom" /><td class="td_bottom_right" /></tr>
-  </tbody>
-  </table>
 </body>
 </html>
