@@ -21,9 +21,4 @@ module ApplicationHelper
       end
     } + javascript_tag("tabs('%s')" % t('tabs.loading'))
   end
-
-  def with_percent(number, total)
-    percent = number.to_f / total * 100
-    "#{number} (#{number_to_percentage(percent)})"
-  end
 end

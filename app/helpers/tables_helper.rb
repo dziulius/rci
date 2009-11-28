@@ -1,13 +1,21 @@
 module TablesHelper
+  include FormattingHelper
+
   def table_for(klass, list, *columns)
     concat(content_tag('table', :cellspacing => 0, :border => 1) do
       content_tag('tr') do
         columns.collect do |column|
-          content_tag 'th', klass.human_attribute_name(column)
+          content_tag 'th', klass.human_attribute_name(column.to_sym)
         end
       end + list.collect do |item|
         content_tag('tr') do
-          tds = block_given? ? yield(item) : columns.collect {|column| item.send(column) }
+          tds = if block_given?
+            yield(item)
+          else
+            columns.collect do |column|
+              column.is_a?(Symbol) ? item.send(column) : column.to_s(item)
+            end
+          end
           tds.collect {|value| content_tag 'td', value }
         end
       end.join + @content_for_table_bottom.to_s
