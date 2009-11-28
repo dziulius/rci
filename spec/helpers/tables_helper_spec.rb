@@ -98,6 +98,39 @@ describe TablesHelper do
     end
   end
 
+  it "should allow using formatters with table_with_totals" do
+    build :andrius, :admin
+    @andrius.stubs(:id2).returns(@andrius.id * 2)
+    @admin.stubs(:id2).returns(@admin.id * 2)
+    helper.table_with_totals_for(User, [@admin, @andrius], :name, :id2, helper.with_percent(:id, :id2))
+
+    helper.output_buffer.should have_tag('table[cellspacing=0][border=1]') do
+      with_tag('tr') do
+        with_tag('th', 'Name')
+        with_tag('th', 'Id')
+        with_tag('th', 'Id2')
+      end
+
+      with_tag('tr') do
+        with_tag('td', :text => 'admin')
+        with_tag('td', :text => @admin.id2.to_s)
+        with_tag('td', :text => "#{@admin.id} (50.000%)")
+      end
+
+      with_tag('tr') do
+        with_tag('td', :text => 'andrius')
+        with_tag('td', :text => @andrius.id2.to_s)
+        with_tag('td', :text => "#{@andrius.id} (50.000%)")
+      end
+
+      with_tag('tr') do
+        with_tag('th', :text => 'Total:')
+        with_tag('td', :text => (@andrius.id2 + @admin.id2).to_s)
+        with_tag('td', :text => "#{@andrius.id + @admin.id} (50.000%)")
+      end
+    end
+  end
+
   it "should not add nil column headers" do
     build :andrius
     helper.output_buffer = ''
