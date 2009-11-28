@@ -11,7 +11,4 @@
   <%= select_tag :user_id, options_for_select([[]] + User.all.collect {|u| [u.name, u.id]}) %>
 </div>
 
-<% table_for Budget, @budgets, :at_string, :hours, :used, :remaining do |budget|
-    used = budget.hours / 4 * 3 + rand(budget.hours / 2)
-    [budget.at_string, budget.hours, used, with_percent(budget.hours - used, budget.hours)]
-end %>
+<% table_for Budget, @budgets, :at_string, :hours, random(:hours, 100..150), random(:remaining, -10..15) %>
