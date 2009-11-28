@@ -1,26 +1,40 @@
 module TablesHelper
+  include FormattingHelper
+
   def table_for(klass, list, *columns)
-    concat(content_tag('table', :cellspacing => 0, :border => 1) do
-      content_tag('tr') do
-        columns.collect do |column|
-          content_tag 'th', klass.human_attribute_name(column)
+    concat(content_tag('table') do
+      content = ''
+      content << content_tag('tr') do
+        columns.select {|column| column.to_sym }.collect do |column|
+          content_tag 'th', klass.human_attribute_name(column.to_sym)
         end
-      end + list.collect do |item|
+      end
+
+      content << list.collect do |item|
         content_tag('tr') do
-          tds = block_given? ? yield(item) : columns.collect {|column| item.send(column) }
+          tds = if block_given?
+            yield(item)
+          else
+            columns.collect { |column| column_value_for(item, column) }
+          end
           tds.collect {|value| content_tag 'td', value }
         end
-      end.join + @content_for_table_bottom.to_s
+      end.join
+
+      content << @content_for_table_bottom.to_s
+      @content_for_table_bottom = ''
+      content
     end)
   end
 
   def table_with_totals_for(klass, list, *columns, &block)
     content_for :table_bottom do
       content_tag 'tr' do
+        object = ARMock.new list
         values = if block_given?
-          yield(ARMock.new list)
+          yield(object)
         else
-          [nil, *columns[1..-1].collect {|column| list.sum(&column) }]
+          [nil, *columns[1..-1].collect { |column| column_value_for(object, column) }]
         end
         values[0] = t('common.total')
 
@@ -31,6 +45,12 @@ module TablesHelper
     end
 
     table_for(klass, list, *columns, &block)
+  end
+
+  protected
+
+  def column_value_for(object, column)
+    column.is_a?(Symbol) ? object.send(column) : column.to_s(object)
   end
 
   class ARMock

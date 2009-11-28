@@ -37,6 +37,12 @@ describe DepartmentsController do
       response.should be_success
       response.should render_template('_budget')
     end
+
+    it "should render projects tab correctly" do
+      xhr :get, :show, :id => @main_dep.to_param, :tab => 'projects'
+      response.should be_success
+      response.should render_template('_projects')
+    end
   end
 
   describe "GET new" do

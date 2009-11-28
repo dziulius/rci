@@ -1,0 +1,38 @@
+
+table {
+	border: none;
+	border-spacing: 0;
+	padding: 0;
+	-moz-box-shadow: 5px 5px 10px #667;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	margin: 0px 5px 5px 0px;
+}
+
+table tbody {
+	display: block;
+	border: 1px solid #dddddd;
+	padding: 3px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+}
+
+th {
+	border: 1px solid #dddddd;
+	padding: 3px;
+	-moz-border-radius-bottomleft: 0px;
+	-moz-border-radius-bottomright: 0px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	background-color: #eeeeee;
+	color: #222266;
+}
+
+td {
+	border: none;
+	padding: 0 5px 0 5px;
+}

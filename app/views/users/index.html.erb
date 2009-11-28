@@ -2,14 +2,7 @@
 
 <h1><span class="h1"><%= t('users.index.heading') %></span></h1>
 
-<% table_for User, @users, :name, :created_at, :updated_at do |user|
-    [
-            link_to(user.name, user),
-            user.created_at,
-            user.updated_at,
-            link_to(image_tag("icons/edit.png"), edit_user_path(user)),
-            link_to(image_tag("icons/destroy.png"), user, :confirm => t('users.index.delete_confirmation'), :method => :delete)
-    ]
-end %>
+<% table_for User, @users, linked(:name), :created_at, :updated_at, tail_link(image_tag("icons/edit.png"), :edit),
+             tail_link(image_tag("icons/destroy.png"), :confirm => t('users.index.delete_confirmation'), :method => :delete) %>
 
 <%= link_to t('users.index.new_link'), new_user_path, :class=>"button" %>

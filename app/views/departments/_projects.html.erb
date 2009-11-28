@@ -1,0 +1,4 @@
+<%= render :partial => "common/date_range_select", :locals => {:object => @department, :url => :department_projects_path} %>
+
+<% table_for Project, @department.projects, linked(:name), linked_to(:leader), linked_to(:department), :start_at, :end_at,
+             :work_hours, random(:own_work_hours, 700..760), random(:foreign_work_hours, 300..340) %>

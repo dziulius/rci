@@ -1,6 +1,11 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 
 describe Department do
+  it "should return department name when calling to_s" do
+    build :main_dep
+    @main_dep.to_s.should == @main_dep.name
+  end
+
   describe "leader_id" do
     before do
       build 'in_main_dep.admin_leads'

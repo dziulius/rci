@@ -1,0 +1,14 @@
+<% title t('budgets.index.title') %>
+
+<h1><span class="h1"><%= t('budgets.index.heading') %></span></h1>
+
+<div>
+  <%= label_tag :department_id, t('budgets.index.department') %>
+  <%= select_tag :department_id, options_for_select([[]] + Department.all.collect {|d| [d.name, d.id]}) %>
+</div>
+<div>
+  <%= label_tag :user_id, t('budgets.index.user') %>
+  <%= select_tag :user_id, options_for_select([[]] + User.all.collect {|u| [u.name, u.id]}) %>
+</div>
+
+<% table_for Budget, @budgets, :at_string, :hours, random(:used, 100..150), random(:remaining, -10..15) %>

@@ -6,9 +6,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :projects do |project|
     project.resources :users, :only => :index
   end
-  map.resources :departments
+  map.resources :departments do |department|
+    department.resources :users, :only => :index
+    department.resources :projects, :only => :index
+  end
+  map.resources :budgets
   map.resources :upload_data
-
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -27,7 +30,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
   #     products.resources :comments

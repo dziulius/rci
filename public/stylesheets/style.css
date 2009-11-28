@@ -1,5 +1,5 @@
 body {
-    background-color: #f0f0ff;
+    background-color: #ccccff;
 	color: #333333;
 	margin-left: auto;
 	margin-right: auto;
@@ -93,10 +93,11 @@ div.progressBar div.background {
 }
 
 ol.menu {
+	-moz-box-shadow: 5px 5px 7px #668;
     margin: 0;
 	padding: 0;
-	display: inline-block;
-	border: 1px solid #dddddd;
+	display: block;
+	border: 1px solid #A2A9E1;
 	-moz-border-radius-bottomleft: 8px;
 	-moz-border-radius-bottomright: 8px;
 	-moz-border-radius-topleft: 8px;
@@ -162,7 +163,8 @@ ul.info {
 	-moz-border-radius-topleft: 5px;
 	-moz-border-radius-topright: 5px;
 	border-style: dashed;
-	display: block;
+	display: table;
+	line-height: 11px;
 }
 
 .header {
@@ -256,7 +258,7 @@ margin-left:140px;
 
 
 span.h1, span.h2 {
-	display: inline-block;
+	display: table;
 	border: 1px solid #dddddd;
 	padding: 5px;
 	-moz-border-radius-bottomleft: 5px;
@@ -268,37 +270,26 @@ span.h1, span.h2 {
 	border-style: dashed;
 }
 
-table {
-	border: none;
-}
-
-table tbody {
-	display: block;
+form.formtastic {
+	display: table;
 	border: 1px solid #dddddd;
-	padding: 3px;
+	padding: 5px;
 	-moz-border-radius-bottomleft: 5px;
 	-moz-border-radius-bottomright: 5px;
 	-moz-border-radius-topleft: 5px;
 	-moz-border-radius-topright: 5px;
+	border-style: dashed;
+	margin:	5px;
 }
 
-th {
-	border: 1px solid #dddddd;
-	padding: 3px;
-	-moz-border-radius-bottomleft: 0px;
-	-moz-border-radius-bottomright: 0px;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-topright: 5px;
-	background-color: #eeeeee;
-	color: #222266;
-}
-
-td {
-	border: none;
-	padding: 0 5px 0 5px;
+form.formtastic span {
+	font-size: 13px;
+	font-weight: bold;
+	color: #666699;
 }
 
 .button, .create, .update {
+	-moz-box-shadow: 3px 3px 7px #667;
 	-moz-background-clip: border;
 	-moz-background-inline-policy: continuous;
 	-moz-background-origin: padding;
@@ -349,16 +340,23 @@ form fieldset.inputs ol li input, select{
 
 span.last_login {
 	font-size: 9px;
+	display: block;
 }
 
 #main {
+	background-color: #ffffff;
+	padding: 10px;
+	-moz-box-shadow: 7px 7px 10px #668;
 	-moz-border-radius-bottomleft: 10px;
 	-moz-border-radius-bottomright: 10px;
 	-moz-border-radius-topleft: 10px;
 	-moz-border-radius-topright: 10px;
-	background-color: #ffffff;
-	padding-bottom: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-top: 10px;
+}
+
+#content {
+	padding: 5px;
+}
+
+.translation_missing {
+	color: #0f0;
 }
