@@ -41,15 +41,19 @@ describe FormattingHelper do
     end
 
     it "should allow show link with no symbol" do
-      formatter = helper.tail_link('hello', [])
+      formatter = helper.tail_link('hello')
       formatter.to_s(@andrius).should == helper.link_to('hello', @andrius)
       formatter.to_sym.should == nil
     end
 
+    it "should allow passing custom url" do
+      formatter = helper.tail_link('hello', :edit)
+      formatter.to_s(@andrius).should == helper.link_to('hello', edit_user_path(@andrius))
+    end
+
     it "should allow passing custom url and html attributes" do
-      formatter = helper.tail_link('hello', [:edit], :method => :delete)
+      formatter = helper.tail_link('hello', :edit, :method => :delete)
       formatter.to_s(@andrius).should == helper.link_to('hello', edit_user_path(@andrius), :method => :delete)
-      formatter.to_sym.should == nil
     end
   end
 end

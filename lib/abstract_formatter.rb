@@ -15,18 +15,19 @@ module Formatters
 
   module Helper
     module ClassMethods
-      def formatter(name, &block)
+      def formatter(name, options = {}, &block)
         class_name = name.to_s.classify + 'Formatter'
-        unless Formatters.constants.include?(class_name)
-          Formatters.const_set(class_name, Class.new(AbstractFormatter) do
-            define_method(:to_s) do |subject|
-              block.call(subject, self.helper, self.column, *self.args).to_s
-            end
-          end)
+        klass = Formatters.constants.include?(class_name) ? Formatters.const_get(class_name) : Class.new(AbstractFormatter)
+        klass.class_eval do
+          define_method(:to_s) do |subject|
+            block.call(subject, self.helper, self.column, *self.args).to_s
+          end
+
+          define_method(:to_sym) { nil } if options[:no_header]
         end
 
         define_method(name) do |*args|
-          Formatters.const_get(class_name).new(self, *args)
+          klass.new(self, *args)
         end
       end
     end

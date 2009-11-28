@@ -101,7 +101,7 @@ describe TablesHelper do
   it "should not add nil column headers" do
     build :andrius
     helper.output_buffer = ''
-    helper.table_for(User, [@andrius], helper.tail_link('show', []))
+    helper.table_for(User, [@andrius], helper.tail_link('show'))
 
     helper.output_buffer.should have_tag('table[cellspacing=0][border=1]') do
       with_tag('tr') { without_tag('th') }
