@@ -1,18 +1,18 @@
 <% title t('users.show.heading', :name => @user.name) %>
 
-<h1><%= t('users.show.heading') %></h1>
+<h1><span class="h1"><%= t('users.show.heading') %></span></h1>
 
-<%= t('users.show.last_login', :ip => @user.last_login_ip, :time => @user.last_login_at) %>
+<span class="last_login"><%= t('users.show.last_login', :ip => @user.last_login_ip, :time => @user.last_login_at) %></span>
 
 <ul class="info">
   <%= field_list_item(@user, :name) %>
   <%= field_list_item(@user, :created_at) %>
 </ul>
 
-<%= link_to t('users.show.edit_link'), edit_user_path(@user) %> |
-<%= link_to t('users.show.back_link'), users_path %>
+<%= link_to t('users.show.edit_link'), edit_user_path(@user), :class=>"button" %>
+<%= link_to t('users.show.back_link'), users_path, :class=>"button" %>
 
-<h2><%= t('users.show.projects') %></h2>
+<h2><span class="h2"><%= t('users.show.projects') %></span></h2>
 <% table_for Project, @user.projects, :name, :leader, :start_at, :end_at, :work_hours do |project|
     [
             link_to(project, project),

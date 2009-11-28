@@ -6,4 +6,7 @@ class Task < ActiveRecord::Base
 
   using_access_control
 
+  def after_create
+    user.update_attribute(:created_at, budget.at) if user.created_at > budget.at
+  end
 end

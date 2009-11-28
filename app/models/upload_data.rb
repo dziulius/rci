@@ -11,8 +11,8 @@ class UploadData
     end
 
     def validates_file_presence(uploaded_data)
-      if (uploaded_data == nil) || (uploaded_data[:data_file] == nil)
-        raise "no_file"
+      if uploaded_data.nil? || !(uploaded_data[:data_file].instance_of? Tempfile)
+        raise Exceptions::NoFileError
       end
     end
 
@@ -21,7 +21,7 @@ class UploadData
       bytes = file.read(4)
       file.close
       if bytes != "PK\003\004"
-        raise "invalid_format"
+        raise Exceptions::InvalidFormatError
       end
     end
 
@@ -95,12 +95,7 @@ class UploadData
     def csv_file(arg)
       names = %w{task project user department budget}
       csv_dir = "tmp/csv"
-      if arg.instance_of? Fixnum
-        path = File.join(csv_dir, names[arg])
-      else
-        path = File.join(csv_dir, arg)
-      end
-      path
+      File.join(csv_dir, names[arg])
     end
 
   end

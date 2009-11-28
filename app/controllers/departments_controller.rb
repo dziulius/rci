@@ -10,6 +10,8 @@ class DepartmentsController < ApplicationController
   # GET /departments/1.xml
   def show
     @department = Department.find(params[:id])
+
+    render_tabs :workers, :projects, :budget
   end
 
   # GET /departments/new

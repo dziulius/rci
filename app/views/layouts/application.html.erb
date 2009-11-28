@@ -12,13 +12,14 @@
 <div id="main">
   <% if current_user %>
       <ol class="menu">
-        <li><%= link_to t('menu.user'), user_path(current_user) %></li>
-        <li><%= link_to t('menu.projects'), projects_path %></li>
-        <li><%= link_to t('menu.departments'), departments_path %></li>
-        <li><%= link_to t('menu.upload_data'), upload_data_path %></li>
-        <li><%= link_to t('menu.logout'), logout_path %></li>
+		<li><%= image_tag("RCi_logo_small.png") %></li>
+        <li><%= link_to t('menu.user'), user_path(current_user), :class=>"menu_item" %></li>
+        <li><%= link_to t('menu.projects'), projects_path, :class=>"menu_item" %></li>
+        <li><%= link_to t('menu.departments'), departments_path, :class=>"menu_item" %></li>
+        <li><%= link_to t('menu.upload_data'), upload_data_path, :class=>"menu_item" %></li>
+        <li><%= link_to t('menu.logout'), logout_path, :class=>"menu_item" %></li>
+		<li><%= render :partial => 'layouts/language_links' %></li>
       </ol>
-      <%= render :partial => 'layouts/language_links' %>
   <% end %>
   <p style="color: green"><%= flash[:notice] %></p>
   <div id="middle">

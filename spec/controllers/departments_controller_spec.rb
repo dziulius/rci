@@ -16,10 +16,26 @@ describe DepartmentsController do
   end
 
   describe "GET show" do
+    before do
+      build :in_main_dep, :tasks
+    end
+
     it "assigns the requested department as @department" do
       get :show, :id => @main_dep.to_param
       response.should be_success
       assigns[:department].should == @main_dep
+    end
+
+    it "should render workers tab correctly" do
+      xhr :get, :show, :id => @main_dep.to_param, :tab => 'workers'
+      response.should be_success
+      response.should render_template('_workers')
+    end
+
+    it "should render budget tab correctly" do
+      xhr :get, :show, :id => @main_dep.to_param, :tab => 'budget'
+      response.should be_success
+      response.should render_template('_budget')
     end
   end
 

@@ -172,6 +172,7 @@ lt:
     projects: "Projektai"
     logout: "Atsijungti"
     departments: "Skyriai"
+    upload_data: "Įkelti duomenis"
   tabs:
     loading: "Kraunasi..."
     workers: "Darbuotojai"
