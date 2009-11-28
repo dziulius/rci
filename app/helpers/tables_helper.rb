@@ -3,11 +3,14 @@ module TablesHelper
 
   def table_for(klass, list, *columns)
     concat(content_tag('table', :cellspacing => 0, :border => 1) do
-      content_tag('tr') do
-        columns.collect do |column|
+      content = ''
+      content << content_tag('tr') do
+        columns.select {|column| column.to_sym }.collect do |column|
           content_tag 'th', klass.human_attribute_name(column.to_sym)
         end
-      end + list.collect do |item|
+      end
+
+      content << list.collect do |item|
         content_tag('tr') do
           tds = if block_given?
             yield(item)
@@ -18,7 +21,11 @@ module TablesHelper
           end
           tds.collect {|value| content_tag 'td', value }
         end
-      end.join + @content_for_table_bottom.to_s
+      end.join
+
+      content << @content_for_table_bottom.to_s
+      @content_for_table_bottom = ''
+      content
     end)
   end
 

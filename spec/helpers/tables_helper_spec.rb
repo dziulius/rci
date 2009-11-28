@@ -86,13 +86,29 @@ describe TablesHelper do
   it "should allow using formatters" do
     build :andrius
     helper.table_for(User, [@andrius], helper.linked(:name))
-    
+
     helper.output_buffer.should have_tag('table[cellspacing=0][border=1]') do
       with_tag('tr') { with_tag('th', :text => 'Name') }
 
       with_tag('tr') do
         with_tag('td') do
           with_tag('a[href=?]', "/users/#{@andrius.to_param}", :text => @andrius.name)
+        end
+      end
+    end
+  end
+
+  it "should not add nil column headers" do
+    build :andrius
+    helper.output_buffer = ''
+    helper.table_for(User, [@andrius], helper.tail_link('show', []))
+
+    helper.output_buffer.should have_tag('table[cellspacing=0][border=1]') do
+      with_tag('tr') { without_tag('th') }
+
+      with_tag('tr') do
+        with_tag('td') do
+          with_tag('a')
         end
       end
     end

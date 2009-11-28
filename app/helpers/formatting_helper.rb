@@ -11,6 +11,15 @@ module FormattingHelper
     helper.link_to subject, subject
   end
 
+  formatter(:tail_link) do |subject, helper, text, url, html_options|
+    helper.link_to text, url + [subject], html_options
+  end
+  class Formatters::TailLinkFormatter
+    def to_sym
+      nil
+    end
+  end
+
   formatter(:with_percent) do |subject, helper, column, total_column|
     number, total = subject.send(column), subject.send(total_column)
     "#{number} (#{helper.number_to_percentage(number.to_f / total * 100)})"
