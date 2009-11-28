@@ -117,6 +117,8 @@ fieldset.inputs, fieldset.buttons {
 	-moz-border-radius-bottomright: 5px;
 	-moz-border-radius-topleft: 5px;
 	-moz-border-radius-topright: 5px;
+	background-color: transparent;
+	background-image: url(/images/login_input_background_color.png);
 }
 
 #user_session_submit {
@@ -177,7 +179,7 @@ form fieldset.inputs ol li input, select{
 }
 
 body {
-    background-color: #f0f0ff;
+    background-color: #ccccff;
     color: #333;
     padding: 0 0 0 0;
 	margin-left: auto;

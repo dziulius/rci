@@ -2,7 +2,9 @@
 
 <h1><span class="h1"><%= t('departments.index.heading') %></span></h1>
 
+<%= render :partial => "layouts/table_beginning" %>
 <% table_for Department, @departments, linked(:name), linked_to(:leader), tail_link(image_tag("icons/edit.png"), :edit),
             tail_link(image_tag("icons/destroy.png"), :confirm => t('departments.index.delete_confirmation'), :method => :delete) %>
+<%= render :partial => "layouts/table_end" %>
 
 <%= link_to t('departments.index.new_link'), new_department_path, :class=>"button" %>

@@ -2,7 +2,7 @@ module TablesHelper
   include FormattingHelper
 
   def table_for(klass, list, *columns)
-    concat(content_tag('table', :cellspacing => 0, :border => 1) do
+    concat(content_tag('table') do
       content = ''
       content << content_tag('tr') do
         columns.select {|column| column.to_sym }.collect do |column|
