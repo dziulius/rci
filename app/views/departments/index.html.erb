@@ -2,13 +2,7 @@
 
 <h1><span class="h1"><%= t('departments.index.heading') %></span></h1>
 
-<% table_for Department, @departments, :name, :leader do |department|
-    [
-            link_to(department.name, department),
-            department.leader.name,
-            link_to(image_tag("icons/edit.png"), edit_department_path(department)),
-            link_to(image_tag("icons/destroy.png"), department, :confirm => t('departments.index.delete_confirmation'), :method => :delete)
-    ]
-end %>
+<% table_for Department, @departments, linked(:name), linked_to(:leader), tail_link(image_tag("icons/edit.png"), :edit),
+            tail_link(image_tag("icons/destroy.png"), :confirm => t('departments.index.delete_confirmation'), :method => :delete) %>
 
 <%= link_to t('departments.index.new_link'), new_department_path, :class=>"button" %>

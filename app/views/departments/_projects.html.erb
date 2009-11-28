@@ -1,5 +1,4 @@
 <%= render :partial => "common/date_range_select", :locals => {:object => @department, :url => :department_projects_path} %>
 
-<% table_for Project, @department.projects, :name, :leader, :department, :start_at, :end_at, :work_hours, :own_work_hours, :foreign_work_hours do |project|
-    [project.name, project.leader.name, project.leader.department.name, project.start_at, project.end_at, project.work_hours, 730, 320]
-end %>
+<% table_for Project, @department.projects, linked(:name), linked_to(:leader), linked_to(:department), :start_at, :end_at,
+             :work_hours, random(:own_work_hours, 700..760), random(:foreign_work_hours, 300..340) %>

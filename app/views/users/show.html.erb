@@ -13,12 +13,4 @@
 <%= link_to t('users.show.back_link'), users_path, :class=>"button" %>
 
 <h2><span class="h2"><%= t('users.show.projects') %></span></h2>
-<% table_for Project, @user.projects, :name, :leader, :start_at, :end_at, :work_hours do |project|
-    [
-            link_to(project, project),
-            project.leader.name,
-            project.start_at,
-            project.end_at,
-            project.work_hours
-    ]
-end %>
+<% table_for Project, @user.projects, linked(:name), linked_to(:leader), :start_at, :end_at, :work_hours %>
