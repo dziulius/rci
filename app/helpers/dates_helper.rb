@@ -3,7 +3,7 @@ module DatesHelper
     date = from
     options = [].tap do |months|
       while date <= to
-        months << [date.to_s(:long_year_month), date.to_s(:short_year_month)]
+        months << [l(date, :format => :long_year_month), date.to_s(:short_year_month)]
         date >>= 1
       end if date and to
     end

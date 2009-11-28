@@ -5,7 +5,7 @@ class Budget < ActiveRecord::Base
   using_access_control
 
   def at_string
-    at.to_formatted_s(:long_year_month)
+    I18n.l at, :format => :long_year_month
   end
 
   def used

@@ -11,7 +11,7 @@ describe TablesHelper do
       [project.name, 'project']
     end
 
-    helper.output_buffer.should have_tag('table[cellspacing=0][border=1]') do
+    helper.output_buffer.should have_tag('table') do
       with_tag('tr') do
         with_tag('th', 'Name')
         with_tag('th', 'Leader')
@@ -27,7 +27,7 @@ describe TablesHelper do
     build :psi
     helper.table_for(Project, [@psi], :name)
 
-    helper.output_buffer.should have_tag('table[cellspacing=0][border=1]') do
+    helper.output_buffer.should have_tag('table') do
       with_tag('tr') { with_tag('th', 'Name') }
       with_tag('tr') { with_tag('td', :text => 'PSI') }
     end
@@ -39,14 +39,14 @@ describe TablesHelper do
     end
 
     helper.table_for(Project, [])
-    helper.output_buffer.should have_tag('table[cellspacing=0][border=1]', :text => 'table bottom')
+    helper.output_buffer.should have_tag('table', :text => 'table bottom')
   end
 
   it "should allow creating a table with totals row" do
     build :admin, :andrius
     helper.table_with_totals_for(User, [@admin, @andrius], :name, :id)
 
-    helper.output_buffer.should have_tag('table[cellspacing=0][border=1]') do
+    helper.output_buffer.should have_tag('table') do
       with_tag('tr') do
         with_tag('th', 'Name')
         with_tag('th', 'Id')
@@ -75,7 +75,7 @@ describe TablesHelper do
       [user.name, "@#{user.id}"]
     end
 
-    helper.output_buffer.should have_tag('table[cellspacing=0][border=1]') do
+    helper.output_buffer.should have_tag('table') do
       with_tag('tr') do
         with_tag('th', :text => 'Total:')
         with_tag('td', :text => "@#{@admin.id + @andrius.id}")
@@ -87,7 +87,7 @@ describe TablesHelper do
     build :andrius
     helper.table_for(User, [@andrius], helper.linked(:name))
 
-    helper.output_buffer.should have_tag('table[cellspacing=0][border=1]') do
+    helper.output_buffer.should have_tag('table') do
       with_tag('tr') { with_tag('th', :text => 'Name') }
 
       with_tag('tr') do
@@ -104,7 +104,7 @@ describe TablesHelper do
     @admin.stubs(:id2).returns(@admin.id * 2)
     helper.table_with_totals_for(User, [@admin, @andrius], :name, :id2, helper.with_percent(:id, :id2))
 
-    helper.output_buffer.should have_tag('table[cellspacing=0][border=1]') do
+    helper.output_buffer.should have_tag('table') do
       with_tag('tr') do
         with_tag('th', 'Name')
         with_tag('th', 'Id')
@@ -136,7 +136,7 @@ describe TablesHelper do
     helper.output_buffer = ''
     helper.table_for(User, [@andrius], helper.tail_link('show'))
 
-    helper.output_buffer.should have_tag('table[cellspacing=0][border=1]') do
+    helper.output_buffer.should have_tag('table') do
       with_tag('tr') { without_tag('th') }
 
       with_tag('tr') do
