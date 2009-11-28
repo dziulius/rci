@@ -254,6 +254,7 @@ lt:
       default: "%Y-%m-%d"
       short: "%b %d"
       long: "%B %d, %Y"
+      long_year_month: "%Y %B"
 
     day_names: [sekmadienis, pirmadienis, antradienis, trečiadienis, ketvirtadienis, penktadienis, šeštadienis]
     abbr_day_names: [Sek, Pir, Ant, Tre, Ket, Pen, Šeš]
@@ -264,9 +265,10 @@ lt:
 
   time:
     formats:
-      default: "%a, %d %b %Y %H:%M:%S %z"
+      default: "%Y m. %B %d d., %H:%M:%S"
       short: "%d %b %H:%M"
       long: "%B %d, %Y %H:%M"
+      long_year_month: "%Y %B"
     am: "am"
     pm: "pm"
 

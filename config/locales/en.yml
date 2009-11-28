@@ -125,3 +125,10 @@ en:
     index:
       title: "Budgets"
       heading: "Budgets"
+
+  date:
+    formats:
+      long_year_month: "%Y %B"
+  time:
+    formats:
+      long_year_month: "%Y %B"
