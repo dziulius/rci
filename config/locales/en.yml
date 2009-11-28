@@ -133,3 +133,10 @@ en:
       heading: "Management report"
       department: "Department"
       user: "Worker"
+      
+  date:
+    formats:
+      long_year_month: "%Y %B"
+  time:
+    formats:
+      long_year_month: "%Y %B"
