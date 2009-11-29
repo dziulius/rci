@@ -13,7 +13,11 @@ module FormattingHelper
 
   formatter(:tail_link, :no_header => true) do |subject, helper, text, *url|
     html_options = url.extract_options!
-    helper.link_to text, url + [subject], html_options
+    begin
+      helper.link_to text, url + [subject], html_options
+    rescue NoMethodError
+      nil
+    end
   end
 
   formatter(:with_percent) do |subject, helper, column, total_column|

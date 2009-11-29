@@ -5,12 +5,15 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :projects do |project|
     project.resources :users, :only => :index
+    project.resources :budgets
   end
   map.resources :departments do |department|
     department.resources :users, :only => :index
     department.resources :projects, :only => :index
   end
-  map.resources :budgets
+  map.resources :budgets do |budget|
+    budget.resources :tasks, :only => [:new, :edit, :create, :update, :destroy]
+  end
   map.resources :upload_data
   # The priority is based upon order of creation: first created -> highest priority.
 

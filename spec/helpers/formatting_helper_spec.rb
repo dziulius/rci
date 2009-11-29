@@ -55,5 +55,10 @@ describe FormattingHelper do
       formatter = helper.tail_link('hello', :edit, :method => :delete)
       formatter.to_s(@andrius).should == helper.link_to('hello', edit_user_path(@andrius), :method => :delete)
     end
+
+    it "should return if non active record object is passed" do
+      formatter = helper.tail_link('hello')
+      formatter.to_s(stub).should == ''
+    end
   end
 end

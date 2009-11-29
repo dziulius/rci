@@ -1,0 +1,34 @@
+<% unless budget.new_record? %>
+    <%= link_to t('budgets.budget.edit'), '', :class => 'button', :id => 'edit' %>
+    <%= link_to_remote t('budgets.budget.delete'), :url => project_budget_path(@project, budget), :method => :delete, :html => {:class => 'button'} %>
+<% end %>
+
+<div id="form" style="display:none">
+  <% semantic_remote_form_for [@project, budget] do |form| %>
+      <% form.inputs do %>
+          <%= form.input :at, :include_blank => false, :discard_day => true %>
+          <%= form.input :hours %>
+      <% end %>
+      <%= form.buttons %>
+  <% end %>
+</div>
+
+<% unless budget.new_record? %>
+    <h2><span class="h2"><%= t('budgets.project.subheading') %></span></h2>
+
+    <% table_with_totals_for Task, budget.tasks.all, linked_to(:user), :work_hours, tail_link(image_tag("icons/edit.png"), :edit, budget),
+                             tail_link(image_tag("icons/destroy.png"), budget, :confirm => t('projects.index.delete_confirmation'), :method => :delete) %>
+
+    <%= link_to t('budgets.budget.new_task'), new_budget_task_path(budget), :class => 'button' %>
+<% end %>
+
+<% content_for :javascripts do %>
+    <script type="text/javascript">
+        $(function() {
+            $('#edit').live('click', function() {
+                $('#form').toggle();
+                return false;
+            })
+        })
+    </script>
+<% end %>

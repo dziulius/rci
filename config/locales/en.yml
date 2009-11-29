@@ -133,7 +133,21 @@ en:
       heading: "Management report"
       department: "Department"
       user: "Worker"
-      
+    project:
+      budget: "Choose month"
+      heading: "Project tasks management"
+      title: "Project tasks management"
+      or: "or"
+      new: "Add new"
+      subheading: "Tasks"
+    budget:
+      new_task: "New task"
+      edit: "Edit"
+      delete: "Delete"
+    create:
+      flash: "Successfully added new budget."
+    update:
+      flash: "Successfully updated information."
   date:
     formats:
       long_year_month: "%Y %B"

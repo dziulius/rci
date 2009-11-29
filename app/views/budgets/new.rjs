@@ -1,0 +1,2 @@
+page.replace_html 'budget', :partial => @budget
+page << "$('#form').show();"
