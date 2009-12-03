@@ -47,10 +47,11 @@ class Department < ActiveRecord::Base
     Budget.scoped(:conditions => {:project_id => projects.collect {|p| p.id }}, :order => 'at DESC')
   end
 
-  def users_with_work_hours
+  def users_with_work_hours(from = nil, to = nil)
+    conditions = (from && to) ? {:budgets => {:at => Date.parse(from)..Date.parse(to)}} : {}
     project_ids = projects.collect {|p| p.id }
-    users.all :joins => {:tasks => {:budget => :project}}, :group => 'users.id',
-              :select => "users.*, SUM(tasks.work_hours) AS work_hours, SUM(IF(projects.id IN (#{project_ids * ','}), tasks.work_hours,
+    users.all :joins => {:tasks => {:budget => :project}}, :group => 'users.id', :conditions => conditions,
+      :select => "users.*, SUM(tasks.work_hours) AS work_hours, SUM(IF(projects.id IN (#{project_ids * ','}), tasks.work_hours,
                           0)) AS own_work_hours, MIN(budgets.at) AS start_at, MAX(budgets.at) AS end_at"
   end
 end

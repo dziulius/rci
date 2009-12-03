@@ -3,16 +3,18 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    if params[:project_id]
-      @project = Project.find(params[:project_id])
-      @users, @budget, @real_hours = @project.users_and_budget(params[:date_from]..params[:date_to])
-    else
-      @users = User.all
-    end
-
     respond_to do |format|
+      if params[:project_id]
+        @project = Project.find(params[:project_id])
+        @users, @budget, @real_hours = @project.users_and_budget(params[:date_from]..params[:date_to])
+        format.js { render :partial => 'projects/users'}
+      elsif params[:department_id]
+        @department = Department.find(params[:department_id])
+        format.js { render :partial => 'departments/users'}
+      else
+        @users = User.all
+      end
       format.html
-      format.js { render :partial => 'projects/users'}
     end
   end
 

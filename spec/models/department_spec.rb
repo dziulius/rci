@@ -67,6 +67,16 @@ describe Department do
         u.start_at.should == Date.new(2009, 10)
         u.end_at.should == Date.new(2009, 12, 31)
       end
+      #andrius with date
+      @main_dep.users_with_work_hours("2009/12", "2010/02").detect {|u| u.name == 'andrius' }.tap do |u|
+        u.work_hours.should == 64
+        u.own_work_hours.should == 64
+        u.foreign_work_hours.should == 0
+        u.lazy_hours.should == 120
+        u.start_at.should == Date.new(2009, 12)
+        u.end_at.should == Date.new(2009, 12, 31)
+      end
+
     end
   end
 end

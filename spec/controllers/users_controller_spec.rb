@@ -22,6 +22,14 @@ describe UsersController do
       assigns[:budget].should == 12
       assigns[:users].should == [@admin]
     end
+
+    it "Should list all user for department who worked between dates" do
+      build 'tasks.of_psi', :in_main_dep
+      xhr :get, :index, :department_id => @main_dep.to_param, :date_from => '2010/01', :date_to => '2010/02'
+      response.should be_success
+      response.should render_template('departments/_users')
+      assigns(:department).should == @main_dep
+    end
   end
 
   describe "GET show" do
