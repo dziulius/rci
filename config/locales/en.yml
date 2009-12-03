@@ -114,6 +114,8 @@ en:
       information: "Information"
     semantic_form:
       information: "Department information"
+    budget:
+      project: "Project"
   menu:
     user: "User"
     projects: "Projects"

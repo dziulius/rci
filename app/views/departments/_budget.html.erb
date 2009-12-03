@@ -1,4 +1,4 @@
-<%= label_tag :project_id %>
+<%= label_tag :project_id, t('departments.budget.project') %>
 <%= select_tag :project_id, options_for_select([[]] + @department.projects.collect {|d| [d.name, d.id] }) %>
 
 <% table_with_totals_for Budget, @department.budgets.all, :at_string, :hours, :used, :remaining %>
