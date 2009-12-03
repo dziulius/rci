@@ -3,10 +3,6 @@ module TablesHelper
 
   def table_for(klass, list, *columns, &block)
     options = columns.extract_options!
-    if with_form = options.delete(:with_form)
-      with_form = [] if with_form == true
-      with_form = [*with_form]
-    end
 
     concat(content_tag('table') do
       content = ''
@@ -17,8 +13,7 @@ module TablesHelper
       end
 
       content << list.collect do |item|
-        row = content_row(row_values_for(item, columns, &block))
-        with_form ? semantic_form_for(with_form + [item]) { concat(row) } : row
+        content_row(row_values_for(item, columns, &block))
       end.join
 
       content << @content_for_table_bottom.to_s
@@ -28,12 +23,13 @@ module TablesHelper
   end
 
   def table_with_totals_for(klass, list, *columns, &block)
+    options = columns.extract_options!
     content_for :table_bottom do
       tds = row_values_for(ARMock.new(list), columns, 1, t('common.total'), &block)
       content_row(tds, :first_header => true)
     end
 
-    table_for(klass, list, *columns, &block)
+    table_for(klass, list, *columns.push(options), &block)
   end
 
   protected

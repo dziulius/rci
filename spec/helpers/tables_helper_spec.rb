@@ -146,28 +146,4 @@ describe TablesHelper do
       end
     end
   end
-
-  describe "with form" do
-    it "should surround tr in form if required" do
-      build :andrius
-      helper.table_for(User, [@andrius], :name, :with_form => true)
-
-      helper.output_buffer.should have_tag('table') do
-        with_tag('form[action=?]', helper.url_for(@andrius)) do
-          with_tag('tr') { with_tag('td', :text => @andrius.name) }
-        end
-      end
-    end
-
-    it "should allow passing additional object for form action" do
-      build :psi
-      helper.table_for(Project, [Budget.new], :at, :with_form => @psi)
-
-      helper.output_buffer.should have_tag('table') do
-        with_tag('form[action=?]', helper.url_for(project_budgets_path(@psi))) do
-          with_tag('tr') { with_tag('td') }
-        end
-      end
-    end
-  end
 end
