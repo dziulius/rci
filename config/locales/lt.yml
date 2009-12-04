@@ -173,6 +173,8 @@ lt:
       information: "Informacija"
     semantic_form:
       information: "Skyriaus informacija"
+    budget:
+      project: "Projektas"
   menu:
     user: "Naudotojas"
     projects: "Projektai"
@@ -196,6 +198,9 @@ lt:
       heading: "Vadovybės ataskaita"
       department: "Skyrius"
       user: "Darbuotojas"
+  uploaded_data:
+    index:
+    data_file: "Duomenų failas"
   number:
     format:
       separator: ","
@@ -292,3 +297,6 @@ lt:
       words_connector: ", "
       two_words_connector: " ir "
       last_word_connector: " ir "
+  upload_data:
+    data_file: "Duomenų byla"
+    upload_button: "Įkelti duomenis"

@@ -44,4 +44,30 @@ describe ApplicationHelper do
       tabs.should have_tag("script[type='text/javascript']", :text => "\n//\ntabs('Loading...')\n//\n")
     end
   end
+
+  describe "back_link" do
+    it "should generate link to specified path when HTTP_REFERER not present" do
+      request.env['HTTP_REFERER'] = nil
+      helper.back_link("Atgal", "/projects").should have_tag(
+        "a[href=?]", "/projects", :text => "Atgal")
+    end
+
+    it "should generate link to HTTP_REFERER when it is present" do
+      request.env['HTTP_REFERER'] = "http://localhost/users"
+      helper.back_link("Back", "/departments").should have_tag(
+        "a[href=?]", "http://localhost/users", :text => "Back")
+    end
+
+    it "should generate link to specified path when HTTP_REFERER is login page" do
+      request.env['HTTP_REFERER'] = "http://localhost/login"
+      helper.back_link("Back", "/projects").should have_tag(
+        "a[href=?]", "/projects", :text => "Back")
+    end
+
+    it "should generate link to specified path when HTTP_REFERER is login_path" do
+      request.env['HTTP_REFERER'] = login_path
+      helper.back_link("Back", "/projects").should have_tag(
+        "a[href=?]", "/projects", :text => "Back")
+    end
+  end
 end

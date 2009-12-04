@@ -110,7 +110,7 @@ ol.menu > li {
     color: #fff;
     display: inline-block;
     margin: 0;
-	padding: 5px 20px 5px 20px;
+	padding: 5px 15px 5px 15px;
 }
 
 a.menu_item{
@@ -359,4 +359,13 @@ span.last_login {
 
 .translation_missing {
 	color: #0f0;
+}
+
+div.input_select {
+	margin: 5px;
+}
+
+div.input_select label {
+	display: inline-block;
+	width: 100px;
 }

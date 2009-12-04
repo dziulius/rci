@@ -2,11 +2,11 @@
 
 <h1><span class="h1"><%= t('budgets.index.heading') %></span></h1>
 
-<div>
+<div class="input_select">
   <%= label_tag :department_id, t('budgets.index.department') %>
   <%= select_tag :department_id, options_for_select([[]] + Department.all.collect {|d| [d.name, d.id]}) %>
 </div>
-<div>
+<div class="input_select">
   <%= label_tag :user_id, t('budgets.index.user') %>
   <%= select_tag :user_id, options_for_select([[]] + User.all.collect {|u| [u.name, u.id]}) %>
 </div>

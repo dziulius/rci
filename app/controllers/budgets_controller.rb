@@ -2,12 +2,18 @@ class BudgetsController < ApplicationController
   before_filter :load_parent, :except => :index
 
   def index
-    if params[:project_id]
+    if params[:department_id]
+      @department = Department.find(params[:department_id])
+    elsif params[:project_id]
       load_parent
       @budgets = @project.budgets
       @budget = @budgets.first
     else
       @budgets = Budget.all
+    end
+    respond_to do |format|
+      format.html
+      format.js{render :partial => 'departments/budgets_table'}
     end
   end
 

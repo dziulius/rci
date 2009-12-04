@@ -22,4 +22,10 @@ module ApplicationHelper
       end
     } + javascript_tag("tabs('%s')" % t('tabs.loading'))
   end
+
+  def back_link(text, path, *args)
+    ref = request.env['HTTP_REFERER']
+    path = ref unless ref.blank? || ref.include?(login_path)
+    link_to text, path, *args
+  end
 end

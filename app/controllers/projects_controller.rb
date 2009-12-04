@@ -3,7 +3,15 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.xml
   def index
-    @projects = current_user.projects.all
+    respond_to do |format|
+      if params[:department_id]
+        @department = Department.find(params[:department_id])
+      else
+        @projects = current_user.projects.all
+      end
+      format.html
+      format.js{render :partial => "departments/projects_table"}
+    end
   end
 
   # GET /projects/1

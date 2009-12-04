@@ -1,3 +1,5 @@
-<%= render :partial => "common/date_range_select", :locals => {:object => @department, :url => :department_users_path} %>
+<%= render :partial => "common/date_range_select", :locals => {:object => @department, :url => :department_users_path, :tab => "users"} %>
 
-<% table_for User, @department.users_with_work_hours, :name, :work_hours, :own_work_hours, :foreign_work_hours, :lazy_hours %>
+<div id="users">
+  <%= render :partial => "users" %>
+</div>
