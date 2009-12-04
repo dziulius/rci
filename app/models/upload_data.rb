@@ -3,6 +3,7 @@ class UploadData
 
     def save(uploaded_data)
       validates_file_presence(uploaded_data)
+      create_directories
       xlsx_file = save_file(uploaded_data[:data_file])
       validates_xlsx_format(xlsx_file)
       parse_excel(xlsx_file)
@@ -14,6 +15,15 @@ class UploadData
       if uploaded_data.nil? || !(uploaded_data[:data_file].instance_of? Tempfile)
         raise Exceptions::NoFileError
       end
+    end
+
+    def makedir(name)
+      Dir.mkdir(name) unless File.directory?(name)
+    end
+
+    def create_directories
+      makedir "tmp/uploads"
+      makedir "tmp/csv"
     end
 
     def validates_xlsx_format(data_file)

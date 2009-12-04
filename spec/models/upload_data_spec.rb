@@ -20,6 +20,14 @@ describe UploadData do
     }.should raise_error Exceptions::NoFileError
   end
 
+  it "should create 'tmp/uploaded' & 'tmp/csv' directories" do
+    File.expects(:directory?).with('tmp/uploads').returns false
+    File.expects(:directory?).with('tmp/csv').returns false
+    Dir.expects(:mkdir).with('tmp/uploads')
+    Dir.expects(:mkdir).with('tmp/csv')
+    UploadData.create_directories
+  end
+
   it "should validate uploaded file format" do
     file = mock()
     File.expects(:new).returns file
