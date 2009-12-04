@@ -75,6 +75,7 @@ en:
       back_link: "Back"
       heading: "Project information"
       title: "Project {{name}}"
+      tasks_link: "Tasks"
     new:
       heading: "New project"
       back_link: "Back"
