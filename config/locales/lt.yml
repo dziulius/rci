@@ -198,6 +198,9 @@ lt:
       heading: "Vadovybės ataskaita"
       department: "Skyrius"
       user: "Darbuotojas"
+  uploaded_data:
+    index:
+    data_file: "Duomenų failas"
   number:
     format:
       separator: ","
