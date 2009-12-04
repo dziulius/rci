@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
+    p params.inspect
     respond_to do |format|
       if params[:project_id]
         @project = Project.find(params[:project_id])

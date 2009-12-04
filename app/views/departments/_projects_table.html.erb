@@ -1,0 +1,2 @@
+<% table_for Project, @department.projects(params[:date_from], params[:date_to]), linked(:name), linked_to(:leader), linked_to(:department), :start_at, :end_at,
+  :work_hours, random(:own_work_hours, 700..760), random(:foreign_work_hours, 300..340) %>

@@ -1,13 +1,13 @@
 <% div_id = "pediod_select_#{tab}" %>
 <% if object.start_at and object.end_at %>
   <% form_tag send(url, object, :format => 'js'), :id => div_id do %>
-    <%= compact_month_select :date_from, object.start_at, object.start_at, object.end_at %>
-    <%= compact_month_select :date_to, object.end_at, object.start_at, object.end_at %>
+    <%= compact_month_select "date_from", object.start_at, object.start_at, object.end_at,  :id => "date_from_#{tab}" %>
+    <%= compact_month_select "date_to", object.end_at, object.start_at, object.end_at, :id => "date_to_#{tab}" %>
   <% end %>
 
   <script type="text/javascript">
     $(function() {
-      $('#date_from, #date_to').selectToUISlider({sliderOptions:{
+      $('#date_from_<%= tab %> , #date_to_<%= tab %>').selectToUISlider({sliderOptions:{
           change: function() {
             $('#<%= tab %>').load($('#<%= div_id %>').attr('action'), $.param($($('#<%= div_id %>')).serializeArray()));
           }

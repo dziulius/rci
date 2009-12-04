@@ -39,8 +39,14 @@ class Department < ActiveRecord::Base
     end
   end
 
-  def projects
-    Project.scoped(:joins => {:leader => :department_belonging}, :conditions => {:department_belongings => {:department_id => id}})
+  def projects(from = nil, to = nil)
+    joins, conditions = (from && to) ? [:budgets, {:budgets => {:at => Date.parse(from)..Date.parse(to)}}] : [{}, {}]
+    ps = Project.scoped(
+      :joins => [{:leader => :department_belonging}] << joins, :group => "projects.id",
+      :conditions => {:department_belongings => {:department_id => id}}.merge(conditions)
+    )
+    p ps
+    ps
   end
 
   def budgets

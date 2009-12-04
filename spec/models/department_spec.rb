@@ -36,6 +36,11 @@ describe Department do
     @second_dep.projects.should == [@julius_project]
   end
 
+  it "should show deparmets projects from 2009/12 to 2010/01" do
+    build :in_main_dep, :budgets
+    @main_dep.projects("2009/12", "2010/01").should == [@psi]
+  end
+
   it "should show department budgets by date" do
     build 'tasks.of_psi', :tasks_of_julius_project, :in_main_dep, :in_second_dep
     @main_dep.budgets.should == @budgets_of_psi.sort_by {|b| b.at }.reverse
