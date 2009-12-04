@@ -32,6 +32,15 @@ describe User do
     end
   end
 
+  it "should allow to create new user" do
+    build :main_dep
+    user = User.new(:name => 'test user', :password_confirmation =>"secret", :password =>"secret", :department_id => @main_dep.id)
+    lambda {
+      user.save
+    }.should change{User.count}.by(1)
+    User.last.should == user
+  end
+
   describe "departments" do
     before do
       build 'in_main_dep.admin_leads'

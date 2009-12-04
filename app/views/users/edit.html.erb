@@ -8,4 +8,4 @@
     <%= f.buttons %>
 <% end %>
 
-<%= link_to t('users.edit.back_link'), users_path, :class=>"button" %>
+<%= back_link t('users.edit.back_link'), user_path(@user.id), :class=>"button" %>

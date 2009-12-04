@@ -12,7 +12,7 @@
 </ul>
 
 <%= link_to t('users.show.edit_link'), edit_user_path(@user), :class=>"button" %>
-<%= link_to t('users.show.back_link'), users_path, :class=>"button" %>
+<%= back_link t('users.show.back_link'), users_path, :class=>"button" %>
 
 <h2><span class="h2"><%= t('users.show.projects') %></span></h2>
 <% table_for Project, @user.projects, linked(:name), linked_to(:leader), :start_at, :end_at, :work_hours %>
