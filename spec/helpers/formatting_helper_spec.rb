@@ -60,5 +60,10 @@ describe FormattingHelper do
       formatter = helper.tail_link('hello')
       formatter.to_s(stub).should == ''
     end
+
+    it "should allow creating ajax link" do
+      formatter = helper.tail_link('hello', :edit, :ajax => true)
+      formatter.to_s(@andrius).should == helper.link_to_remote('hello', :url => edit_user_path(@andrius))
+    end
   end
 end

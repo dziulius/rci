@@ -1,0 +1,14 @@
+<% title t('budgets.project.title') %>
+
+<h1><span class="h1"><%= t('budgets.project.heading') %></span></h1>
+
+<div>
+  <%= label_tag :budget_id, t('budgets.project.budget') %>
+  <%= select_tag :budget_id, options_for_select(@project.budgets.collect {|b| [b.at_string, b.id]}) %>
+  <%= t('budgets.project.or') %>
+  <%= link_to_remote t('budgets.project.new'), :url => new_project_budget_path(@project), :method => 'get', :html => {:class => 'button'} %>
+</div>
+
+<div id="budget">
+  <%= render @budget if @budget %>
+</div>

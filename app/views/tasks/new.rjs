@@ -1,0 +1,1 @@
+page.select('.total-row').before render(:partial => 'tasks/form')

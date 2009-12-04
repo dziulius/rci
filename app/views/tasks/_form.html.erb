@@ -1,0 +1,12 @@
+<% content_tag_for('tr', @task, :row) do %>
+  <td>
+    <%= collection_select :task, :user_id, User.all, :id, :name, :include_blank => true %>
+  </td>
+  <td>
+    <%= text_field :task, :work_hours %>
+  </td>
+  <td>
+    <%= link_to_remote 'submit', :method => (@task.new_record? ? :post : :put), :url => [@budget, @task], :with => "jQuery(this).parents('tr').find('td > *').serialize()",
+                       :success => "updateRow(jQuery(this).parents('tr'), request)" %>
+  </td>
+<% end %>

@@ -1,0 +1,2 @@
+<%= content_row(@task, row_values_for(@task, [linked_to(:user), :work_hours, tail_link(image_tag("icons/edit.png"), :edit, @budget, :ajax => true, :method => 'get'),
+                                              tail_link(image_tag("icons/destroy.png"), @budget, :confirm => t('projects.index.delete_confirmation'), :method => :delete)])) %>

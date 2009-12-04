@@ -16,7 +16,7 @@ describe TablesHelper do
         with_tag('th', 'Name')
         with_tag('th', 'Leader')
       end
-      with_tag('tr') do
+      with_tag("tr.project#row_project_#{@psi.id}") do
         with_tag('td', :text => 'PSI')
         with_tag('td', :text => 'project')
       end
@@ -62,7 +62,7 @@ describe TablesHelper do
         with_tag('td', :text => @andrius.id.to_s)
       end
 
-      with_tag('tr') do
+      with_tag('tr.total-row') do
         with_tag('th', :text => 'Total:')
         with_tag('td', :text => (@admin.id + @andrius.id).to_s)
       end

@@ -159,3 +159,8 @@ en:
   upload_data:
     data_file: "Data file"
     upload_button: "Upload"
+  tasks:
+    create:
+      flash: "Successfully added new task."
+    update:
+      flash: "Successfully updated information."

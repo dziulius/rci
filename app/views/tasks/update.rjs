@@ -1,0 +1,2 @@
+page.replace dom_id(@task, :row), :partial => 'tasks/row'
+page.select('.total-row td:eq(0)').text(@budget.tasks.sum('work_hours'))

@@ -13,8 +13,13 @@ module FormattingHelper
 
   formatter(:tail_link, :no_header => true) do |subject, helper, text, *url|
     html_options = url.extract_options!
+    url += [subject]
     begin
-      helper.link_to text, url + [subject], html_options
+      if html_options[:ajax]
+        helper.link_to_remote text, html_options.merge(:url => url)
+      else
+        helper.link_to text, url, html_options
+      end
     rescue NoMethodError
       nil
     end

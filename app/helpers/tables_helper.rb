@@ -13,7 +13,7 @@ module TablesHelper
       end
 
       content << list.collect do |item|
-        content_row(row_values_for(item, columns, &block))
+        content_row(item, row_values_for(item, columns, &block))
       end.join
 
       content << @content_for_table_bottom.to_s
@@ -25,14 +25,22 @@ module TablesHelper
   def table_with_totals_for(klass, list, *columns, &block)
     options = columns.extract_options!
     content_for :table_bottom do
-      tds = row_values_for(ARMock.new(list), columns, 1, t('common.total'), &block)
-      content_row(tds, :first_header => true)
+      item = ARMock.new(list)
+      tds = row_values_for(item, columns, 1, t('common.total'), &block)
+      content_row(item, tds, :first_header => true, :row => {:class => 'total-row'})
     end
 
     table_for(klass, list, *columns.push(options), &block)
   end
 
-  protected
+  def content_row(object, values, options = {})
+    content_tag_for('tr', object, :row, options.delete(:row)) do
+      ''.tap do |result|
+        result << content_tag('th', values.shift) if options[:first_header]
+        result << values.collect { |value| content_tag('td', value) }.join
+      end
+    end
+  end
 
   def row_values_for(object, columns, start_with = 0, empty_value = nil)
     empty = [empty_value] * start_with
@@ -40,15 +48,6 @@ module TablesHelper
       empty + yield(object)[start_with..-1]
     else
       empty + columns[start_with..-1].collect { |column| column_value_for(object, column) }
-    end
-  end
-
-  def content_row(values, options = {})
-    content_tag('tr') do
-      ''.tap do |result|
-        result << content_tag('th', values.shift) if options[:first_header]
-        result << values.collect { |value| content_tag('td', value) }.join
-      end
     end
   end
 
