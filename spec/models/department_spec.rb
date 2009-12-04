@@ -47,6 +47,11 @@ describe Department do
     @second_dep.projects.should == [@julius_project]
   end
 
+  it "should show deparment budgets by date for one project" do
+    build 'tasks.of_psi', :tasks_of_julius_project, :in_main_dep, :in_second_dep
+    @main_dep.budgets(@julius_project.id).should == @budgets_of_julius_project.sort_by {|b| b.at }.reverse
+  end
+
   describe 'users with work hours' do
     it "should display users with their work hours" do
       build :tasks, :tasks_of_julius_project, :in_main_dep, :in_second_dep

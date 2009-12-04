@@ -41,16 +41,15 @@ class Department < ActiveRecord::Base
 
   def projects(from = nil, to = nil)
     joins, conditions = (from && to) ? [:budgets, {:budgets => {:at => Date.parse(from)..Date.parse(to)}}] : [{}, {}]
-    ps = Project.scoped(
+    Project.scoped(
       :joins => [{:leader => :department_belonging}] << joins, :group => "projects.id",
       :conditions => {:department_belongings => {:department_id => id}}.merge(conditions)
     )
-    p ps
-    ps
   end
 
-  def budgets
-    Budget.scoped(:conditions => {:project_id => projects.collect {|p| p.id }}, :order => 'at DESC')
+  def budgets(project_id = nil)
+    project_id ||= projects.collect {|p| p.id }
+    Budget.scoped(:conditions => {:project_id => project_id}, :order => 'at DESC')
   end
 
   def users_with_work_hours(from = nil, to = nil)
