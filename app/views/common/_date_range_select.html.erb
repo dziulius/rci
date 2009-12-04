@@ -1,5 +1,5 @@
-<% div_id = "pediod_select_#{tab}" %>
 <% if object.start_at and object.end_at %>
+  <% div_id = "pediod_select_#{tab}" %>
   <% form_tag send(url, object, :format => 'js'), :id => div_id do %>
     <%= compact_month_select "date_from", object.start_at, object.start_at, object.end_at,  :id => "date_from_#{tab}" %>
     <%= compact_month_select "date_to", object.end_at, object.start_at, object.end_at, :id => "date_to_#{tab}" %>
