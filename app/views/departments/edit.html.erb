@@ -4,4 +4,4 @@
 
 <%= render :partial => 'form' %>
 
-<%= link_to t('departments.edit.back_link'), departments_path, :class=>"button" %>
+<%= back_link t('departments.edit.back_link'), department_path(@department.id), :class=>"button" %>
