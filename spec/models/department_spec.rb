@@ -36,10 +36,20 @@ describe Department do
     @second_dep.projects.should == [@julius_project]
   end
 
+  it "should show deparmets projects from 2009/12 to 2010/01" do
+    build :in_main_dep, :budgets
+    @main_dep.projects("2009/12", "2010/01").should == [@psi]
+  end
+
   it "should show department budgets by date" do
     build 'tasks.of_psi', :tasks_of_julius_project, :in_main_dep, :in_second_dep
     @main_dep.budgets.should == @budgets_of_psi.sort_by {|b| b.at }.reverse
     @second_dep.projects.should == [@julius_project]
+  end
+
+  it "should show deparment budgets by date for one project" do
+    build 'tasks.of_psi', :tasks_of_julius_project, :in_main_dep, :in_second_dep
+    @main_dep.budgets(@julius_project.id).should == @budgets_of_julius_project.sort_by {|b| b.at }.reverse
   end
 
   describe 'users with work hours' do
@@ -67,6 +77,16 @@ describe Department do
         u.start_at.should == Date.new(2009, 10)
         u.end_at.should == Date.new(2009, 12, 31)
       end
+      #andrius with date
+      @main_dep.users_with_work_hours("2009/12", "2010/02").detect {|u| u.name == 'andrius' }.tap do |u|
+        u.work_hours.should == 64
+        u.own_work_hours.should == 64
+        u.foreign_work_hours.should == 0
+        u.lazy_hours.should == 120
+        u.start_at.should == Date.new(2009, 12)
+        u.end_at.should == Date.new(2009, 12, 31)
+      end
+
     end
   end
 end

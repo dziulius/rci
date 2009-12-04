@@ -173,6 +173,8 @@ lt:
       information: "Informacija"
     semantic_form:
       information: "Skyriaus informacija"
+    budget:
+      project: "Projektas"
   menu:
     user: "Naudotojas"
     projects: "Projektai"
