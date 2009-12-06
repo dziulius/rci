@@ -132,6 +132,7 @@ lt:
     show:
       edit_link: "Redaguoti"
       back_link: "Atgal"
+      tasks_link: "Užduotys"
       heading: "Projekto ataskaita"
       title: "Projektas {{name}}"
     new:
@@ -198,6 +199,16 @@ lt:
       heading: "Vadovybės ataskaita"
       department: "Skyrius"
       user: "Darbuotojas"
+    project:
+      budget: "Pasirinkite mėnesį"
+      or: "arba"
+      new: "Pridėti naują"
+      heading: "Projekto užduočių paskirstymas"
+      subheading: "Užduotys"
+    budget:
+      edit: "Redaguoti"
+      delete: "Ištrinti"
+      new_task: "Nauja užduotis"
   number:
     format:
       separator: ","
