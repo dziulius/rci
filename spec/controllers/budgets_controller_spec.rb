@@ -21,6 +21,23 @@ describe BudgetsController do
       assigns(:budgets).should == @psi.budgets.sort {|a, b| b.at <=> a.at }
       assigns(:budget).should == @budgets_of_psi_at_1002
     end
+
+    it "should return list of users as json for users select tag if department_id passed" do
+      build :in_main_dep
+      xhr :get, :index, :department_id => @main_dep.to_param, :format => 'json'
+      response.should be_success
+      response.body.should == User.all.collect{|user| {:val => user.id, :caption => user.name}}.to_json
+
+      assigns(:department).should == @main_dep
+    end
+
+    it "should load users budgets if user_id passed" do
+      xhr :get, :index, :user_id => @admin.to_param
+      response.should render_template('departments/_budgets_table')
+      response.should be_success
+
+      assigns(:budgets).should =~ @admin.budgets
+    end
   end
 
   describe "GET 'new'" do

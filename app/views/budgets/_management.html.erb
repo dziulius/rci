@@ -4,11 +4,34 @@
 
 <div class="input_select">
   <%= label_tag :department_id, t('budgets.index.department') %>
-  <%= select_tag :department_id, options_for_select([[]] + Department.all.collect {|d| [d.name, d.id]}) %>
+  <%= select_tag :department_id, options_for_select([[]] + Department.all.collect {|d| [d.name, d.id]}), :action => budgets_path %>
 </div>
 <div class="input_select">
   <%= label_tag :user_id, t('budgets.index.user') %>
-  <%= select_tag :user_id, options_for_select([[]] + User.all.collect {|u| [u.name, u.id]}) %>
+  <%= select_tag :user_id, options_for_select([[]] + User.all.collect {|u| [u.name, u.id]}), :action => budgets_path(:format => 'js') %>
 </div>
 
-<% table_for Budget, @budgets, :at_string, :hours, random(:used, 100..150), random(:remaining, -10..15) %>
+<div id="budgets">
+  <%= render :partial => 'departments/budgets_table' %>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(function(){
+    $("select#department_id").change(function(){
+      $.getJSON($(this).attr('action'), {department_id: $(this).val()}, function(j){
+        var options = '';
+        for (var i = 0; i < j.length; i++) {
+          options += '<option value="' + j[i].val + '">' + j[i].caption + '</option>';
+        }
+        $("select#user_id").html(options);
+        $("select#user_id").trigger("change");
+      })
+    })
+  })
+
+  $(function() {
+    $("select#user_id").change(function() {
+      $('#budgets').load($(this).attr('action'), "user_id=" + $(this).val());
+    });
+  });
+</script>

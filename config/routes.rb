@@ -10,7 +10,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :departments do |department|
     department.resources :users, :only => :index
     department.resources :projects, :only => :index
-    department.resources :budgets, :only => :index
   end
   map.resources :budgets do |budget|
     budget.resources :tasks, :only => [:new, :edit, :create, :update, :destroy]

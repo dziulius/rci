@@ -2,18 +2,25 @@ class BudgetsController < ApplicationController
   before_filter :load_parent, :except => :index
 
   def index
-    if params[:department_id]
-      @department = Department.find(params[:department_id])
+    if params[:user_id]
+      @budgets = User.find_by_id(params[:user_id]).budgets.all
+    elsif params[:department_id]
+      @collection = if (@department = Department.find_by_id(params[:department_id]))
+        @department.users
+      else
+        User.all
+      end.collect{|user| {:val => user.id, :caption => user.name}}.to_json
     elsif params[:project_id]
       load_parent
-      @budgets = @project.budgets
+      @budgets = @project.budgets.all
       @budget = @budgets.first
     else
       @budgets = Budget.all
     end
     respond_to do |format|
-      format.html
+      format.html{}
       format.js{render :partial => 'departments/budgets_table'}
+      format.json{render :json => @collection}
     end
   end
 
