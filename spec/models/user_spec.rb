@@ -62,10 +62,15 @@ describe User do
       }.should_not change{DepartmentBelonging.count}
     end
 
-    it "should not set user as leader" do
+    it "should not set user as leader when changing department" do
       build :second_dep
       @admin.department_id = @second_dep.id
       @admin.reload.department_belonging.leader.should be_false
+    end
+
+    it "should not change leader state if department is same" do
+      @admin.department_id = @main_dep.id
+      @admin.reload.department_belonging.leader.should be_true
     end
 
     it "should allow setting department_id to nil" do

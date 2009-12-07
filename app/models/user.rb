@@ -59,8 +59,8 @@ class User < ActiveRecord::Base
 
   def department_id=(value)
     build_department_belonging unless department
+    department_belonging.leader = false unless value.to_i == department_id
     department_belonging.department_id = value
-    department_belonging.leader = false
     department_belonging.save
   end
 
