@@ -56,6 +56,12 @@ describe User do
       @admin.reload.department.should == @second_dep
     end
 
+    it "should not create new department belonging when updating user" do
+      lambda {
+        @admin.update_attributes(:department_id => 10)
+      }.should_not change{DepartmentBelonging.count}
+    end
+
     it "should not set user as leader" do
       build :second_dep
       @admin.department_id = @second_dep.id
