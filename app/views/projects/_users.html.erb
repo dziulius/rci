@@ -3,6 +3,15 @@
 <%= hours_worked(@real_hours, @budget) %>
 
 <% @users.group_by(&:department).each do |department, users| %>
-    <h3><%= t('projects.index.department') %> <%= department.name %></h3>
-    <% table_with_totals_for User, users, :name, :work_hours %>
+    <% div_for department do %>
+        <h3><%= t('projects.index.department') %> <%= department.name %></h3>
+        <div class="left"><% table_with_totals_for User, users, :name, :work_hours %></div>
+        <div class="graph left" style="width: 350px; height: <%= 25 * users.size + 25 %>px;"></div>
+        <div class="clear"></div>
+    <% end %>
+    <script type="text/javascript">
+        $.plot($('#<%= dom_id(department) %> .graph'), [{data: reverse(collectInt('#<%= dom_id(department) %> tr.user > td:nth-child(2)')),
+            bars: {show: true, align: 'center', horizontal: true}}], {xaxis: {min: 0, max: <%= @users.collect(&:work_hours).max %>},
+            yaxis: {ticks: collectText('#<%= dom_id(department) %> tr.user > td:nth-child(1)')} });
+    </script>
 <% end %>
