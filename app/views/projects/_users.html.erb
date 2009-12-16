@@ -18,7 +18,7 @@
                 data: reverse(collectInt('#<%= dom_id(department) %> tr.user > td:nth-child(2)')),
                 bars: {show: true, align: 'center', horizontal: true}
             }
-        ], {xaxis: {min: 0, max: <%= @users.collect(&:work_hours).max / 9 * 10 %>},
+        ], {xaxis: {min: 0, max: <%= (@users.collect(&:work_hours).max / 50 + 1) * 50 %>},
             yaxis: {ticks: collectText('#<%= dom_id(department) %> tr.user > td:nth-child(1)')} });
     </script>
 <% end %>
@@ -26,7 +26,7 @@
 <script type="text/javascript">
     $.plot($('#departments-graph'), [
         {
-            data: collectInt('tr.total-row > td'),
+            data: collectInt('#users tr.total-row > td'),
             bars: {show: true, align: 'center'}
         }
     ], {xaxis: {ticks: collectText('h3')} });
