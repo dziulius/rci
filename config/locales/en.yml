@@ -160,6 +160,11 @@ en:
   upload_data:
     data_file: "Data file"
     upload_button: "Upload"
+    results:
+      success: "File was uploaded successfully!"
+      no_file: "No file specified!"
+      invalid_format: "Invalid file format!"
+      other_error: "Error while parsing data!"
   tasks:
     create:
       flash: "Successfully added new task."
