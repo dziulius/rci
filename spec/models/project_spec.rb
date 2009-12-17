@@ -10,7 +10,9 @@ describe Project do
   end
 
   it "should delegate department to leader" do
+    build :in_main_dep
     @psi.department.should == @psi.leader.department
+    @psi.department_id.should == @psi.leader.department.id
   end
 
   it "should have start and end date" do
@@ -51,6 +53,22 @@ describe Project do
       it "should only show users that worked in that period" do
         @psi.users_and_budget('2010/1'..'2010/2').should == [[@admin], 12, 13]
       end
+    end
+  end
+
+  describe "work hours" do
+    before :each do
+      build :tasks, :in_main_dep, :in_second_dep
+      @admin.department_belonging.update_attributes(:department_id => @second_dep.id)
+    end
+    it "should show own work hours" do
+      @psi.own_work_hours.should == 191
+      @zks.own_work_hours.should == 0
+    end
+
+    it "should show foreign work hours" do
+      @psi.foreign_work_hours.should == 213
+      @zks.foreign_work_hours.should == 61
     end
   end
 
