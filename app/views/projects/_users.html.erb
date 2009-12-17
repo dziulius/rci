@@ -1,8 +1,33 @@
 <h2><%= t('projects.index.workers') %></h2>
 
 <%= hours_worked(@real_hours, @budget) %>
+<% users_by_departments = @users.group_by(&:department) %>
+<div id="departments-graph" style="height: 250px; width: <%= [90 * users_by_departments.size + 25, 700].min %>px;"></div>
 
-<% @users.group_by(&:department).each do |department, users| %>
-    <h3><%= t('projects.index.department') %> <%= department.name %></h3>
-    <% table_with_totals_for User, users, :name, :work_hours %>
+<% users_by_departments.each do |department, users| %>
+    <% div_for department do %>
+        <h3><%= t('projects.index.department') %> <%= department.name %></h3>
+        <div class="left">
+          <% table_with_totals_for User, users, :name, :work_hours %></div>
+        <div class="graph left" style="width: 350px; height: <%= 25 * users.size + 25 %>px;"></div>
+        <div class="clear"></div>
+    <% end %>
+    <script type="text/javascript">
+        $.plot($('#<%= dom_id(department) %> .graph'), [
+            {
+                data: reverse(collectInt('#<%= dom_id(department) %> tr.user > td:nth-child(2)')),
+                bars: {show: true, align: 'center', horizontal: true}
+            }
+        ], {xaxis: {min: 0, max: <%= (@users.collect(&:work_hours).max / 50 + 1) * 50 %>},
+            yaxis: {ticks: collectText('#<%= dom_id(department) %> tr.user > td:nth-child(1)')} });
+    </script>
 <% end %>
+
+<script type="text/javascript">
+    $.plot($('#departments-graph'), [
+        {
+            data: collectInt('#users tr.total-row > td'),
+            bars: {show: true, align: 'center'}
+        }
+    ], {xaxis: {ticks: collectText('h3')} });
+</script>

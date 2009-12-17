@@ -1,1 +1,15 @@
 <% table_with_totals_for Budget, @project.budgets_with_hours, :at_string, :hours, :used, with_percent(:remaining, :hours) %>
+<div id="budgets-graph" style="width: 500px; height: 250px"></div>
+
+<script type="text/javascript">
+    $.plot($('#budgets-graph'), [
+        {
+            data: reverseOrder(collectInt('tr.budget > td:nth-child(2)')),
+            lines: {show: true}
+        },
+        {
+            data: reverseOrder(collectInt('tr.budget > td:nth-child(3)')),
+            lines: {show: true}
+        }
+    ], {xaxis: {ticks: reverseOrder(collectText('tr.budget > td:nth-child(1)'))} });
+</script>
