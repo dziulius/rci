@@ -1,7 +1,7 @@
-<p>
+<h1><span class="h1"><%= t('upload_data.index.heading') %></span></h1>
+
 <% form_for(@upload_data, :html => { :multipart => true, :method => :post }) do |f| %>
   <%= f.label t('upload_data.data_file') %> 
   <%= f.file_field :data_file %>
   <%= f.submit t('upload_data.upload_button'), :class => "button" %>
 <% end %>
-</p>

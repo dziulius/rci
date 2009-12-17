@@ -308,6 +308,8 @@ lt:
   upload_data:
     data_file: "Duomenų byla"
     upload_button: "Įkelti duomenis"
+    index:
+      heading: "Įkelti duomenis"
     results:
       success: "Duomenys buvo sėkmingai įkelti!"
       no_file: "Nenurodyta jokia byla!"

@@ -160,6 +160,8 @@ en:
   upload_data:
     data_file: "Data file"
     upload_button: "Upload"
+    index:
+      heading: "Upload data"
     results:
       success: "File was uploaded successfully!"
       no_file: "No file specified!"
