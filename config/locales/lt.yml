@@ -313,3 +313,10 @@ lt:
       heading: "Duomenų įkėlimas"
     data_file: "Duomenų byla"
     upload_button: "Įkelti duomenis"
+    index:
+      heading: "Įkelti duomenis"
+    results:
+      success: "Duomenys buvo sėkmingai įkelti!"
+      no_file: "Nenurodyta jokia byla!"
+      invalid_format: "Netinkamas bylos tipas!"
+      other_error: "Įvyko klaida įkeliant duomenis!"
