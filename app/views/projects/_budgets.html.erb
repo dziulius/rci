@@ -4,12 +4,12 @@
 <script type="text/javascript">
     $.plot($('#budgets-graph'), [
         {
-            data: collectInt('tr.budget > td:nth-child(2)'),
+            data: reverseOrder(collectInt('tr.budget > td:nth-child(2)')),
             lines: {show: true}
         },
         {
-            data: collectInt('tr.budget > td:nth-child(3)'),
+            data: reverseOrder(collectInt('tr.budget > td:nth-child(3)')),
             lines: {show: true}
         }
-    ], {xaxis: {ticks: collectText('tr.budget > td:nth-child(1)')} });
+    ], {xaxis: {ticks: reverseOrder(collectText('tr.budget > td:nth-child(1)'))} });
 </script>

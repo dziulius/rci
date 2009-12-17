@@ -26,3 +26,10 @@ function reverse(points) {
     });
     return points;
 }
+
+function reverseOrder(points) {
+    $.each(points, function(n, point) {
+        point[0] = points.length - point[0] - 1;
+    });
+    return points;
+}
