@@ -99,12 +99,10 @@ describe UploadData do
     department_last = mock()
     Department.expects(:last).returns department_last
 
-    user = mock()
+    
+    user = mock("user",:password= => nil, :password_confirmation= => nil, :department => department)
     user.expects(:name=).with("Albinas")
-    user.expects(:password=)
-    user.expects(:password_confirmation=)
     user.expects(:department=).with(department_last)
-    user.expects(:department).returns department
     User.expects(:create).yields(user).returns user
 
     department.expects(:leader_id=).with(user)

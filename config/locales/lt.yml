@@ -301,10 +301,15 @@ lt:
     pm: "pm"
 
   support:
+    select:
+      all: "Visi"
     array:
       words_connector: ", "
       two_words_connector: " ir "
       last_word_connector: " ir "
   upload_data:
+    index:
+      title: "Duomenų įkėlimas"
+      heading: "Duomenų įkėlimas"
     data_file: "Duomenų byla"
     upload_button: "Įkelti duomenis"

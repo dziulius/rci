@@ -157,7 +157,13 @@ en:
   time:
     formats:
       long_year_month: "%Y %B"
+  support:
+    select:
+      all: "All"
   upload_data:
+    index:
+      title: "Upload data"
+      heading: "Upload data"
     data_file: "Data file"
     upload_button: "Upload"
   tasks:

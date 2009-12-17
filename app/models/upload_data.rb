@@ -89,7 +89,7 @@ class UploadData
             budget_last = Budget.last
             FasterCSV.foreach(csv_file(0)) do |task_row|
               if task_row[0] == bud_row[0] && task_row[2] == bud_row[1] &&
-                task_row[3] == bud_row[2]
+                  task_row[3] == bud_row[2]
                 Task.create do |task|
                   task.work_hours = task_row[4].to_i
                   task.budget = budget_last

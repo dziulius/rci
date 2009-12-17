@@ -9,7 +9,8 @@ class BudgetsController < ApplicationController
         @department.users
       else
         User.all
-      end.collect{|user| {:val => user.id, :caption => user.name}}.to_json
+      end.collect{|user| {:val => user.id, :caption => user.name}}
+      @collection = ([{:val => 0, :caption => t("support.select.all")}] + @collection).to_json
     elsif params[:project_id]
       load_parent
       @budgets = @project.budgets.all

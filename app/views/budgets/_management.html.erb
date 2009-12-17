@@ -4,11 +4,11 @@
 
 <div class="input_select">
   <%= label_tag :department_id, t('budgets.index.department') %>
-  <%= select_tag :department_id, options_for_select([[]] + Department.all.collect {|d| [d.name, d.id]}), :action => budgets_path %>
+  <%= select_tag :department_id, options_for_select([[t("support.select.all"), 0]] + Department.all.collect{|d| [d.name, d.id]}), :action => budgets_path %>
 </div>
 <div class="input_select">
   <%= label_tag :user_id, t('budgets.index.user') %>
-  <%= select_tag :user_id, options_for_select([[]] + User.all.collect {|u| [u.name, u.id]}), :action => budgets_path(:format => 'js') %>
+  <%= select_tag :user_id, options_for_select([[t("support.select.all"), 0]] + User.all.collect {|u| [u.name, u.id]}), :action => budgets_path(:format => 'js') %>
 </div>
 
 <div id="budgets">
@@ -18,7 +18,7 @@
 <script type="text/javascript" charset="utf-8">
   $(function(){
     $("select#department_id").change(function(){
-      $.getJSON($(this).attr('action'), {department_id: $(this).val()}, function(j){
+      $.getJSON($(this).attr('action'), $(this).val() ? {department_id: $(this).val()} : {}, function(j){
         var options = '';
         for (var i = 0; i < j.length; i++) {
           options += '<option value="' + j[i].val + '">' + j[i].caption + '</option>';
@@ -31,7 +31,7 @@
 
   $(function() {
     $("select#user_id").change(function() {
-      $('#budgets').load($(this).attr('action'), "user_id=" + $(this).val());
+      $('#budgets').load($(this).attr('action'), ($(this).val() > 0) ? "user_id=" + $(this).val() : "");
     });
   });
 </script>

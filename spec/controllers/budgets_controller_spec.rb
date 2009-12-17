@@ -26,7 +26,7 @@ describe BudgetsController do
       build :in_main_dep
       xhr :get, :index, :department_id => @main_dep.to_param, :format => 'json'
       response.should be_success
-      response.body.should == User.all.collect{|user| {:val => user.id, :caption => user.name}}.to_json
+      response.body.should == ([{:val => 0, :caption => "All"}] + User.all.collect{|user| {:val => user.id, :caption => user.name}}).to_json
 
       assigns(:department).should == @main_dep
     end

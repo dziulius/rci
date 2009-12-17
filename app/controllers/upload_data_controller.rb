@@ -9,11 +9,11 @@ class UploadDataController < ApplicationController
       flash[:notice] = "File was uploaded successfully!"
 
     rescue Exceptions::NoFileError
-      flash[:notice] = "No file specified!"
+      flash[:error] = "No file specified!"
     rescue Exceptions::InvalidFormatError
-      flash[:notice] = "Invalid file format!"
+      flash[:error] = "Invalid file format!"
     rescue StandardError
-      flash[:notice] = "Error while parsing data!"
+      flash[:error] = "Error while parsing data!"
     ensure
       redirect_to :back
     end
