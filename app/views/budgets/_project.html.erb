@@ -2,6 +2,8 @@
 
 <h1><span class="h1"><%= t('budgets.project.heading') %></span></h1>
 
+<%= render :partial => 'projects/project_info' %>
+
 <div>
   <%= label_tag :budget_id, t('budgets.project.budget') %>
   <%= select_tag :budget_id, options_for_select(@project.budgets.collect {|b| [b.at_string, b.id]}) %>

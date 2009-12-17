@@ -6,14 +6,14 @@ class UploadDataController < ApplicationController
   def create
     begin
       UploadData.save(params[:upload_data])
-      flash[:notice] = "File was uploaded successfully!"
+      flash[:notice] = t('upload_data.results.success')
 
     rescue Exceptions::NoFileError
-      flash[:notice] = "No file specified!"
+      flash[:error] = t('upload_data.results.no_file')
     rescue Exceptions::InvalidFormatError
-      flash[:notice] = "Invalid file format!"
+      flash[:error] = t('upload_data.results.invalid_format')
     rescue StandardError
-      flash[:notice] = "Error while parsing data!"
+      flash[:error] = t('upload_data.results.other_error')
     ensure
       redirect_to :back
     end

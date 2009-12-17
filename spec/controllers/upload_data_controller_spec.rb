@@ -29,19 +29,19 @@ describe UploadDataController do
     it "should print corresponding message to NoFileError exception" do
       UploadData.expects(:save).raises Exceptions::NoFileError
       post :create 
-      flash[:notice].should == "No file specified!"
+      flash[:error].should == "No file specified!"
     end
 
     it "should print corresponding message to InvalidFormatError" do
       UploadData.expects(:save).raises Exceptions::InvalidFormatError
       post :create 
-      flash[:notice].should == "Invalid file format!"
+      flash[:error].should == "Invalid file format!"
     end
 
     it "should print corresponding error message to other exceptions" do
       UploadData.expects(:save).raises StandardError
       post :create 
-      flash[:notice].should == "Error while parsing data!"
+      flash[:error].should == "Error while parsing data!"
     end
 
     after :each do
