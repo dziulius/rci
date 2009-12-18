@@ -5,13 +5,12 @@ class UploadDataController < ApplicationController
 
   def create
     begin
-      users = UploadData.save(params[:upload_data])
-      flash[:notice] = t('upload_data.results.success')
-      mail = AdminMailer.create_password_list(users)
-      AdminMailer.deliver(mail)
-
-    rescue Exceptions::NoFileError
-      flash[:error] = t('upload_data.results.no_file')
+      upload_data = UploadData.new(params[:upload_data])
+      if upload_data.save
+        flash[:notice] = t('upload_data.results.success')
+      else
+        flash[:error] = t('upload_data.results.no_file')
+      end
     rescue Exceptions::InvalidFormatError
       flash[:error] = t('upload_data.results.invalid_format')
     rescue StandardError

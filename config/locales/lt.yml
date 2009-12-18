@@ -316,7 +316,7 @@ lt:
     index:
       heading: "Įkelti duomenis"
     results:
-      success: "Duomenys buvo sėkmingai įkelti!"
+      success: "Duomenų failas atitiko reikalavimus. Netrukus gausite laišką su prisijungimo duomenimis"
       no_file: "Nenurodyta jokia byla!"
       invalid_format: "Netinkamas bylos tipas!"
       other_error: "Įvyko klaida įkeliant duomenis!"

@@ -1,31 +1,15 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe UploadData do
-  it "should validate presence of file to be uploaded" do
-    file = mock(:instance_of? => Tempfile)
-    lambda {
-      UploadData.validates_file_presence({:data_file => file})
-    }.should_not raise_error
+describe @upload_data do
+  before :each do
+    @upload_data = UploadData.new
   end
-
-  it "should raise error in file presence validation with invalid params" do
-    lambda {
-      UploadData.validates_file_presence(nil)
-    }.should raise_error Exceptions::NoFileError
-    lambda {
-      UploadData.validates_file_presence({})
-    }.should raise_error Exceptions::NoFileError
-    lambda {
-      UploadData.validates_file_presence({:data_file => "file"})
-    }.should raise_error Exceptions::NoFileError
-  end
-
   it "should create 'tmp/uploaded' & 'tmp/csv' directories" do
     File.expects(:directory?).with('tmp/uploads').returns false
     File.expects(:directory?).with('tmp/csv').returns false
     Dir.expects(:mkdir).with('tmp/uploads')
     Dir.expects(:mkdir).with('tmp/csv')
-    UploadData.create_directories
+    @upload_data.create_directories
   end
 
   it "should validate uploaded file format" do
@@ -34,7 +18,7 @@ describe UploadData do
     file.expects(:read).with(4).returns "PK\003\004"
     file.expects(:close)
     lambda {
-      UploadData.validates_xlsx_format("file.xlsx")
+      @upload_data.validates_xlsx_format
     }.should_not raise_error
   end
 
@@ -44,7 +28,7 @@ describe UploadData do
     file.expects(:read).with(4).returns "Fail"
     file.expects(:close)
     lambda {
-      UploadData.validates_xlsx_format("file.xlsx")
+      @upload_data.validates_xlsx_format
     }.should raise_error Exceptions::InvalidFormatError
   end
 
@@ -54,29 +38,32 @@ describe UploadData do
     new_file = mock()
     File.expects(:open).yields new_file
     new_file.expects(:write)
-    UploadData.save_file(tmp_file).should == File.join("tmp/uploads/", name)
+    @upload_data.data_file = tmp_file
+    @upload_data.save_file
+    @upload_data.xlsx_file.should == File.join("tmp/uploads/", name)
   end
 
   it "should raise error in save_file method with invalid parameters" do
     lambda {
-      UploadData.save_file("file")
+      @upload_data.save_file
     }.should raise_error NoMethodError
   end
 
   it "should return csv file name when invoked csv_file method" do
     names = %w{task project user department budget}
     0.upto(4) { |i|
-      UploadData.csv_file(i).should == File.join("tmp/csv", names[i])
+      @upload_data.csv_file(i).should == File.join("tmp/csv", names[i])
     }
   end
 
   it "should parse uploaded excel file to csv files" do
     file_name = "file.xlsx"
     new_file = mock()
+    name = @upload_data.instance_variable_set(:@xlsx_file, file_name)
     sheet = mock()
     Excelx.expects(:new).with(file_name).returns sheet
     0.upto(4) do |nr|
-      name = UploadData.csv_file(nr)
+      name = @upload_data.csv_file(nr)
       sheet.expects(:default_sheet=).with(nr+1)
       sheet.expects(:to_csv).with(name)
       csv = mock(:shift)
@@ -84,14 +71,14 @@ describe UploadData do
       File.expects(:open).with(name, 'w').yields new_file
       new_file.expects(:print).with(csv)
     end
-    UploadData.parse_excel(file_name)
+    @upload_data.parse_excel
   end
 
   it "should create users and departments and return array of users" do
     dep_row  = ["1", "Albinas"]
     user_row = ["Albinas", "1"]
-    FasterCSV.expects(:foreach).with(UploadData.csv_file(3)).yields dep_row
-    FasterCSV.expects(:foreach).with(UploadData.csv_file(2)).yields user_row
+    FasterCSV.expects(:foreach).with(@upload_data.csv_file(3)).yields dep_row
+    FasterCSV.expects(:foreach).with(@upload_data.csv_file(2)).yields user_row
     Kernel.stubs(:rand).returns 0.12345678
 
     department = mock()
@@ -109,7 +96,7 @@ describe UploadData do
     User.expects(:create).yields(user).returns user
 
     department.expects(:leader_id=).with(user)
-    UploadData.create_users_departments.should == 
+    @upload_data.create_users_departments.should ==
       [{ :name => "Albinas", :password => "0.12345678" }]
   end
 
@@ -117,9 +104,9 @@ describe UploadData do
     proj_row = ["2000", "Bronius"]
     bud_row  = ["2000", "2009", "11", "500"]
     task_row = ["2000", "Bronius", "2009", "11", "300"]
-    FasterCSV.expects(:foreach).with(UploadData.csv_file(1)).yields proj_row
-    FasterCSV.expects(:foreach).with(UploadData.csv_file(4)).yields bud_row
-    FasterCSV.expects(:foreach).with(UploadData.csv_file(0)).yields task_row
+    FasterCSV.expects(:foreach).with(@upload_data.csv_file(1)).yields proj_row
+    FasterCSV.expects(:foreach).with(@upload_data.csv_file(4)).yields bud_row
+    FasterCSV.expects(:foreach).with(@upload_data.csv_file(0)).yields task_row
 
     user = mock()
     User.expects(:find_by_name).with("Bronius").times(2).returns user
@@ -145,19 +132,18 @@ describe UploadData do
     task.expects(:user=).with(user)
     Task.expects(:create).yields task
 
-    UploadData.create_projects_budgets_tasks
+    @upload_data.create_projects_budgets_tasks
   end
 
   it "should call all methods needed to save data in save method" do
     xlsx_file = mock()
-    users = [{ :name => "first", :password => "secret" }]
-    UploadData.expects(:validates_file_presence)
-    UploadData.expects(:create_directories)
-    UploadData.expects(:save_file).returns xlsx_file
-    UploadData.expects(:validates_xlsx_format).with xlsx_file
-    UploadData.expects(:parse_excel).with xlsx_file
-    UploadData.expects(:create_users_departments).returns users
-    UploadData.expects(:create_projects_budgets_tasks)
-    UploadData.save("params").should == users
+    @upload_data.expects(:data_file => "file")
+    @upload_data.expects(:create_directories)
+    @upload_data.expects(:save_file)
+    @upload_data.expects(:validates_xlsx_format)
+    @upload_data.expects(:spawn)
+    #    @upload_data.expects(:create_users_departments).returns users
+    #    @upload_data.expects(:create_projects_budgets_tasks)
+    @upload_data.save.should be_true
   end
 end
