@@ -26,6 +26,15 @@ describe UploadDataController do
       flash[:notice].should == "File was uploaded successfully!"
     end
 
+    it "should send email to admin with users and passwords" do
+      users = mock()
+      mail = mock()
+      UploadData.expects(:save).returns users
+      AdminMailer.expects(:create_password_list).with(users).returns mail
+      AdminMailer.expects(:deliver).with(mail)
+      post :create
+    end
+
     it "should print corresponding message to NoFileError exception" do
       UploadData.expects(:save).raises Exceptions::NoFileError
       post :create 
