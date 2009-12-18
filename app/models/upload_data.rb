@@ -7,8 +7,9 @@ class UploadData
       xlsx_file = save_file(uploaded_data[:data_file])
       validates_xlsx_format(xlsx_file)
       parse_excel(xlsx_file)
-      create_users_departments
+      users = create_users_departments
       create_projects_budgets_tasks
+      users
     end
 
     def validates_file_presence(uploaded_data)
@@ -54,6 +55,7 @@ class UploadData
     end
 
     def create_users_departments
+      users = []
       FasterCSV.foreach(csv_file(3)) do |dep_row|
         Department.create do |depart|
           depart.name = dep_row[0]
@@ -63,13 +65,16 @@ class UploadData
           if user_row[1] == dep_row[0]
             user = User.create do |user|
               user.name = user_row[0]
-              user.password = user.password_confirmation = rand(0).to_s
+              password = Kernel.rand.to_s
+              user.password = user.password_confirmation = password
               user.department = department_last
+              users << { :name => user_row[0], :password => password }
             end
             user.department.leader_id = user if user_row[0] == dep_row[1]
           end
         end
       end
+      users
     end
 
     def create_projects_budgets_tasks

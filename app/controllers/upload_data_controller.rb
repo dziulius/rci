@@ -5,8 +5,10 @@ class UploadDataController < ApplicationController
 
   def create
     begin
-      UploadData.save(params[:upload_data])
+      users = UploadData.save(params[:upload_data])
       flash[:notice] = t('upload_data.results.success')
+      mail = AdminMailer.create_password_list(users)
+      AdminMailer.deliver(mail)
 
     rescue Exceptions::NoFileError
       flash[:error] = t('upload_data.results.no_file')

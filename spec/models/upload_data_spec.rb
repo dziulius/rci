@@ -87,11 +87,12 @@ describe UploadData do
     UploadData.parse_excel(file_name)
   end
 
-  it "should create users and departments from csv files" do
+  it "should create users and departments and return array of users" do
     dep_row  = ["1", "Albinas"]
     user_row = ["Albinas", "1"]
     FasterCSV.expects(:foreach).with(UploadData.csv_file(3)).yields dep_row
     FasterCSV.expects(:foreach).with(UploadData.csv_file(2)).yields user_row
+    Kernel.stubs(:rand).returns 0.12345678
 
     department = mock()
     department.expects(:name=).with("1")
@@ -100,13 +101,16 @@ describe UploadData do
     Department.expects(:last).returns department_last
 
     
-    user = mock("user",:password= => nil, :password_confirmation= => nil, :department => department)
+    user = mock(:department => department)
     user.expects(:name=).with("Albinas")
+    user.expects(:password=).with "0.12345678"
+    user.expects(:password_confirmation=)
     user.expects(:department=).with(department_last)
     User.expects(:create).yields(user).returns user
 
     department.expects(:leader_id=).with(user)
-    UploadData.create_users_departments
+    UploadData.create_users_departments.should == 
+      [{ :name => "Albinas", :password => "0.12345678" }]
   end
 
   it "should create projects, budgets and departments from csv files" do
@@ -142,5 +146,18 @@ describe UploadData do
     Task.expects(:create).yields task
 
     UploadData.create_projects_budgets_tasks
+  end
+
+  it "should call all methods needed to save data in save method" do
+    xlsx_file = mock()
+    users = [{ :name => "first", :password => "secret" }]
+    UploadData.expects(:validates_file_presence)
+    UploadData.expects(:create_directories)
+    UploadData.expects(:save_file).returns xlsx_file
+    UploadData.expects(:validates_xlsx_format).with xlsx_file
+    UploadData.expects(:parse_excel).with xlsx_file
+    UploadData.expects(:create_users_departments).returns users
+    UploadData.expects(:create_projects_budgets_tasks)
+    UploadData.save("params").should == users
   end
 end
